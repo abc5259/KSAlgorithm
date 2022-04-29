@@ -1,1 +1,1 @@
-class Bi
+class Bi {}
