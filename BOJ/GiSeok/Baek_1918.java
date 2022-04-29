@@ -25,7 +25,7 @@ public class Baek_1918 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String exp = br.readLine();
         int len = exp.length();
-        char ch, peeker;
+        char ch;
 
         for (int i = 0; i < len; i++) {
             ch = exp.charAt(i);
