@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
-public class Baek_1463 {
+public class BOJ_1463 {
     public static int inspect(int n) {
         int[] dp = new int[n+1];
 

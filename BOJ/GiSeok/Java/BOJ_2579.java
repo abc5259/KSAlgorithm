@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
-public class Baek_2579 {
+public class BOJ_2579 {
     public static int inspect(int[] stairs, int n) {
         int[][] dp = new int[3][n + 1];
         // dp[0] == 연속되지 않은 이전 결과와의 합

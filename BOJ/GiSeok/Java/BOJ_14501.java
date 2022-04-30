@@ -8,7 +8,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-public class Baek_14501 {
+public class BOJ_14501 {
     public static void main(String[] args) throws IOException { 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());

@@ -2,7 +2,7 @@ package BOJ.GiSeok.Java;
 import java.util.Scanner;
 import java.util.Stack;
 
-public class Baek_9093 {
+public class BOJ_9093 {
     public static void main(String[] args) {
         Stack<String> stk1 = new Stack<>();
         StringBuffer sb;

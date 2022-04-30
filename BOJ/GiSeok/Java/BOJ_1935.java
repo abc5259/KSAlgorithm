@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Stack;
 import java.util.HashMap;
 
-public class Baek_1935 {
+public class BOJ_1935 {
     public static double compute(double num1, double num2, char op) {
         switch (op)
         {

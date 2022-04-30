@@ -4,7 +4,7 @@ import java.io.InputStreamReader;
 import java.io.IOException;
 import java.util.Stack;
 
-public class Baek_1918 {
+public class BOJ_1918 {
     public static int expPriority(char ch) {
         switch (ch)
         {
