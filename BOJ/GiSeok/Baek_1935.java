@@ -27,6 +27,7 @@ public class Baek_1935 {
         Stack<Double> operand = new Stack<>();
         int opndNum = Integer.parseInt(br.readLine());
         String exp = br.readLine();
+        
         double num;
         char ch;
 

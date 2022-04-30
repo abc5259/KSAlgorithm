@@ -11,6 +11,7 @@ public class Baek_10809 {
         for (int i = 97; i < 123; i++) {
             System.out.printf("%d ", str.indexOf((char)i));
         }
+
         System.out.println("");
     }
 }
