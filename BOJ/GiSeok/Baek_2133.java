@@ -8,7 +8,14 @@ dp[6] = (dp[4] * dp[2]) + (2 * dp[2]) + 2
 dp[8] = (dp[6] * dp[2]) + (2 * dp[4]) * (2 * dp[2]) + 2
 
 라는 것을 알 수 있음. (dp[4] * dp[2])는 간단하니, (2 * dp[4]) ... 부분만 구현하면 된다.
+그건 
+dp[4] = (2 * dp[0])
+dp[6] = (2 * dp[2]) + (2 * dp[0])
+dp[8] = (2 * dp[4]) + (2 * dp[2]) + (2 * dp[0])
+라고 생각하면 되고, 이때 저장하려는 인덱스보다 4만큼 차이나므로 반복문으로 4부터 시작해서
+i - 4, i - 6, i - 8, ....., i - i까지 반복하면서 * 2 해서 dp[i]에 계속해서 더하면 된다.
 */
+package BOJ.GiSeok;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
