@@ -1,3 +1,5 @@
+package BOJ.GiSeok;
+
 /*
 BaekJoon - 11726 2xN 타일링 (05/04 수)
 
@@ -11,7 +13,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.IOException;
 
-public class Test {
+public class Baek_11726 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
