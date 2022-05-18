@@ -22,7 +22,7 @@ public class BOJ_11053 {
     for(int i=0; i<dp.length; i++) {
       if(max < dp[i]) max = dp[i];
     }
-    System.out.println(max);
+    System.out.println(max); 
     
   }
 }
