@@ -24,15 +24,13 @@ public class Baek_15486 {
             int Ti = i + dp[i][0];
             if (Ti > N+1)
                 dp[i][1] = dp[i+1][1];
-            else {
+            else
                 dp[i][1] = Math.max(dp[i][1] + dp[Ti][1], dp[i+1][1]);
-            }
         }
 
-        int max = dp[1][1];
-        for (int i = 2; i < N + 1; i++) {
+        int max = 0;
+        for (int i = 1; i < N + 1; i++)
             max = Math.max(max, dp[i][1]);
-        }
 
         System.out.println(max);
     }
