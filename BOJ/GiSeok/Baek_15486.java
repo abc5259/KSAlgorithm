@@ -28,10 +28,6 @@ public class Baek_15486 {
                 dp[i][1] = Math.max(dp[i][1] + dp[Ti][1], dp[i+1][1]);
         }
 
-        int max = 0;
-        for (int i = 1; i < N + 1; i++)
-            max = Math.max(max, dp[i][1]);
-
-        System.out.println(max);
+        System.out.println(dp[1][1]);
     }
 }
