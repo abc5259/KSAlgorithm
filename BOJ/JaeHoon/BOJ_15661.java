@@ -6,51 +6,52 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class BOJ_14889 {
+public class BOJ_15661 {
   static int N;
-  static int[][] S;
+  static int[][] map;
   static boolean[] isUsed;
   static int min = Integer.MAX_VALUE;
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     N = Integer.parseInt(br.readLine());
-    S = new int[N][N];
+    map = new int[N][N];
     isUsed = new boolean[N];
     for(int i=0; i<N; i++) {
       StringTokenizer st = new StringTokenizer(br.readLine());
       for(int j=0; j<N; j++) {
-        S[i][j] = Integer.parseInt(st.nextToken());
+        map[i][j] = Integer.parseInt(st.nextToken());
       }
     }
-    func(0,0);
+    for(int i=1; i<N-1; i++) {
+      func(0,0,i);
+    }
     System.out.println(min);
   }
-  public static void func(int index,int count) {
-    if(count == N/2) {
-      // diff();
-      System.out.println(Arrays.toString(isUsed));
+  public static void func(int start, int count,int end) {
+    if(count == end) {
+      diff();
       return;
     }
-    for(int i=index; i<N; i++) {
+    for(int i=start; i<N; i++) {
       if(!isUsed[i]) {
         isUsed[i] = true;
-        func(i+1,count+1);
+        func(i+1,count+1,end);
         isUsed[i] = false;
       }
     }
   }
   public static void diff() {
     int team_start = 0;
-		int team_link = 0;
-    for (int i = 0; i < N-1; i++) {
-      for (int j = i + 1; j < N; j++) {
-        if (isUsed[i] == true && isUsed[j] == true) {
-          team_start += S[i][j];
-          team_start += S[j][i];
+    int team_link = 0;
+    for(int i=0; i<N-1; i++) {
+      for(int j=i+1; j<N; j++) {
+        if(isUsed[i] == true && isUsed[j] == true) {
+          team_start += map[i][j];
+          team_start += map[j][i];
         }
-        else if (isUsed[i] == false && isUsed[j] == false) {
-          team_link += S[i][j];
-          team_link += S[j][i];
+        else if(isUsed[i] == false && isUsed[j] == false) {
+          team_link += map[i][j];
+          team_link += map[j][i];
         }
       }
     }
