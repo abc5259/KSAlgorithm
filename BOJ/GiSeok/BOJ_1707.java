@@ -13,20 +13,14 @@ import java.util.ArrayList;
 
 class Graph {
     public ArrayList<ArrayList<Integer>> graph;
-    public boolean[] visited;
-    public int N, M;
-
+    public int N;
     public int[] color;
 
-    Graph(int N, int M) {
+    Graph(int N) {
         graph = new ArrayList<ArrayList<Integer>>();
         for (int i = 0; i < N + 1; i++)
             graph.add(new ArrayList<Integer>());
-        visited = new boolean[N + 1];
         color = new int[N + 1];
-        
-        this.N = N;
-        this.M = M;
     }
     public void addEdge(int n1, int n2) {
             graph.get(n1).add(n2);
@@ -34,8 +28,6 @@ class Graph {
     }
 
     public void dfs(int v, int pre) {
-        visited[v] = true;
-        
         if (color[pre] == 1)
             color[v] = 2;
         else if (color[pre] == 2)
@@ -43,7 +35,7 @@ class Graph {
 
         for (int i = 0; i < graph.get(v).size(); i++) {
             int p = graph.get(v).get(i);
-            if (!visited[p])
+            if (color[p] == 0)
                 dfs(p, v);
         }
 
@@ -70,7 +62,7 @@ public class BOJ_1707 {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int N = Integer.parseInt(st.nextToken());   // 정점의 개수
             int M = Integer.parseInt(st.nextToken());   // 간선의 개수
-            Graph gr = new Graph(N, M);
+            Graph gr = new Graph(N);
 
             for (int i = 0; i < M; i++) {
                 st = new StringTokenizer(br.readLine());
