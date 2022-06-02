@@ -22,9 +22,10 @@ public class BOJ_15661 {
         map[i][j] = Integer.parseInt(st.nextToken());
       }
     }
-    for(int i=1; i<N-1; i++) {
-      func(0,0,i);
-    }
+    // for(int i=1; i<N-1; i++) {
+    //   func(0,0,i);
+    // }
+    solve(0);
     System.out.println(min);
   }
   public static void func(int start, int count,int end) {
@@ -56,5 +57,19 @@ public class BOJ_15661 {
       }
     }
     min = Math.min(min, Math.abs(team_link - team_start));
+  }
+  public static void solve(int depth) {
+    if (depth == N) {
+        diff();
+        System.out.println(Arrays.toString(isUsed));
+        return;
+    }
+    isUsed[depth] = true;
+    System.out.println("depth = " + depth + Arrays.toString(isUsed));
+    solve(depth + 1);
+    isUsed[depth] = false;
+    System.out.println("return depth = " + depth + Arrays.toString(isUsed));
+    solve(depth + 1);
+    return;
   }
 }
