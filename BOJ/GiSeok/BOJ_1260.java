@@ -76,8 +76,5 @@ public class BOJ_1260 {
             gr.visited[i] = false;
         gr.bfs(V, N);
         System.out.println("");
-
-        bw.flush();
-        bw.close();
     }
 }
