@@ -51,14 +51,14 @@ public class BOJ_11724 {
             gr.addEdge(v1, v2);
         }
 
-        int ga = 0;
+        int cc = 0;
         for (int i = 1; i < N + 1; i++) {
             if (!gr.visited[i]) {
                 gr.dfs(i, N);
-                ga++;
+                cc++;
             }
         }
-        bw.write(ga + "\n");
+        bw.write(cc + "\n");
 
         bw.flush();
         bw.close();
