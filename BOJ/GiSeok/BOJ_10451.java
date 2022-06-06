@@ -22,6 +22,7 @@ class Graph {
             graph.add(new ArrayList<Integer>());
         visited = new boolean[N + 1];
     }
+    
     public void addEdge(int n1, int n2) {
             graph.get(n1).add(n2);
     }
