@@ -2,7 +2,7 @@
 백준 - 9461 파도반 수열 (05/19 목)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;

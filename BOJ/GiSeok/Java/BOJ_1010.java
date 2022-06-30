@@ -2,7 +2,7 @@
 백준 - 1010 다리 놓기 (05/23 월)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.BufferedWriter;

@@ -10,7 +10,7 @@ B를 골랐을 때, R, G를 더한 것 중 최소값을 모아
 
 마지막에 이 셋 중 젤 작은 값을 선택하면 됨.
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

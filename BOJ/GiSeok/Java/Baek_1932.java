@@ -2,7 +2,7 @@
 BaekJoon - 1932 정수 삼각형 (05/11 수) 
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -3,7 +3,7 @@ BaekJoon - 1904 01타일 (05/09 월)
 
 n=1부터 구해보면 피보나치 수열임을 알 수 있다.
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;

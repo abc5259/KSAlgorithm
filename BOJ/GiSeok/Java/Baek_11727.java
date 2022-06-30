@@ -2,7 +2,7 @@
 BaekJoon - 11726 2xN 타일링 2 (05/08 일)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;

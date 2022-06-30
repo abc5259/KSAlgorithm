@@ -3,7 +3,7 @@ BaekJoon - 9095 1, 2, 3 더하기 (05/04 수)
 
 특정 수의 1, 2, 3으로 만든 더하기 횟수는 dp[x-3] + dp[x-2] + dp[x-1]과 같음
  */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;

@@ -6,7 +6,7 @@ pop한 인덱스 내용을 큰 인덱스 내용으로 바꿔준다.
 
 더 큰 인덱스가 없다면 그 인덱스 내용은 -1로 바꿈
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.util.Stack;
 import java.util.StringTokenizer;
 import java.io.BufferedReader;

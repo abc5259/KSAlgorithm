@@ -1,4 +1,4 @@
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.util.Scanner;
 import java.util.Stack;
 

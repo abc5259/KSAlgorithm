@@ -2,7 +2,7 @@
 백준 - 2748 피보나치 수 2 (05/19 목)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;

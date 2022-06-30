@@ -22,7 +22,7 @@ dp[4] = max(dp[4], dp[1] + 1)
     .
 순으로 진행하면서 결국 각 dp[i]에는 각각의 가장 긴 증가하는 수열의 길이가 대입됩니다.
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.util.StringTokenizer;
 import java.util.Arrays;
 import java.io.BufferedReader;

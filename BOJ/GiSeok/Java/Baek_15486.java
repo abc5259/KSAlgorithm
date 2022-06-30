@@ -2,7 +2,7 @@
 백준 - 15486 퇴사 2 (05/21 토) 
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;

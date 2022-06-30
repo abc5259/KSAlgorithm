@@ -3,7 +3,7 @@ BaekJoon - 2193 이친수 (05/08 일)
 
 n=1부터 구해보면 피보나치 수열임을 알 수 있다.
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;

@@ -10,7 +10,7 @@ f(5) = f(4) + f(3) ---> 3 5
 = f(i)가 호출하는 f(0), f(1) 횟수는 f(i-1), f(i-2)가 호출하는 f(0), f(1) 횟수의 합과 같다.
 */
 
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;

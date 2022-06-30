@@ -5,7 +5,7 @@ BaekJoon - 11726 2xN 타일링 (05/04 수)
    나머지 분배법칙 (A + B) % p = ((A % p) + (B % p)) % p
 2. 어차피 long형이라서 둘이 더해서 나머지를 구하면 됨
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;

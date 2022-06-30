@@ -9,7 +9,7 @@ dp[i][j] = (dp[i][j-1] - dp[i-1][j-1] + 10007l) % 10007l;
 이렇게 간단하게도 표현가능하다. 왜냐면 sum을 계속 10007로 나누기 때문에
 dp에는 처음부터 10007로 나눠진 값이 들어가기 때문이다.
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

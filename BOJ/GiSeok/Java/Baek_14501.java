@@ -2,7 +2,7 @@
 백준 - 14501 퇴사 (05/20 금) 
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;

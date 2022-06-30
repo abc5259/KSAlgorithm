@@ -3,7 +3,7 @@ BaekJoon - 1912 연속합 (05/13 금)
 
 연속해서 더하는 수가 어느 순간 0보다 작으면 그 다음 수부터 다시 연속해서 더해보면 됨
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

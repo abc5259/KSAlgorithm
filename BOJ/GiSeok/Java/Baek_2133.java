@@ -15,7 +15,7 @@ dp[8] = (2 * dp[4]) + (2 * dp[2]) + (2 * dp[0])
 라고 생각하면 되고, 이때 저장하려는 인덱스보다 4만큼 차이나므로 반복문으로 4부터 시작해서
 i - 4, i - 6, i - 8, ....., i - i까지 반복하면서 * 2 해서 dp[i]에 계속해서 더하면 된다.
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
