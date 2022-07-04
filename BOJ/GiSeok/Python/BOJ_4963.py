@@ -6,9 +6,9 @@ def dfsIsland(r, c):
         visited[r][c] = True
 
         for i in range(8):
-            if (dicHeight[i] + r >= 0 and dicHeight[i] + r < mapHeight) and (dicWidth[i] + c >= 0 and dicWidth[i] + c < mapWidth):
-                newRow = dicHeight[i] + r
-                newCol = dicWidth[i] + c
+            newRow = dicHeight[i] + r
+            newCol = dicWidth[i] + c
+            if (newRow >= 0 and newRow < mapHeight) and (newCol >= 0 and newCol < mapWidth):
                 if not visited[newRow][newCol] and islandMap[newRow][newCol] == 1:
                     dfsIsland(newRow, newCol)
 
@@ -18,7 +18,7 @@ while True:
     mapWidth, mapHeight = map(int, sys.stdin.readline().split())
     if mapWidth == 0 and mapHeight == 0:
         break
-    visited = [[False for i in range(mapWidth)] for j in range(mapHeight)]
+    visited = [[False]*(mapWidth) for j in range(mapHeight)]
     islandMap = []
     for i in range(mapHeight):
         islandMap.append(list(map(int, sys.stdin.readline().split())))
