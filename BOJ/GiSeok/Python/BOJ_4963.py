@@ -1,4 +1,4 @@
-#BaekJoon - 4963 [그래프]섬의 개수 (07/04)
+# BaekJoon - 4963 [그래프]섬의 개수 (07/04)
 import sys
 sys.setrecursionlimit(10000)
 
