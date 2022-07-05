@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
@@ -32,8 +31,8 @@ public class BOJ_16947 {
       graph.get(v2).add(v1);
     }
     for(int i=1; i<=N; i++) {
-      isCycle(i,i,i);
-      isVisit = new boolean[N+1];
+      if(isCycle(i,i,i)) break;
+      cycle = new boolean[N+1];
     }
     for(int i=1; i<=N; i++) {
       if(!cycle[i]) {
@@ -46,22 +45,21 @@ public class BOJ_16947 {
     System.out.println(sb);
   }
   public static boolean isCycle(int prev,int node,int start) {
-    isVisit[node] = true;
+    cycle[node] = true;
     for(int V: graph.get(node)) {
-      if(!isVisit[V]) {
+      if(!cycle[V]) {
         if(isCycle(node,V,start)) return true;
       }
       else if(V != prev && V == start) {
-        cycle[start] = true;
         return true;
       }
     }
+    cycle[node] = false;
     return false;
   }
   public static int bfs(int start) {
     Queue<Node> queue = new LinkedList<>();
-    Node startNode = new Node(start,0);
-    queue.offer(startNode);
+    queue.offer(new Node(start,0));
     isVisit[start] = true;
     int count = 0;
     while(!queue.isEmpty()) {
@@ -72,7 +70,7 @@ public class BOJ_16947 {
           count = next.count;
           break;
         }
-        else if(!isVisit[V] && !cycle[V]) {
+        else if(!isVisit[V]) {
           queue.offer(next);
           isVisit[V] = true;
         }
