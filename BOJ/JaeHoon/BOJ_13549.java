@@ -40,7 +40,6 @@ public class BOJ_13549 {
           queue.offer(new Point(x, time));
           isVisit[x] = time;
         }
-        
       }
     }
   }
