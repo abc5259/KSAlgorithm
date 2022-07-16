@@ -39,3 +39,4 @@ public class BOJ_14225 {
     dfs(depth+1,sum);
   }
 }
+// 2
