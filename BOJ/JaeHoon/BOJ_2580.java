@@ -43,6 +43,7 @@ public class BOJ_2580 {
           dfs(row, col+1);
         }
       }
+      System.out.println("row = " + row + " col = " + col);
       map[row][col] = 0;   
       return;
     }
