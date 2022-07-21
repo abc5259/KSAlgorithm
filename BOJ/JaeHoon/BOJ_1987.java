@@ -31,11 +31,6 @@ public class BOJ_1987 {
   }
   public static void dfs(int row, int col,int sum) {
     result = Math.max(result, sum);
-    if(row == R && col == C)  {
-      System.out.println(result);
-      System.exit(0);
-      return;
-    }
     for(int i=0; i<4; i++) {
       int nx = row + dir[i][0];
       int ny = col + dir[i][1];
