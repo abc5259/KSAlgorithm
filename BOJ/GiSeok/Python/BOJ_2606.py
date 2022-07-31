@@ -30,7 +30,7 @@ graphOfComputers = [[] for _ in range(computers+1)]
 visited = [False]*(computers+1)
 howManyVirus = -1
 
-for i in range(pairOfComputers):
+for _ in range(pairOfComputers):
     v1, v2 = map(int, sys.stdin.readline().split())
     
     graphOfComputers[v1].append(v2)
