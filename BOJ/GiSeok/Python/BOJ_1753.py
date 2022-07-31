@@ -4,7 +4,7 @@ import heapq
 import sys
 input = sys.stdin.readline
 
-inf = 99999
+inf = 9999999
 v, e = map(int, input().split())
 startV = int(input())
 graph = [[] for _ in range(v+1)]
