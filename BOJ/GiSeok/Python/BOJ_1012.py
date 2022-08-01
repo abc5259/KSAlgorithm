@@ -27,7 +27,7 @@ def dfs(x, y):
 
 
 T = int(input())
-wasd = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+wasd = ((-1, 0), (1, 0), (0, -1), (0, 1))
 
 for _ in range(T):
     M, N, K = map(int, input().split())
