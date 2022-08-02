@@ -5,9 +5,7 @@ input = sys.stdin.readline
 
 M, N = map(int, input().split())
 wasd = ((-1, 0), (1, 0), (0, -1), (0, 1))
-graph = []
-for _ in range(N):
-    graph.append(list(map(int, input().split())))
+graph = [list(map(int, input().split())) for _ in range(N)]
 
 
 def tomato():
