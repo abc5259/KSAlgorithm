@@ -4,14 +4,9 @@ import sys
 input = sys.stdin.readline
 
 N, K = map(int, input().split())
-if N > K:
-    graph = [0] * ((N+1)*2)
-    visited = [False] * ((N+1)*2)
-    scope = N
-else:
-    graph = [0] * ((K+1)*2)
-    visited = [False] * ((K+1)*2)
-    scope = K*2
+scope = 100001
+graph = [0] * scope
+visited = [False] * scope
 
 def bfs(start):
     queue = deque()
@@ -25,7 +20,7 @@ def bfs(start):
         dx = [v+1, v-1, v*2]
 
         for vv in dx:
-            if (0 <= vv <= scope) and (not visited[vv]):
+            if (0 <= vv < scope) and (not visited[vv]):
                 queue.append(vv)
                 visited[vv] = True
                 graph[vv] = graph[v] + 1
