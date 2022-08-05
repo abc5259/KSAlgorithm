@@ -17,8 +17,9 @@ max = 0
 def bfs(copyGraph):
     for i in range(N):
         for j in range(M):
-            if graph[i][j] == 2:
+            if copyGraph[i][j] == 2:
                 queue.append([j, i])
+
     while queue:
         vx, vy = queue.popleft()
         for hx, hy in wasd:
