@@ -37,7 +37,7 @@ public class BOJ_6087 {
     int[] startPoint = C.get(0);
     int[] endPoint = C.get(1);
     PriorityQueue<Point> q = new PriorityQueue<>();
-    q.offer(new Point(startPoint[0], startPoint[1], 4, 0));
+    q.offer(new Point(startPoint[0], startPoint[1], -1, 0));
     visit[startPoint[0]][startPoint[1]] = 0;
     while(!q.isEmpty()) {
       Point curr = q.poll();
@@ -51,13 +51,13 @@ public class BOJ_6087 {
         //벽이라면 못감
         if(map[nextX][nextY] == '*') continue;
         //초기 상태이거나 방향이 같다면
-        if(curr.direction == 4 || curr.direction == i) {
+        if(curr.direction == -1 || curr.direction == i) {
           if(visit[nextX][nextY] >= curr.mirrorCnt) {
             visit[nextX][nextY] = curr.mirrorCnt;
             q.offer(new Point(nextX, nextY, i, curr.mirrorCnt));
           }
         }else {
-          //초기 상태가 아닐때 
+          //방향이 다르다면
           if(visit[nextX][nextY] >= curr.mirrorCnt+1) {
             visit[nextX][nextY] = curr.mirrorCnt+1;
             q.offer(new Point(nextX, nextY, i, curr.mirrorCnt+1));
