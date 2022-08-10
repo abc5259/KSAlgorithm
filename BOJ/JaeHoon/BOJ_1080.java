@@ -3,8 +3,6 @@ package BOJ.JaeHoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.Socket;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_1080 {
@@ -30,15 +28,6 @@ public class BOJ_1080 {
       String s = br.readLine();
       for(int j=0; j<M; j++) {
         map_two[i][j] = s.charAt(j) - '0';
-      }
-    }
-
-
-    for(int i=0; i<N; i++) {
-      for(int j=0; j<M; j++) {
-        if(map_one[i][j] != map_two[i][j]) {
-          changeMap(i,j);
-        }
       }
     }
 
@@ -71,8 +60,5 @@ public class BOJ_1080 {
       }
     }
     answer++;
-    // for(int i=0; i<N; i++) {
-    //   System.out.println(Arrays.toString(map_one[i]));
-    // }
   }
 }
