@@ -46,4 +46,3 @@ for _ in range(T):
     start_num, goal_num = map(int, input().split())
     
     bfs(start_num)
-
