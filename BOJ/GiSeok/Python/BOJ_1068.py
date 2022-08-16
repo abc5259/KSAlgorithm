@@ -26,6 +26,7 @@ if __name__ == "__main__":
 
     del_node = int(input())
     delete_(del_node)
+    # 부모 노드가 가르키는 del_node를 지워주기 위한 반복문
     for key in tree.keys():
         for value in tree[key]:
             if del_node == value:
