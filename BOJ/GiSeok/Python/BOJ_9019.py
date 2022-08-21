@@ -12,38 +12,33 @@ def bfs(start_num):
     while queue:
         num, cmd = queue.popleft()
 
-        if int(num) == int(goal_num):
+        if num == goal_num:
             return cmd
         else:
-            D = str((int(num) * 2) % 10000)
-            D = ('0'*(4-len(D))) + D
+            D = (num * 2) % 10000
+            S = num - 1
+            if S == -1:
+                S = 9999
+            L = ((num % 1000)*10) + (num // 1000)
+            R = ((num % 10)*1000) + (num // 10)
 
-            S = str(int(num) - 1)
-            if int(S) == -1:
-                S = '9999'
-            S = ('0'*(4-len(S))) + S
-
-            L = num[1:] + num[0]
-            R = num[-1] + num[0:-1]
-
-            if not visited[int(D)]:
+            if not visited[D]:
                 queue.append([D, cmd + 'D'])
-                visited[int(D)] = True
-            if not visited[int(S)]:
+                visited[D] = True
+            if not visited[S]:
                 queue.append([S, cmd + 'S'])
-                visited[int(S)] = True
-            if not visited[int(L)]:
+                visited[S] = True
+            if not visited[L]:
                 queue.append([L, cmd + 'L'])
-                visited[int(L)] = True
-            if not visited[int(R)]:
+                visited[L] = True
+            if not visited[R]:
                 queue.append([R, cmd + 'R'])
-                visited[int(R)] = True
+                visited[R] = True
 
 if __name__ == "__main__":
     T = int(input())
 
     for _ in range(T):
-        num, goal_num = input().split()
-        num = ('0'*(4-len(num))) + num
+        num, goal_num = map(int, input().split())
 
         print(bfs(num))
