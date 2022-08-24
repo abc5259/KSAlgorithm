@@ -43,8 +43,8 @@ public class BOJ_2263 {
     int rootIndex = inorderIndex[rootNode];
     int leftNodeLength = rootIndex - in_start;
 
-    getPreOrder(in_start,rootIndex-1,p_start,p_start+leftNodeLength-1);
+    getPreOrder(in_start,rootIndex-1,p_start,p_start + leftNodeLength - 1);
 
-    getPreOrder(rootIndex+1, in_end, p_start+leftNodeLength, p_end-1);
+    getPreOrder(rootIndex+1, in_end, p_start+ leftNodeLength, p_end-1);
   }
 }
