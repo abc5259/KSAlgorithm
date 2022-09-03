@@ -15,7 +15,7 @@ public class BOJ_2343 {
     M = Integer.parseInt(st.nextToken());
     lectures = new int[N];
     st = new StringTokenizer(br.readLine());
-    int low = Integer.MAX_VALUE;
+    int low = 0;
     int high = 0;
     for(int i=0; i<N; i++) {
       lectures[i] = Integer.parseInt(st.nextToken());
