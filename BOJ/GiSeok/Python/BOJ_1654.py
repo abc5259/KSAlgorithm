@@ -5,20 +5,20 @@ sys.setrecursionlimit(10000)
 input = sys.stdin.readline
 
 N, K = map(int, input().split())
-numList = [int(input()) for _ in range(N)]
+lanList = [int(input()) for _ in range(N)]
 
-def lanCable(start, end):
+def lanCut(start, end):
     mid = (start + end) // 2
 
     cnt = 0
-    for num in numList:
+    for num in lanList:
         cnt += num // mid
     
     if start > end:
         return end
     elif cnt >= K:
-        return lanCable(mid + 1, end)
+        return lanCut(mid + 1, end)
     else:
-        return lanCable(start, mid - 1)
+        return lanCut(start, mid - 1)
 
-print(lanCable(1, max(numList)))
+print(lanCut(1, max(lanList)))
