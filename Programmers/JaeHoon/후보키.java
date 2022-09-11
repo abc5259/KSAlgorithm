@@ -1,7 +1,6 @@
 package Programmers.JaeHoon;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 
 public class 후보키 {
