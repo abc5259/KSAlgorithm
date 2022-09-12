@@ -1,5 +1,6 @@
 package Programmers.JaeHoon;
 import java.util.*;
+
 public class 길찾기게임 {
   
   static ArrayList<Integer> pre = new ArrayList<>(); 
