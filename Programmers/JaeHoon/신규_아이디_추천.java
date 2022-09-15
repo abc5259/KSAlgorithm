@@ -1,5 +1,6 @@
 package Programmers.JaeHoon;
 
+
 public class 신규_아이디_추천 {
   class Solution {
     public String solution(String new_id) {

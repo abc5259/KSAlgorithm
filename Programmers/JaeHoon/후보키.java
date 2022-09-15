@@ -21,6 +21,9 @@ public class 후보키 {
                   if(isSame) return false;
               }
           }
+          String a = "123";
+          String b = "12";
+          a.contains(b);
           return true;
       }
       public int solution(String[][] relation) {
