@@ -41,7 +41,7 @@ public class 무지의_먹방_라이브 {
             
             
         ArrayList<Food> foods = new ArrayList<>();
-            
+
         while(!q.isEmpty()) {
             foods.add(q.poll());
         }
