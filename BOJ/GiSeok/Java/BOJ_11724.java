@@ -2,7 +2,7 @@
 백준 - 11724 연결 요소의 개수 (06/02 목)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;

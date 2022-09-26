@@ -32,5 +32,7 @@ public class Baek_9093 {
             }
             System.out.println("");
         }
+
+        scan.close();
     }
 }

@@ -2,7 +2,7 @@
 백준 - 1707 이분 그래프 (06/03 금)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;

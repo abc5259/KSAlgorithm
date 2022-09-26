@@ -2,7 +2,7 @@
 백준 - 9465 스티커 (05/27 금)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.BufferedWriter;

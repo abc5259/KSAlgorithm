@@ -2,11 +2,10 @@
 백준 - 1260 DFS와 BFS (06/02 목)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.StringTokenizer;
 import java.util.Queue;
 import java.util.LinkedList;

@@ -11,7 +11,7 @@ public class KAKAO_두_큐_합_같게_만들기 {
             return sum;
         }
 
-        public String solution(String[] survey, int[] choices) {
+        public int solution(int[] queue1, int[] queue2) {
             int answer = 0;
             long sum1 = queueSum(queue1);
             long sum2 = queueSum(queue2);
@@ -56,5 +56,19 @@ public class KAKAO_두_큐_합_같게_만들기 {
 
             return answer;
         }
+    }
+
+    public static void main(String[] args) {
+        int[] t1_queue1 = {3, 2, 7, 2};
+        int[] t1_queue2 = {4, 6, 5, 1};
+
+        int[] t2_queue1 = {1, 2, 1, 2};
+        int[] t2_queue2 = {1, 10, 1, 2};
+        
+        KAKAO_두_큐_합_같게_만들기 cases = new KAKAO_두_큐_합_같게_만들기();
+        KAKAO_두_큐_합_같게_만들기.Solution tcase = cases.new Solution();
+
+        System.out.println(tcase.solution(t1_queue1, t1_queue2));
+        System.out.println(tcase.solution(t2_queue1, t2_queue2));
     }
 }

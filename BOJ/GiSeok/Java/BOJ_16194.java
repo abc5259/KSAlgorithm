@@ -2,7 +2,7 @@
 백준 - 16194 카드 구매하기 2 (05/27 금)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.BufferedWriter;

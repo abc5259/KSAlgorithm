@@ -2,7 +2,7 @@
 백준 - 10451 순열 그래프 (06/06 월)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;

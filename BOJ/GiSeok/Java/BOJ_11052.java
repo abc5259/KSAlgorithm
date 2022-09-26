@@ -2,7 +2,7 @@
 백준 - 11052 카드 구매하기 (05/24 화)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.BufferedWriter;

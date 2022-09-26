@@ -2,7 +2,7 @@
 백준 - 15990 1, 2, 3 더하기 5 (05/30 월)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;

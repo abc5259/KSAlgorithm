@@ -2,7 +2,7 @@
 백준 - 12865 평범한 배낭 (05/26 목)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.BufferedWriter;

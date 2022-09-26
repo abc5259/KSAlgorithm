@@ -2,7 +2,7 @@
 백준 - 2225 합분해 (05/30 월)
 
 */
-package BOJ.GiSeok;
+package BOJ.GiSeok.Java;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;

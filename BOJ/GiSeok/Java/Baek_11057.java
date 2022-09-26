@@ -10,7 +10,6 @@ dp[i][j] = (dp[i][j-1] - dp[i-1][j-1] + 10007l) % 10007l;
 dp에는 처음부터 10007로 나눠진 값이 들어가기 때문이다.
 */
 package BOJ.GiSeok.Java;
-import java.util.StringTokenizer;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
