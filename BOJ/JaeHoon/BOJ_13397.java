@@ -15,24 +15,23 @@ public class BOJ_13397 {
     int M = Integer.parseInt(st.nextToken());
     arr = new int[N];
     st = new StringTokenizer(br.readLine());
-    int low = 0;
+    int low = -1;
     int high = 0;
     for(int i=0; i<N; i++) {
       arr[i] = Integer.parseInt(st.nextToken());
       high = Math.max(high, arr[i]);
     }
-
-    while(low <= high) {
+    while(low + 1 < high) {
       int mid = (low + high) / 2;
-      if(solve(mid) <= M) {
-        high = mid - 1;
+      if(solve(mid,M)) {
+        high = mid;
       }else {
-        low = mid + 1;
+        low = mid;
       }
     }
-    System.out.println(low);
+    System.out.println(high);
   }
-  static public int solve(int n) {
+  static public boolean solve(int n, int M) {
     int max = Integer.MIN_VALUE;
     int min = Integer.MAX_VALUE;
     int cnt = 1;
@@ -46,6 +45,6 @@ public class BOJ_13397 {
         min = Integer.MAX_VALUE;
       }
     }
-    return cnt;
+    return cnt <= M;
   }
 }
