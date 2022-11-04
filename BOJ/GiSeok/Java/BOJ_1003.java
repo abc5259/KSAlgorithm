@@ -15,7 +15,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
 
-public class Baek_1003 {
+public class BOJ_1003 {
     public static int[] fb_dp(int n) {
         int[][] dp = new int[n + 1][2];
         // dp[i][0] == fb(i)가 호출하는 fb(0)의 횟수
