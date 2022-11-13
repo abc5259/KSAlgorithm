@@ -11,12 +11,12 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.ArrayList;
 
-class Graph {
+class graphs {
     public ArrayList<ArrayList<Integer>> graph;
     public int N;
     public int[] color;
 
-    Graph(int N) {
+    graphs(int N) {
         graph = new ArrayList<ArrayList<Integer>>();
         for (int i = 0; i < N + 1; i++)
             graph.add(new ArrayList<Integer>());
@@ -62,7 +62,7 @@ public class BOJ_1707 {
             StringTokenizer st = new StringTokenizer(br.readLine());
             int N = Integer.parseInt(st.nextToken());   // 정점의 개수
             int M = Integer.parseInt(st.nextToken());   // 간선의 개수
-            Graph gr = new Graph(N);
+            graphs gr = new graphs(N);
 
             for (int i = 0; i < M; i++) {
                 st = new StringTokenizer(br.readLine());

@@ -10,11 +10,11 @@ import java.util.StringTokenizer;
 import java.util.Queue;
 import java.util.LinkedList;
 
-class Graph {
+class graphs {
     public int[][] graph;
     public boolean[] visited;
 
-    Graph(int N) {
+    graphs(int N) {
         graph = new int[N + 1][N + 1];
         visited = new boolean[N + 1];
     }
@@ -59,7 +59,7 @@ public class BOJ_1260 {
         int N = Integer.parseInt(st.nextToken());   // 정점의 개수
         int M = Integer.parseInt(st.nextToken());   // 간선의 개수
         int V = Integer.parseInt(st.nextToken());   // 정점의 번호
-        Graph gr = new Graph(N);
+        graphs gr = new graphs(N);
         
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());

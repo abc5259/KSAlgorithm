@@ -10,11 +10,11 @@ import java.io.OutputStreamWriter;
 import java.io.IOException;
 import java.util.StringTokenizer;
 
-class Graph {
+class graphs {
     public int[][] graph;
     public boolean[] visited;
 
-    Graph(int N) {
+    graphs(int N) {
         graph = new int[N + 1][N + 1];
         visited = new boolean[N + 1];
     }
@@ -41,7 +41,7 @@ public class BOJ_11724 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int N = Integer.parseInt(st.nextToken());   // 정점의 개수
         int M = Integer.parseInt(st.nextToken());   // 간선의 개수
-        Graph gr = new Graph(N);
+        graphs gr = new graphs(N);
         
         for (int i = 0; i < M; i++) {
             st = new StringTokenizer(br.readLine());
