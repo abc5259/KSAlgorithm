@@ -11,22 +11,22 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 
 class graphs {
-    public int[][] graph;
+    public int[][] gh;
     public boolean[] visited;
 
     graphs(int N) {
-        graph = new int[N + 1][N + 1];
+        gh = new int[N + 1][N + 1];
         visited = new boolean[N + 1];
     }
     public void addEdge(int n1, int n2) {
-            graph[n1][n2] = 1;
-            graph[n2][n1] = 1;
+            gh[n1][n2] = 1;
+            gh[n2][n1] = 1;
     }
     public void dfs(int v, int N) {
         visited[v] = true;
 
         for (int i = 0; i < N + 1; i++) {
-            if (graph[v][i] == 1)
+            if (gh[v][i] == 1)
                 if (!visited[i])
                     dfs(i, N);
         }
