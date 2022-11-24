@@ -1,19 +1,21 @@
 import sys
-from itertools import combinations
 input = sys.stdin.readline
 
 N = int(input())
+lenN = int(str(N))
 ans = []
 
-for i in range(1, 11):
-    for c in combinations([0, 1, 2, 3, 4, 5, 6, 7, 8, 9], i):
-        num = list(c)
-        num.sort(reverse=True)
-        
-        st = ""
-        for n in num:
-            st += str(n)
-        ans.append(int(st))
+def backtracking(num):
+    ans.append(num)
+    if (num % 10) == 0:
+        return
+
+    n = num % 10
+    for i in range(n):
+        backtracking((num*10)+i)
+
+for i in range(10):
+    backtracking(i)
 
 ans.sort()
 if len(ans) <= N:
