@@ -56,7 +56,6 @@ public class BOJ_6593 {
         if(nextX < 0 || nextX >= R || nextY < 0 || nextY >= C || nextZ < 0 || nextZ >= L) continue;
         if(isVisit[nextZ][nextX][nextY]) continue;
         if(buliding[nextZ][nextX][nextY] == '#') continue;
-        // System.out.println("z = " + nextZ + " x = " + nextX + " y = " + nextY);
         if(nextX == end[0] && nextY == end[1] && nextZ == end[2]) {
           return curr.time + 1;
         }
@@ -76,3 +75,7 @@ public class BOJ_6593 {
     }
   }
 }
+
+
+
+
