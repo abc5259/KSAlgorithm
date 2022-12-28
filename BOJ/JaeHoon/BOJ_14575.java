@@ -26,20 +26,20 @@ public class BOJ_14575 {
       low = Math.min(low,peoples[i].L);
       high = Math.max(high,peoples[i].R);
     }
+    low--;
+    high++;
     if(low_sum > T || high_sum < T) {
       System.out.println(-1);
     }else {
-      int answer = Integer.MAX_VALUE;
-      while(low <= high) {
+      while(low +1< high) {
         int mid = (low + high) / 2;
         if(check(mid)) {
-          answer = Math.min(answer, mid);
-          high = mid-1;
+          high = mid;
         }else {
-          low = mid+1;
+          low = mid;
         }
       }
-      System.out.println(answer);
+      System.out.println(high);
     }
 
 
