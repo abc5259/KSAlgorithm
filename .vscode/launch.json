@@ -6,6 +6,13 @@
   "configurations": [
     {
       "type": "java",
+      "name": "Launch BOJ_14621",
+      "request": "launch",
+      "mainClass": "BOJ.JaeHoon.BOJ_14621",
+      "projectName": "KSAlgorism_ca0f8d14"
+    },
+    {
+      "type": "java",
       "name": "Launch Current File",
       "request": "launch",
       "mainClass": "${file}"
