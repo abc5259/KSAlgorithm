@@ -18,7 +18,7 @@ public class BOJ_19583 {
     int E = millis(st.nextToken());
     int Q = millis(st.nextToken());
 
-    Map<String,Boolean> map = new HashMap<>();
+    Map<String,Boolean> map = new HashMap<>(); // 개강총회 시작 전에 입장한 사람들 저장 map 
     Set<String> set = new HashSet<>();
 
     String str = null;
