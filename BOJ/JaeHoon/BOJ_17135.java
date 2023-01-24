@@ -31,7 +31,6 @@ public class BOJ_17135 {
   }
   public static void archerPos(int depth, int start) {
     if(depth == 3) {
-      // System.out.println(Arrays.deepToString(archerArr));
       answer = Math.max(answer, solve());
       return;
     }
@@ -74,7 +73,6 @@ public class BOJ_17135 {
 
       turn++; // 턴 +1;
     }
-    // System.out.println("죽인수" + deathCnt);
     return deathCnt;
   }
   public static int[] getMinDist(int startLine, int archerIdx, int turn, int[][] copyBoard) {
