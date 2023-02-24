@@ -46,7 +46,10 @@ public class BOJ_22253 {
     System.out.println((n1 + n2) % MOD);
   }
   public static long dfs(int onState, int idx, int value) {
-    if(dp[onState][idx][value] != -1) return dp[onState][idx][value];
+    if(dp[onState][idx][value] != -1) {
+      System.out.println("state = "+ onState + " idx = " + idx + " value = " + value);
+      return dp[onState][idx][value];
+    }
     isVisit[idx] = true;
     dp[onState][idx][value] = 0;
     
