@@ -49,14 +49,14 @@ public class BOJ_20543 {
     }
     
     StringBuffer sb = new StringBuffer();
-    // for(int i=0; i<=N; i++) {
+    for(int i=0; i<=N; i++) {
       
-    //   for(int j=0; j<=N; j++) {
-    //     sb.append(sum[i][j] + " ");
-    //   }  
-    //   sb.append("\n");
-    // }
-    // sb.append("\n");
+      for(int j=0; j<=N; j++) {
+        sb.append(sum[i][j] + " ");
+      }  
+      sb.append("\n");
+    }
+    sb.append("\n");
     for(int i=1; i<=N; i++) {
       
       for(int j=1; j<=N; j++) {
