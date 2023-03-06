@@ -117,8 +117,8 @@ public class BOJ_16235 {
 
       for (Integer age : keySet) {
         food += ((age / 2) * deadTreeMap.get(age));
-        deadTreeMap.put(age, 0);
       }
+      deadTreeMap = new HashMap<>();
     }
     public void meetAutumn(Ground[][] map, int x, int y) {
       Iterator<Map.Entry<Integer,Integer>> iter = treeMap.entrySet().iterator();
