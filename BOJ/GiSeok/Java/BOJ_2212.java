@@ -20,12 +20,12 @@ public class BOJ_2212 {
 
         int ans = 0;
         if (K < N) {
-            int[] dists = new int[N];
+            int[] dists = new int[N-1];
             for (int i = 0; i < N-1; i++)
                 dists[i] = streets[i+1] - streets[i];
 
             Arrays.sort(dists);
-            for (int i = (N-1)-(K-1); i >= 0; i--)
+            for (int i = 0; i < N-K; i++)
                 ans += dists[i];
         }
 
