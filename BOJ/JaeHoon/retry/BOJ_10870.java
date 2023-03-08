@@ -14,6 +14,5 @@ public class BOJ_10870 {
     if(idx == 0) return 0;
     if(idx == 1) return 1;
     return solve(idx-1) + solve(idx-2);
-    
   }
 }
