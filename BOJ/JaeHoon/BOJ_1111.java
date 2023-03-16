@@ -27,12 +27,15 @@ public class BOJ_1111 {
       else System.out.println(arr[0]);
     }
     else {
-      int a = (arr[2] - arr[1]) / (arr[1] - arr[0]);
-      int b = arr[1] - arr[0]*a;
+      int a = -1;
+      int b = -1;
 
       if(arr[2] == arr[1]) {
         a = 1;
         b = 0;
+      }else {
+        a = (arr[2] - arr[1]) / (arr[1] - arr[0]);
+        b = arr[1] - arr[0]*a;
       }
 
       if(dfs(a, b, 1)) {
