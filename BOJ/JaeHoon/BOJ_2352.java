@@ -31,21 +31,23 @@ public class BOJ_2352 {
         list[idx] = arr[i];
       }
     }
-
+    System.out.println(Arrays.toString(list));
     System.out.println(end + 1);
   }
   public static int pos(int end, int[] list, int target) {
     int low = 0;
-    int high = end;
-    while(low < high) {
+    int high = end+1;
+
+    while(low + 1 < high) {
       int mid = (low + high) / 2;
 
-      if(target > list[mid]) {
-        low = mid + 1;
-      }else {
+      if(list[mid] <= target) {
         high = mid;
+      }else {
+        low = mid;
       }
     }
-    return high;
+  
+    return low;
   }
 }

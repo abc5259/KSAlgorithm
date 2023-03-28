@@ -22,17 +22,34 @@ public class BOJ_2565 {
     Arrays.sort(arr,(a,b)->a[0]-b[0]);
 
     int[] dp = new int[N];
-    dp[0] = 1;
-    int answer = 0;
+    dp[0] = arr[0][1];
+    int end = 0;
     for(int i=1; i<N; i++) {
-      dp[i] = 1;
-      for(int j=i-1; j>=0; j--) {
-        if(arr[i][1] > arr[j][1] && dp[i] < dp[j] + 1) {
-          dp[i] = dp[j] + 1;
-        }
+      if(dp[end] < arr[i][1]) {
+        dp[end+1] = arr[i][1];
+        end++;
+      }else {
+        int idx = pos(end, dp, arr[i][1]);
+        dp[idx] = arr[i][1];
       }
-      answer = Math.max(answer, dp[i]);
     }
-    System.out.println(N - answer);
+  
+    System.out.println(N - end - 1);
+  }
+  public static int pos(int end, int[] list, int target) {
+    int low = 0;
+    int high = end;
+
+    while(low < high) {
+      int mid = (low + high) / 2;
+
+      if(target > list[mid]) {
+        low = mid + 1;
+      }else {
+        high = mid;
+      }
+    }
+  
+    return low;
   }
 }
