@@ -9,14 +9,13 @@ import java.util.StringTokenizer;
 
 public class BOJ_16928 {
   static int[] items;
-  static int N, M;
   static boolean[] isVisited;
   public static void main(String[] args) throws IOException {
     BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     StringTokenizer st = new StringTokenizer(br.readLine());
 
-    N = Integer.parseInt(st.nextToken());
-    M = Integer.parseInt(st.nextToken());
+    int N = Integer.parseInt(st.nextToken());
+    int M = Integer.parseInt(st.nextToken());
     items = new int[101];
     isVisited = new boolean[101];
 
@@ -28,28 +27,33 @@ public class BOJ_16928 {
     System.out.println(bfs());
   }
   public static int bfs() {
-    Queue<int[]> q = new LinkedList<>();
+    Queue<Integer> q = new LinkedList<>();
     isVisited[1] = true;
-    q.offer(new int[]{1,0});
+    q.offer(1);
 
+    int cnt = 0;
     while(!q.isEmpty()) {
-      int[] curr = q.poll();
-      if(curr[0] == 100) {
-        return curr[1];
-      }
+      
 
-      for(int i=1; i<=6; i++) {
-        int next = i + curr[0];
+      cnt++;
 
-        if(next > 100 || isVisited[next]) continue;
-
-        isVisited[next] = true;
-        if(items[next] == 0) {
-          q.offer(new int[]{next,curr[1]+1});
-        }else {
-          if(isVisited[items[next]]) continue;
-          isVisited[items[next]] = true;
-          q.offer(new int[]{items[next],curr[1]+1});
+      int size = q.size();
+      while(size-- > 0) {
+        int curr = q.poll();
+        for(int i=1; i<=6; i++) {
+          int next = i + curr;
+  
+          if(next > 100 || isVisited[next]) continue;
+          
+          if(next == 100) return cnt;
+          isVisited[next] = true;
+          if(items[next] == 0) {
+            q.offer(next);
+          }else {
+            if(isVisited[items[next]]) continue;
+            isVisited[items[next]] = true;
+            q.offer(items[next]);
+          }
         }
       }
     }
