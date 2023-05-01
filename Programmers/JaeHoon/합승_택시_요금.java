@@ -4,7 +4,7 @@ import java.util.*;
 public class 합승_택시_요금 {
 
 class Solution {
-    static ArrayList<ArrayList<Node>> graph;
+    ArrayList<ArrayList<Node>> graph;
     class Node {
         int v,cost;
         Node(int v, int cost) {

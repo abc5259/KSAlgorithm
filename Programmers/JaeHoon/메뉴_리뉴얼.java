@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 public class 메뉴_리뉴얼 {
 
 class Solution {
-    static Map<String, Integer> hashmap = new HashMap<String, Integer>();
+    Map<String, Integer> hashmap = new HashMap<String, Integer>();
     
     class Order {
         String menu;

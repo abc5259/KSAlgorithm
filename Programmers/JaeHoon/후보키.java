@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class 후보키 {
   class Solution {
-      static int row,col;
+      int row,col;
       
       public boolean check(String[][] relation, int subset) {
           for(int i=0; i<row-1; i++) {

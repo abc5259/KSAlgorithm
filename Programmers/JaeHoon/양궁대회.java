@@ -3,10 +3,10 @@ package Programmers.JaeHoon;
 public class 양궁대회 {
 
 class Solution {
-    static int[] arr;
-    static int maxDif = 0;
-    static int dif = 0;
-    static int[] answer;
+    int[] arr;
+    int maxDif = 0;
+    int dif = 0;
+    int[] answer;
     public int[] solution(int n, int[] info) {
         arr = new int[11];
         answer = new int[11];

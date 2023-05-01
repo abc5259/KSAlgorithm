@@ -5,7 +5,7 @@ import java.util.*;
 public class 순위_검색 {
 
 class Solution {
-    static Map<String, ArrayList<Integer>> map = new HashMap<>();
+    Map<String, ArrayList<Integer>> map = new HashMap<>();
     public int[] solution(String[] info, String[] query) {
         int[] answer = new int[query.length];
         for(int i=0; i<info.length; i++) {

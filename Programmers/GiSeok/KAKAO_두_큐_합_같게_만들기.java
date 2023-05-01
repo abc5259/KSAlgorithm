@@ -2,7 +2,7 @@ package Programmers.GiSeok;
 
 public class KAKAO_두_큐_합_같게_만들기 {
     class Solution {
-        public static long queueSum(int[] queue) {
+        public long queueSum(int[] queue) {
             long sum = 0;
             for (int num: queue) {
                 sum += num;
