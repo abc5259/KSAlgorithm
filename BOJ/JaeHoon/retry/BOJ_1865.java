@@ -50,16 +50,9 @@ public class BOJ_1865 {
                 graph.get(S).add(new Node(E,-T));
             }
 
-            boolean isCycle = false;
-            for(int i=1; i<=N; i++) {
-                if(bellmanford(i)) {
-                    isCycle = true;
-                    sb.append("YES\n");
-                    break;
-                }
-            }
-
-            if(!isCycle) sb.append("NO\n");
+            if(bellmanford(1)) {
+                sb.append("YES\n");
+            }else sb.append("NO\n");
         }
         System.out.println(sb);
     }
@@ -84,7 +77,7 @@ public class BOJ_1865 {
         if(update) {
             for(int j=1; j<=N; j++) {
                 for(Node next:graph.get(j)) {
-                    if(dist[j] != INF && dist[next.v] > dist[j] + next.w) {
+                    if(dist[next.v] > dist[j] + next.w) {
                         return true;
                     }
                 }
