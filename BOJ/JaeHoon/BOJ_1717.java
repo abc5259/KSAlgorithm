@@ -40,7 +40,7 @@ public class BOJ_1717 {
     }
     public static int find(int x) {
         if(parent[x] == x) return x;
-        return find(parent[x]);
+        return parent[x] = find(parent[x]);
     }
 
     public static boolean union(int x, int y) {
