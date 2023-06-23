@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class BOJ_1717 {
     static int N,M;
     static int[] parent;
+    static int[] rank;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -15,9 +16,11 @@ public class BOJ_1717 {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
         parent = new int[N+1];
+        rank = new int[N+1];
 
         for(int i=0; i<=N; i++) {
             parent[i] = i;
+            rank[i] = 1;
         }
 
         StringBuffer sb = new StringBuffer();
@@ -43,14 +46,20 @@ public class BOJ_1717 {
         return parent[x] = find(parent[x]);
     }
 
-    public static boolean union(int x, int y) {
+    public static void union(int x, int y) {
         x = find(x);
         y = find(y);
 
-        if(x == y) return true;
+        if(x == y) return;
 
-        if(x <= y) parent[y] = x;
-        else parent[x] = y;
-        return true;
+        if(rank[x] < rank[y]) {
+            parent[x] = y;
+            rank[y] += rank[x];
+        }
+        else {
+            parent[y] = x;
+            rank[x] += rank[y];
+        }
+
     }
 }
