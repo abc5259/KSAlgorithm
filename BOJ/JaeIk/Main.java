@@ -7,58 +7,52 @@ import java.util.StringTokenizer;
 
 public class Main {
 
-    final static int Red = 0;
-    final static int Green = 1;
-    final static int Blue = 2;
-
-    static int[][] Cost;
-    static int[][] DP;
+    static int[] seq;
+    static Integer[] dp;
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        Cost = new int[N][3];
-        DP = new int[N][3];
 
-        StringTokenizer st;
+        seq = new int[N];
+        dp = new Integer[N];
+
+        StringTokenizer st = new StringTokenizer(br.readLine(), " ");
+
         for(int i = 0; i < N; i++) {
-
-            st = new StringTokenizer(br.readLine(), " ");
-
-            Cost[i][Red] = Integer.parseInt(st.nextToken());
-            Cost[i][Green] = Integer.parseInt(st.nextToken());
-            Cost[i][Blue] = Integer.parseInt(st.nextToken());
+            seq[i] = Integer.parseInt(st.nextToken());
         }
 
-        // DP의 첫번째 값(집)은 각 색상비용의 첫번째 값으로 초기화
-        DP[0][Red] = Cost[0][Red];
-        DP[0][Green] = Cost[0][Green];
-        DP[0][Blue] = Cost[0][Blue];
+        // 0 ~ N-1 까지 탐색
+        for(int i = 0; i < N; i++) {
+            LIS(i);
+        }
 
-
-        System.out.println(Math.min(Paint_cost(N- 1, Red), Math.min(Paint_cost(N - 1, Green), Paint_cost(N - 1, Blue))));
+        int max = dp[0];
+        // 최댓값 찾기
+        for(int i = 1; i < N; i++) {
+            max = Math.max(max, dp[i]);
+        }
+        System.out.println(max);
     }
 
-    static int Paint_cost(int N, int color) {
 
-        // 만약 탐색하지 않은 배열이라면
-        if(DP[N][color] == 0) {
+    static int LIS(int N) {
 
-            // color의 색에 따라 이전 집의 서로 다른 색을 재귀호출하여 최솟값과 현재 집의 비용을 더해서 DP에 저장한다
-            if(color == Red) {
-                DP[N][Red] = Math.min(Paint_cost(N - 1, Green), Paint_cost(N - 1, Blue)) + Cost[N][Red];
-            }
-            else if(color == Green) {
-                DP[N][Green] = Math.min(Paint_cost(N - 1, Red), Paint_cost(N - 1, Blue)) + Cost[N][Green];
-            }
-            else {
-                DP[N][Blue] = Math.min(Paint_cost(N - 1, Red), Paint_cost(N - 1, Green)) + Cost[N][Blue];
-            }
+        // 만약 탐색하지 않던 위치의 경우
+        if(dp[N] == null) {
+            dp[N] = 1;	// 1로 초기화
 
+            // N-1 부터 0까지중 N보다 작은 값들을 찾으면서 재귀호출.
+            for(int i = N - 1; i >= 0; i--) {
+                if(seq[i] < seq[N]) {
+
+                    dp[N] = Math.max(dp[N], LIS(i) + 1);
+                }
+            }
         }
-
-        return DP[N][color];
+        return dp[N];
     }
 }
