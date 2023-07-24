@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class BOJ_1904 {
-    static int[] dp = new int[1000001];
+    static int[] dp = new int[1000001]; //배열 크기 왜?
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
