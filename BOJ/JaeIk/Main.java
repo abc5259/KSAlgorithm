@@ -3,83 +3,52 @@ package BOJ.JaeIk;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
-import java.util.StringTokenizer;
-import java.util.Arrays;
-import java.util.Comparator;
 
 public class Main {
 
-    static Integer[] dp;
-    static int[][] wire;
+    static char[] str1;
+    static char[] str2;
+
+    static Integer[][] dp;
 
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        int N = Integer.parseInt(br.readLine());
-
-        dp = new Integer[N];
-        //첫번째 원소가 연결된 두 와이어의 지점, 두 번째 원소가 a와 b전봇대
-        wire = new int[N][2];
-
-        StringTokenizer st;
-
-        for(int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
-
-            wire[i][0] = Integer.parseInt(st.nextToken());
-            wire[i][1] = Integer.parseInt(st.nextToken());
-        }
-
-        // 첫 번째 원소(A전봇대)를 기준으로 오름차순으로 정
-        Arrays.sort(wire, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[0] - o2[0];
-            }
-        });
+        str1 = br.readLine().toCharArray();
+        str2 = br.readLine().toCharArray();
 
 
+        dp = new Integer[str1.length][str2.length];
 
-        int max = 0;
-
-        /*
-         *  i번째 A전봇를 기준으로 연결가능한 개수 탐색
-         *  및 최댓값 찾기
-         */
-
-        for(int i = 0; i < N; i++) {
-            max = Math.max(recur(i), max);
-        }
-
-        // 전선 개수 - 쵀댓값
-        System.out.println(N - max);
+        System.out.println(LCS(str1.length - 1, str2.length - 1));
 
     }
 
+    static int LCS(int x, int y) {
 
-    static int recur(int N) {
+        // 인덱스 밖 (공집합)일 경우 0 반환
+        if(x == -1 || y == -1) {
+            return 0;
+        }
 
-        // 탐색하지 않았던 위치라면
-        if(dp[N] == null) {
+        // 만약 탐색하지 않은 인덱스라면?
+        if(dp[x][y] == null) {
+            dp[x][y] = 0;
 
-            dp[N] = 1;	// 최솟값 1로 초기화
+            //top-down 방식으로 LCS()함수의 호출 결과에 +1을 해서 결과를 구한다
 
-            // A의 N번째와 이후의 전봇대들 비교
-            for(int i = N + 1; i < dp.length; i++) {
+            // str1의 x번째 문자와 str2의 y번째 문자가 같은지 검사
+            if(str1[x] == str2[y]) {
+                dp[x][y] = LCS(x - 1, y - 1) + 1;
+            }
 
-                /*
-                 *  A전봇대의 N번째 전선이 연결되어있는 B전봇대보다 A의 i번째
-                 *  전봇대의 전선이 이어진 B전봇대가 뒤에 있을 경우
-                 *  전선을 설치할 수 있음
-                 */
-                if(wire[N][1] < wire[i][1]) {
-                    // 연결 가능한 전선의 경우의 수 중 큰 값을 dp에 저장한다.
-                    dp[N] = Math.max(dp[N], recur(i) + 1);
-                }
+            // 같지 않다면 LCS(dp)[x-1][y]와 LCS(dp)[x,y-1] 중 큰 값으로 초기화
+            else {
+                dp[x][y] = Math.max(LCS(x - 1, y), LCS(x, y - 1));
             }
         }
-        return dp[N];
+
+        return dp[x][y];
     }
-
-
 }
