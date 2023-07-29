@@ -1,63 +1,80 @@
 package BOJ.JaeIk;
+
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main {
 
-    static Integer[][] dp;
-    static int[] W; // weight
-    static int[] V; // value
+    public static int[] arr;
 
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
+        int N = Integer.parseInt(br.readLine());
+        arr = new int[N];
+
         StringTokenizer st = new StringTokenizer(br.readLine(), " ");
-
-        int N = Integer.parseInt(st.nextToken());
-        int K = Integer.parseInt(st.nextToken());
-
-        W = new int[N];
-        V = new int[N];
-
-        //배열의 0이 아닌 1번째 부터 채운다
-        dp = new Integer[N][K + 1];
-
-        for (int i = 0; i < N; i++) {
-            st = new StringTokenizer(br.readLine(), " ");
-            W[i] = Integer.parseInt(st.nextToken());
-            V[i] = Integer.parseInt(st.nextToken());
+        for(int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        System.out.println(knapsack(N - 1, K));
 
+        // 배열은 반드시 정렬되어있어야한다.
+        Arrays.sort(arr);
+
+        int M = Integer.parseInt(br.readLine());
+
+        st = new StringTokenizer(br.readLine(), " ");
+
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < M; i++) {
+
+            // 찾고자 하는 값이 있을 경우 1, 없을 경우 0을 출력해야한다.
+            if(binarySearch(Integer.parseInt(st.nextToken())) >= 0) {
+                sb.append(1).append('\n');
+            }
+            else {
+                sb.append(0).append('\n');
+            }
+        }
+        System.out.println(sb);
     }
 
-    static int knapsack(int i, int k) {
-        // i가 0미만, 즉 범위 밖이 된다면
-        if (i < 0)
-            return 0;
 
-        // 탐색하지 않은 위치라면?
-        if (dp[i][k] == null) {
+    /**
+     * @param key 찾으려는 값
+     * @return key와 일치하는 배열의 인덱스
+     */
+    public static int binarySearch(int key) {
 
-            //현재 물건(i)을 추가로 못담는 경우 (이전 i값 탐색)
-            //예를 들어 i=3 dp=3일 때는 3번째의 가치 6을 가진다
-            //하지만 i=4일 때 4번째 무게가 5이므로 갱신을 못하고 이전값을 그대로 가진다
-            if(W[i] > k) {
-                dp[i][k] = knapsack(i - 1, k);
+        int lo = 0;					// 탐색 범위의 왼쪽 끝 인덱스
+        int hi = arr.length - 1;	// 탐색 범위의 오른쪽 끝 인덱스
+
+        // lo가 hi보다 커지기 전까지 반복한다.
+        while(lo <= hi) {
+
+            int mid = (lo + hi) / 2;	// 중간위치를 구한다.
+
+            // key값이 중간 위치의 값보다 작을 경우
+            if(key < arr[mid]) {
+                hi = mid - 1;
             }
-            // 현재 물건(i)을 담을 수 있는 경우
+            // key값이 중간 위치의 값보다 클 경우
+            else if(key > arr[mid]) {
+                lo = mid + 1;
+            }
+            // key값과 중간 위치의 값이 같을 경우
             else {
-                //이전 i값과 이전 i값에 대한 k-W[i]의 값, 현재 가치(V[i])중 큰 값을 저장
-                //i일 때의 무게가 k보다 커서 가치를 갱신하지 못할 때의 이전 값
-                //i=4일 때 knapsack(3, k-이전까지의 최대가치) + 4번째의 가치
-                //둘 중에 큰 것을 구한다
-                dp[i][k] = Math.max(knapsack(i - 1, k), knapsack(i - 1, k - W[i]) + V[i]);
+                return mid;
             }
         }
-        return dp[i][k];
+
+        // 찾고자 하는 값이 존재하지 않을 경우
+        return -1;
+
     }
 }
