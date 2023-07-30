@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_2016 {
@@ -27,7 +26,6 @@ public class BOJ_2016 {
             boys = new int[5][5];
             girls = new int[5][5];
             isUsed = new boolean[5];
-//            for(int i=6; i<=10; i++) boys[0][i-6] = i;
 
             for(int i=1; i<=4; i++) {
                 st = new StringTokenizer(br.readLine());
