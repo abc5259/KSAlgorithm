@@ -25,30 +25,14 @@ public class BOJ_11501 {
             }
 
             long money = 0;
-            Queue<Integer> buyStock = new LinkedList<>();
-            for(int i=0; i<N-1; i++) {
-                if(stockArr[i] <= stockArr[i+1]) {
-                    buyStock.offer(stockArr[i]);
-                }
-                else {
-                    boolean isOk = true;
-                    for(int j=i+1; j<N; j++) {
-                        if(stockArr[i] < stockArr[j]) {
-                            isOk = false;
-                            buyStock.offer(stockArr[i]);
-                            break;
-                        }
-                    }
-                    if(isOk) {
-                        while (!buyStock.isEmpty()) {
-                            money += stockArr[i] - buyStock.poll();
-                        }
-                    }
-                }
-            }
 
-            while (!buyStock.isEmpty()) {
-                money += stockArr[N-1] - buyStock.poll();
+            int max = 0;
+            for(int i=N-1; i>=0; i--) {
+                if(stockArr[i] > max) {
+                    max = stockArr[i];
+                }else {
+                    money += max - stockArr[i];
+                }
             }
 
             sb.append(money+"\n");
