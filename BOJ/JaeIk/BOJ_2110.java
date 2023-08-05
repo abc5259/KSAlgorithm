@@ -21,6 +21,7 @@ public class BOJ_2110 {
         }
         Arrays.sort(home);
 
+        //check(low) != check(high)
         int low = 0, high = 1000000001;
 
         while(low+1 < high){
