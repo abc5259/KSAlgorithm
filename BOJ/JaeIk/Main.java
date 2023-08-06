@@ -1,42 +1,67 @@
 package BOJ.JaeIk;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class Main {
-    static int n, m;
-    static int[] v;
 
-    // 결정 문제
-    static boolean Check(int mid) { // mid 높이에 절단기를 위치했을 때 m 이상의 나무를 얻을 수 있는가?
-        long sum = 0; // 오버플로우 조심
-        for (int i = 0; i < n; i++) {
-            if (v[i] > mid) sum += v[i] - mid;
+    static int[][] map;
+    static int n;
+    static int m;
+    static boolean[][] visited;
+    static int[] dx = { -1, 1, 0, 0 }; //x방향배열-상하
+    static int[] dy = { 0, 0, -1, 1 }; //y방향배열-좌우
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
+
+        map = new int[n][m];
+        for(int i=0; i<n; i++) {
+            String s = br.readLine();
+            for(int j=0; j<m; j++) {
+                map[i][j] = s.charAt(j) - '0';
+            }
         }
-        return sum >= m;
+
+        visited = new boolean[n][m];
+        visited[0][0] = true;
+        bfs(0, 0);
+        System.out.println(map[n-1][m-1]);
     }
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        n = sc.nextInt();
-        m = sc.nextInt();
-        v = new int[n];
-        for (int i = 0; i < n; i++) {
-            v[i] = sc.nextInt();
+    public static void bfs(int x, int y) {
+        Queue<int[]> q = new LinkedList<>();
+        q.add(new int[] {x,y});
+
+        while(!q.isEmpty()) {
+            int now[] = q.poll();
+            int nowX = now[0];
+            int nowY = now[1];
+
+            for(int i=0; i<4; i++) {
+                int nextX = nowX + dx[i];
+                int nextY = nowY + dy[i];
+
+                //벽을 벗어낫을 경우 다음으로
+                if (nextX < 0 || nextY < 0 || nextX >= n || nextY >= m)
+                    continue;
+                // 0이면 장애물이므로 다음으로
+                if (visited[nextX][nextY] || map[nextX][nextY] == 0)
+                    continue;
+
+                q.add(new int[] {nextX, nextY});
+                //이전까지의 거리에 +1을 해준다
+                map[nextX][nextY] = map[nowX][nowY] + 1;
+                visited[nextX][nextY] = true;
+            }
         }
-
-        // 이분 탐색
-        int lo = 0, hi = 10000;
-        // Checklist
-        // 1. Check(lo) = T, Check(hi) = F를 만족하는가?
-        // 2. lo는 정답이 될 수 있는 모든 범위를 나타낼 수 있는가? (정답은 0 ~ max(v) - 1라 가능)
-
-        while (lo + 1 < hi) { // lo와 hi 사이에 다른 칸이 존재하는가?
-            int mid = (lo + hi) / 2; // 항상 lo < mid < hi를 만족 (평균을 생각해보면 o)
-
-            //sum>=m이면 m의 길이가 낮다는 의미이므로 low를 올린다
-            if (Check(mid)) lo = mid;
-            else hi = mid;
-        }
-        System.out.println(lo);
     }
 }
