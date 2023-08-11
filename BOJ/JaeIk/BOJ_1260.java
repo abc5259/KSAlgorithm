@@ -45,7 +45,13 @@ public class BOJ_1260 {
             sb.append(check[i]).append(" ");
         }
 
-
+        count = 1;
+        check = new int[n+1];
+        sb.append('\n');
+        bfs(r);
+        for(int i=1; i< n+1; i++){
+            sb.append(check[i]).append(" ");
+        }
         System.out.println(sb);
     }
 
