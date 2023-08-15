@@ -4,6 +4,8 @@
 #include <queue>
 using namespace std;
 
+int V = 7;
+
 struct point
 {
     int x, y;
@@ -35,10 +37,10 @@ double getDistanceFormula(point xy[], int v1, int v2)
     return sqrt(pow(x2-x1, 2) + pow(y2-y1, 2));
 }
 
-void addEdge(vector<pair<int, double>> v[], int v1, int v2, double w)
+void addEdge(vector<pair<int, double>> m[], int v1, int v2, double w)
 {
-    v[v1].push_back(make_pair(v2, w));
-    v[v2].push_back(make_pair(v1, w));
+    m[v1].push_back(make_pair(v2, w));
+    m[v2].push_back(make_pair(v1, w));
 }
 
 openList makeOpenList(pair<int, double> m, point xy[], int parent, int end)
@@ -57,9 +59,11 @@ void Astar(vector<pair<int, double>> m[], point xy[], int start, int end)
 {
     priority_queue<openList, vector<openList>, compare> pq;
     openList o;
-    bool closeList[7] = {false, };
-    int v = start;
+    bool closeList[V];
+    for (int i = 0; i < V; i++)
+        closeList[i] = false;
 
+    int v = start;
     closeList[start] = true;
 
     while (v != end)
@@ -84,7 +88,6 @@ void Astar(vector<pair<int, double>> m[], point xy[], int start, int end)
 
 int main()
 {
-    int V = 7;
     vector<pair<int, double>> map[V];
     point xy[V];
 
