@@ -1,127 +1,159 @@
 #include <iostream>
 #include <vector>
-#include <utility>
-#include <queue>
 using namespace std;
-
-int V = 7;
 
 struct point
 {
     int x, y;
-};
+}; // 그리드 내 좌표 저장을 위한 구조체
 
-struct openList
+class node
 {
-    int v;
-    double f;
-    double g;
-    double h;
-    int parent;
-};
+    public:
+        node* parent;
+        point position;
 
-struct compare {
-	bool operator()(const openList& s1, const openList& s2) {
-		return s1.f > s2.f;
-	}
-};
+        double f;
+        double g;
+        double h;
 
-double getDistanceFormula(point xy[], int v1, int v2)
+        node(node* p, point pos)
+        {
+            parent = p;
+            position = pos;
+            f = 0;
+            g = 0;
+            h = 0;
+        }
+}; // a* 알고리즘에선 각 그리드 정보를 저장해야하므로 node라는 객체를 이용하여 관리
+
+double getDistanceFormula(point xy1, point xy2)
 {
-    int x1 = xy[v1].x < xy[v2].x ? xy[v1].x : xy[v2].x;
-    int x2 = xy[v1].x > xy[v2].x ? xy[v1].x : xy[v2].x;
+    int x1 = xy1.x < xy2.x ? xy1.x : xy2.x;
+    int x2 = xy1.x > xy2.x ? xy1.x : xy2.x;
 
-    int y1 = xy[v1].y < xy[v2].y ? xy[v1].y : xy[v2].y;
-    int y2 = xy[v1].y > xy[v2].y ? xy[v1].y : xy[v2].y;
+    int y1 = xy1.y < xy2.y ? xy1.y : xy2.y;
+    int y2 = xy1.y > xy2.y ? xy1.y : xy2.y;
 
     return sqrt(pow(x2-x1, 2) + pow(y2-y1, 2));
-}
+} // 두 점 사이의 거리 구하는 함수
 
-void addEdge(vector<pair<int, double>> m[], int v1, int v2, double w)
+node* find(vector<node*> list, point p)
 {
-    m[v1].push_back(make_pair(v2, w));
-    m[v2].push_back(make_pair(v1, w));
-}
-
-openList makeOpenList(pair<int, double> m, point xy[], int parent, int end)
-{
-    openList o;
-    o.parent = parent;
-    o.v = m.first;
-    o.g = m.second;
-    o.h = getDistanceFormula(xy, o.v, end);
-    o.f = o.g + o.h;
-
-    return o;
-}
-
-void Astar(vector<pair<int, double>> m[], point xy[], int start, int end)
-{
-    priority_queue<openList, vector<openList>, compare> pq;
-    openList o;
-    bool closeList[V];
-    for (int i = 0; i < V; i++)
-        closeList[i] = false;
-
-    int v = start;
-    closeList[start] = true;
-
-    while (v != end)
-    {
-        vector<pair<int, double>>::iterator itor = m[v].begin();
-
-        for (; itor != m[v].end(); itor++)
-        {
-            pq.push(makeOpenList(*itor, xy, v, end));
-        }
-        
-        v = pq.top().v;
-        closeList[v] = true;
-        pq.pop();
+    for (auto &lt : list) {
+        if (lt->position.x == p.x && lt->position.y == p.y)
+            return lt;
     }
 
-    for (int i = 0; i < 7; i++)
-        if (closeList[i])
-            cout << i << " ";
-    cout << endl;
+    return NULL;
+}
+
+void makePath(int map[][10], vector<node*> &closeList)
+{
+    node* node = closeList.back();
+    
+    while (node != NULL)
+    {
+        map[node->position.y][node->position.x] = 7;
+        node = node->parent;
+    }
+} // 도착지에 도착 후, 어떤 경로로 도착했는지 부모 노드를 쫓아간다.
+
+void Astar(int map[][10], point start, point end)
+{
+    int wasd[8][2] = { {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {1, 1}, {1, 0}, {1, -1} }; // 상하좌우, 대각선 이동을 위한 배열
+    vector<node*> openList;  // 현재 그리드에서 가능한 모든 경로를 담는 openlist.
+    vector<node*> closeList; // 현재 그리드까지 오는데 거친 그리드 정보를 담는 closelist
+
+    node* startNode = new node(NULL, start);
+    openList.push_back(startNode);
+
+    node* current;
+    while (!openList.empty())
+    {
+        double smallF = INFINITY;
+        node* minNode = NULL;
+        int index = 0, minIndex = 0;
+        for (auto &list : openList) {
+            if (list->f < smallF) {
+                minNode = list;
+                smallF = list->f;
+                minIndex = index;
+            }
+            index++;
+        } // openlist에서 f 값이 가장 작은 노드를 찾는 것으로 시작한다.
+
+        current = minNode;
+        openList.erase(openList.begin() + minIndex); // vector의 erase는 iterator 정보로 원소를 삭제하므로, 위에서 구한 인덱스를 이용해 f 값이 가장 작은 노드를 제거한다.
+        closeList.push_back(current);                // 현재까지 f 값이 가장 작은 노드는 거쳐야 하는 그리드로 판단하므로 closelist에 넣어 두 번 방문하지 않는다.
+
+        if (current->position.x == end.x && current->position.y == end.y) // 만약 현재 그리드 좌표가 도착지 좌표라면 종료
+            break;
+        
+        for (int i = 0; i < 8; i++) { // 8방향 경로 추가를 위해 8회 반복
+            // 어느 방향이든 맵의 크기를 벗어나면 안된다.
+            if ((current->position.x + wasd[i][0] >= 0 && current->position.x + wasd[i][0] < 10) && (current->position.y + wasd[i][1] >= 0 && current->position.y + wasd[i][1] < 10)) {
+                point nextPosition = {current->position.x + wasd[i][0], current->position.y + wasd[i][1]};
+
+                if (map[nextPosition.y][nextPosition.x] == 1) // 새 좌표가 벽이라면 다음 방향으로 넘어간다.
+                    continue;
+
+                node* nextNode = new node(current, nextPosition);
+
+                nextNode->g = current->g;
+                if (i % 2 != 0)
+                    nextNode->g += 1.4;
+                else
+                    nextNode->g += 1;
+                nextNode->h = getDistanceFormula(nextPosition, end);
+                nextNode->f = nextNode->g + nextNode->h;
+                // g, h, f 값을 초기화
+
+                if (find(closeList, nextPosition) == NULL) { // closelist에 nextPosition에 해당하는 좌표가 있는지, 즉 해당 좌표의 정보를 가지고 있는지 판단한다. 있으면, 두 번 방문 x
+                    node* n = find(openList, nextPosition);  // 없다면, openlist에 있는지 확인한다.
+                    if (n != NULL) {
+                        if (n->f > nextNode->f) {            // 새로 구한 그리드가 openlist에 있을 경우에 f 값을 보고 더 작은 그리드 정보로 바꾸어준다. 그래야 해당 부모 경로를 거치는 최단경로가 만들어질 수 있다.
+                            n->parent = current;
+                            n->f = nextNode->f;
+                            n->g = nextNode->g;
+                            n->h = nextNode->h;
+                            continue;
+                        }
+                    }
+                    openList.push_back(nextNode);            // 해당 사항이 없으면 추가
+                }
+            }
+        }
+    }
+
+    makePath(map, closeList);
+}
+
+void printMap(int map[][10])
+{
+    for (int y = 0; y < 10; y++) {
+        for (int x = 0; x < 10; x++) {
+            cout << map[y][x];
+        }
+        cout << endl;
+    }
 }
 
 int main()
 {
-    vector<pair<int, double>> map[V];
-    point xy[V];
+    int map[10][10] = { {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 1, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+                        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0} };
+    point start = { 0, 0 };
+    point end = { 8, 0 };
 
-    xy[0].x = 0;
-    xy[0].y = 4;
-
-    xy[1].x = 4;
-    xy[1].y = -4;
-
-    xy[2].x = -1;
-    xy[2].y = -2;
-
-    xy[3].x = 7;
-    xy[3].y = 5;
-
-    xy[4].x = -4;
-    xy[4].y = 6;
-    
-    xy[5].x = 10;
-    xy[5].y = -5;
-
-    xy[6].x = 15;
-    xy[6].y = 4;
-
-    addEdge(map, 0, 1, getDistanceFormula(xy, 0, 1));
-    addEdge(map, 0, 3, getDistanceFormula(xy, 0, 3));
-    addEdge(map, 1, 2, getDistanceFormula(xy, 1, 2));
-    addEdge(map, 1, 4, getDistanceFormula(xy, 1, 4));
-    addEdge(map, 2, 3, getDistanceFormula(xy, 2, 3));
-    addEdge(map, 2, 5, getDistanceFormula(xy, 2, 5));
-    addEdge(map, 2, 6, getDistanceFormula(xy, 2, 6));
-    addEdge(map, 3, 5, getDistanceFormula(xy, 3, 5));
-    addEdge(map, 4, 6, getDistanceFormula(xy, 4, 6));
-    addEdge(map, 5, 6, getDistanceFormula(xy, 5, 6));
-
-    Astar(map, xy, 0, 6);
+    Astar(map, start, end);
+    printMap(map);
 }
