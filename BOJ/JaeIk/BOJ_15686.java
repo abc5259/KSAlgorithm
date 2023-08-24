@@ -9,7 +9,7 @@ public class BOJ_15686 {
     static int houseCount=0;
     static int chickenCount=0;
     static int[] chickenRow= new int[13], chickenCol = new int[13];
-    static int[] houseRow= new int[13], houseCol = new int[13];
+    static int[] houseRow= new int[100], houseCol = new int[100];
     static int n,m;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -18,7 +18,7 @@ public class BOJ_15686 {
         n = Integer.parseInt(st.nextToken());
         m = Integer.parseInt(st.nextToken());
 
-        for(int i=0; i<n; i++){
+        for(int i=0; i<n; ++i){
             st = new StringTokenizer(br.readLine());
             for(int j=0; j<n; j++){
                 int input = Integer.parseInt(st.nextToken());
@@ -42,22 +42,26 @@ public class BOJ_15686 {
         int ret = Integer.MAX_VALUE;
 
         //1에 치킨집갯수만큼 쉬프트한 수만큼 비교
-        //countBits에서 i값의 2진수를 인자로 넣어줌
         for(int subset=0; subset<1<<chickenCount; ++subset){
+            //countBits에서 i값의 2진수를 인자로 넣어줌
             if(countBits(subset)==m){
                 int sum =0;
                 for(int i=0; i<houseCount; ++i){
                     int distance = Integer.MAX_VALUE;
                     for(int j=0; j<chickenCount; ++j){
-                        //치킨집이 있는 부분집합의 값인지 확인 ??
-                        if((subset & 1>>j) != 0){
-                            distance = Math.min(distance, Math.abs(houseRow[i]-chickenRow[j]
-                                    + houseCol[i]-chickenCol[j]));
+                        //부분집합을 비트로 표현한 subset에 j번째 비트가 켜져있는지 확인 하여
+                        //j번째 치킨집이 countBits()=m인 부분집합에 속해있는지 확인
+                        if((subset & 1<<j) != 0){
+                            //치킨 거리 구하기
+                            distance = Math.min(distance, Math.abs(houseRow[i]-chickenRow[j])
+                                    + Math.abs(houseCol[i]-chickenCol[j]));
                         }
-                        sum += distance;
                     }
-                    ret = Math.min(ret, sum);
+                    //도시의 치킨 거리 구하기
+                    sum += distance;
                 }
+                //도시의 치킨 거리 최솟값 구하기
+                ret = Math.min(ret, sum);
             }
         }
         return ret;
