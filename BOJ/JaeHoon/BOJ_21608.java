@@ -34,7 +34,7 @@ public class BOJ_21608 {
         }
 
         for(int i=0; i<N*N; i++) {
-            setSeat(student[i]);
+            setSeat(student[i]); int key = Integer.parseInt(st.nextToken());
         }
 
         int total = 0;
