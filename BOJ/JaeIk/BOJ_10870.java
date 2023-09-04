@@ -16,6 +16,7 @@ public class BOJ_10870 {
     }
 
     static int solve(int n){
+        if(n==0)return 0;
         if(n==1 || n==2)return 1;
 
         return solve(n-1) + solve(n-2);
