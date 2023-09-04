@@ -4,6 +4,7 @@ import javax.imageio.IIOException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
 public class BOJ_1913 {
     static int r1,r2;
@@ -12,9 +13,10 @@ public class BOJ_1913 {
     static int val;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        n = Integer.parseInt(br.readLine());
-        m = Integer.parseInt(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
 
         map = new int[n][n];
         val = 1;
