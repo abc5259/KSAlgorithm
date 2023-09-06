@@ -5,56 +5,54 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
-public class BOJ_2630 {
-    static int white=0;
-    static int blue=0;
+public class BOJ_1992 {
+    static StringBuilder sb = new StringBuilder();
     static int[][] map;
     static int n;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         n = Integer.parseInt(br.readLine());
-
         map = new int[n][n];
 
         for(int i=0; i<n; i++){
             String str = br.readLine();
             for(int j=0; j<n; j++){
-                //입력 방식 익히기
                 map[i][j] = str.charAt(j)-'0';
             }
         }
 
-        partition(0, 0, n);
+        quadTree(0,0,n);
 
-        System.out.println(white);
-        System.out.println(blue);
+        System.out.println(sb);
     }
 
-    static void partition(int row, int col, int size){
-        if(colorCheck(row, col, size)){
-            if(map[row][col] == 0){
-                white++;
-            }
-            else blue++;
+    static void quadTree(int row, int col, int size){
+        if(check(row, col, size)){
+            sb.append(map[row][col]);
             return;
         }
 
         int newSize = size/2;
-        partition(row, col, newSize);
-        partition(row, col+newSize, newSize);
-        partition(row+newSize, col, newSize);
-        partition(row+newSize, col+newSize, newSize);
+
+        sb.append('(');
+
+        quadTree(row, col, newSize);
+        quadTree(row, col+newSize, newSize);
+        quadTree(row+newSize, col, newSize);
+        quadTree(row+newSize, col+newSize, newSize);
+
+        sb.append(')');
     }
 
-    static Boolean colorCheck(int row, int col, int size){
-        int color = map[row][col];
+    static boolean check(int row, int col, int size){
+        int val = map[row][col];
 
         for(int i=row; i<row+size; i++){
             for(int j=col; j<col+size; j++){
-                if(color != map[i][j])return false;
+                if(val != map[i][j])return false;
             }
         }
-
         return true;
     }
+
 }
