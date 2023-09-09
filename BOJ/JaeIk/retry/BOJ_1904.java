@@ -22,6 +22,7 @@ public class BOJ_1904 {
     }
 
     static int solve(int n){
+        //만약 배열에 값이 없으면 계산후 저장해야한다
         if(dp[n] == -1)dp[n] = (solve(n-1) + solve(n-2)) % 15746;
         return dp[n];
     }
