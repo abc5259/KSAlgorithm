@@ -1,4 +1,4 @@
-package Programmers.JaeHoon.level2;
+package Programmers.JaeHoon.level3;
 
 import java.util.*;
 
