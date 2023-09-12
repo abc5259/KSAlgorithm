@@ -1,37 +1,27 @@
 #include <iostream>
-using namespace std;
+#include <algorithm>
 
-class BOJ_2839
+int min(int n1, int n2)
 {
-public:
-    static void start()
-    {
-        int N;
-        cin >> N;
-
-        int dp[N+1];
-        memset(dp, 0, sizeof(int) * (N+1));
-        
-        dp[3] = dp[5] = 1;
-
-        for (int i = 6; i <= N; i++) {
-            if (dp[i - 5]) dp[i] = dp[i - 5] + 1;
-
-            if (dp[i - 3]) {
-                if (dp[i])
-                    dp[i] = dp[i - 3] + 1 >= dp[i] ? dp[i] : dp[i - 3] + 1;
-                else
-                    dp[i] = dp[i - 3] + 1;
-            }
-        }
-
-        cout << (dp[N] == 0 ? -1 : dp[N]) << endl;
-    }
-};
+    if (n1 > n2)
+        return n2;
+    else
+        return n1;
+}
 
 int main()
 {
-    BOJ_2839::start();
-
-    return 0;
+    int N;
+    std::cin >> N;
+    
+    int dp[N + 1];
+    std::fill(dp, dp+(N+1), 5001);
+    
+    dp[3] = 1;
+    dp[5] = 1;
+    
+    for (int i = 6; i < N + 1; i++)
+        dp[i] = min(dp[i-3], dp[i-5]) + 1;
+    
+    std::cout << ((dp[N] > 5000) ? -1 : dp[N]) << std::endl;
 }
