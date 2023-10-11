@@ -69,6 +69,8 @@ public class BOJ_11657 {
         boolean isUpdated = false;
 
         //정점의 갯수 - 1 만큼 최단 거리 초기화 작업 반복
+        //루프를 나가기 위해서는 가중치 업데이트 여부를 판단한다
+        //만약 M=6000 C=-10000일 경우 N * -60000000이 21억을 넘으므로 distance 배열을 long 타입으로 지정한다.
         for(int i=1; i<N; i++){
             isUpdated = false;
 
