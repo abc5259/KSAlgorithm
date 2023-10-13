@@ -1,4 +1,4 @@
-package Programmers.JaeHoon.level3;
+package Programmers.JaeHoon.level2;
 
 public class 마법의_엘리베이터 {
     class Solution {
