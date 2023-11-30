@@ -5,7 +5,7 @@ import java.util.*;
 public class 표_편집 {
 
     class Solution {
-        static class Node {
+        class Node {
             boolean isRemoved;
             Node prev;
             Node next;
