@@ -38,7 +38,7 @@ public class BOJ_1504 {
         for(int i=0; i<=N; i++){
             list.add(new ArrayList<>());
         }
-        Arrays.fill(dist, INF);
+        //Arrays.fill(dist, INF);
 
         //양방향 인접 리스트
         for(int i=0; i<E; i++){
