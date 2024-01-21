@@ -39,11 +39,10 @@ public class BOJ_14658 {
                         sum++;
                     }
                 }
-
                 answer = Math.max(answer,sum);
             }
         }
-        System.out.println(K - answer);
+        System.out.println(answer);
 
     }
 }
