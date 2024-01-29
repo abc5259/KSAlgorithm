@@ -1,4 +1,4 @@
-package BOJ.JaeIk;
+package BOJ.JaeIk.practice;
 
 import java.io.BufferedReader;
 import java.io.IOException;
