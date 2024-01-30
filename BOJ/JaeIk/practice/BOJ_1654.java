@@ -23,6 +23,12 @@ public class BOJ_1654 {
             max = Math.max(max, arr[i]);
         }
 
+        /*
+         * 가장 긴 랜선이 800인 경우
+         * 정답(low)가 800일 수 있기 때문에
+         * 정답의 범위를 나타내기 위해
+         * high = 800 + 1로 초기화 해야한다
+         */
         low = 1;
         high = max+1;
 
