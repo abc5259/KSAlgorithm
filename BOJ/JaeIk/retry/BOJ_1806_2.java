@@ -26,7 +26,6 @@ public class BOJ_1806_2 {
         int end = 0;
         int min = Integer.MAX_VALUE;
 
-
         while(start<=end && end<=n){
             if(sum>=s && min>end-start){
                 min = end-start;
