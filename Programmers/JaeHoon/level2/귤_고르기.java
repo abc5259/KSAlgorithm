@@ -3,7 +3,6 @@ package Programmers.JaeHoon.level2;
 import java.util.Arrays;
 
 public class 귤_고르기 {
-    import java.util.*;
 
     class Solution {
         public int solution(int k, int[] tangerine) {
