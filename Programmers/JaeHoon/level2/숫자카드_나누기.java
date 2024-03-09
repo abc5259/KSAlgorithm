@@ -55,7 +55,7 @@ public class 숫자카드_나누기 {
             }
             return true;
         }
-        public static int gcd(int a, int b) { // a > b 일때
+        public int gcd(int a, int b) { // a > b 일때
             if(b == 0) return a;	// gcd를 찾았다면 그 몫을 return
             else return gcd(b, a % b);
         }
