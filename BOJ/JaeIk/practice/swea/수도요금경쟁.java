@@ -1,11 +1,6 @@
 package BOJ.JaeIk.practice.swea;
 
-import java.util.Arrays;
 import java.util.Scanner;
-import java.io.FileInputStream;
-
-import java.util.Scanner;
-import java.io.FileInputStream;
 
 
 class 수도요금경쟁
