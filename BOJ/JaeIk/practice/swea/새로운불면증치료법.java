@@ -32,6 +32,7 @@ class 새로운불면증치료법
         boolean flag = false;
         int count = 1;
 
+        //반복 조건을 cnt<10 으로 하면 더 간단
         while(!flag) {
             int temp = number * count;
             String numberStr = String.valueOf(temp);
@@ -40,10 +41,8 @@ class 새로운불면증치료법
             for(int i=0; i<numberStr.length(); i++) {
                 //0아스키 코드를 빼서 각 자리를 정수형으로 변환
                 int digit = numberStr.charAt(i)-'0';
-                //System.out.println("디버깅 : "+digit);
                 if(visited[digit]==0)visited[digit]=1;
             }
-            //System.out.println();
 
             int sum = 0;
             for(int j=0; j<10; j++) {
