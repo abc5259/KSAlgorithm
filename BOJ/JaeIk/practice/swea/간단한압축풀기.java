@@ -12,7 +12,6 @@ import java.io.FileInputStream;
 
 class 간단한압축풀기
 {
-    static int[] prime = {2, 3, 5, 7, 11};
     static BufferedReader br;
     public static void main(String args[]) throws Exception
     {
@@ -24,7 +23,6 @@ class 간단한압축풀기
             int fileAmount = Integer.parseInt(br.readLine());
 
             List<String> data_list = new ArrayList<>();
-            StringBuilder sb = new StringBuilder();
             for(int i=0; i<fileAmount; i++) {
                 StringTokenizer st = new StringTokenizer(br.readLine());
 
