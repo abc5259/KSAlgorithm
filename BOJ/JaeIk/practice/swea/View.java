@@ -12,7 +12,6 @@ import java.io.FileInputStream;
 
 class View
 {
-    static int[] prime = {2, 3, 5, 7, 11};
     static BufferedReader br;
     public static void main(String args[]) throws Exception
     {
@@ -46,7 +45,7 @@ class View
             }
 
             if(flag) {
-                //System.out.println("디버깅 : "+i+" -"+(floor[i]-maxFloor));
+                //System.out.println("디버깅 : "+i+"번째 - "+(floor[i]-maxFloor));
                 answer += (floor[i]-maxFloor);
             }
         }
