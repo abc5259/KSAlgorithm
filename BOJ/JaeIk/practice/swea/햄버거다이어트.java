@@ -10,7 +10,6 @@ import java.io.InputStreamReader;
 class 햄버거다이어트
 {
     static Integer[][] dp;
-    static int n, l;
     static int[] w;
     static int[] v;
 
