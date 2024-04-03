@@ -26,10 +26,9 @@ class 암호생성기
             }
 
             boolean flag = true;
-            int now = crypt.peek();
             while(flag) {
                 for(int i=1; i<=5; i++) {
-                    now = crypt.poll();
+                    int now = crypt.poll();
                     int move = now-i;
 
                     if(move<=0) {
