@@ -1,6 +1,5 @@
 package BOJ.JaeIk.practice.swea;
 
-
 import java.util.LinkedList;
 import java.util.List;
 import java.util.PriorityQueue;
@@ -42,6 +41,7 @@ public class 조합 {
         long temp = fermat(bottom, x/2);
         long result = (temp*temp)%MOD;
         if(x%2 == 0)return result;
-        else return (result*bottom)%MOD;
+
+        return (result*bottom)%MOD;
     }
 }
