@@ -116,11 +116,7 @@ public class 상호의배틀필드 {
 
                     setCoordinate(nextRow, nextCol);
 
-                        if(map[nextRow][nextCol] == '.'){
-
-                            
-                        continue;
-                    }
+                    if(map[nextRow][nextCol] == '.')continue;
 
                     if(map[nextRow][nextCol] == '*'){
                         map[nextRow][nextCol] = '.';
