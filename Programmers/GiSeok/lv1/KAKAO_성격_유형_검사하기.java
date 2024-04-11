@@ -1,4 +1,4 @@
-package Programmers.GiSeok;
+package Programmers.GiSeok.lv1;
 
 import java.util.HashMap;
 import java.util.Map;
