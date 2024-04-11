@@ -1,4 +1,4 @@
-package Programmers.GiSeok;
+package Programmers.GiSeok.lv2;
 
 public class KAKAO_두_큐_합_같게_만들기 {
     class Solution {
