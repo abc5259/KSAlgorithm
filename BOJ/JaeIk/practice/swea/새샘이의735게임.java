@@ -8,7 +8,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.TreeSet;
 
 public class 새샘이의735게임 {
     public static void main(String[] args) throws IOException {
@@ -26,7 +25,6 @@ public class 새샘이의735게임 {
             HashSet<Integer> set = new HashSet<>();
             for(int i=0; i<5; i++){
                 for(int j=i+1; j<6; j++){
-
                     for(int k=j+1; k<7; k++){
                         int sum = 0;
                         sum += arr[i];
