@@ -8,7 +8,7 @@ import java.util.StringTokenizer;
 import javax.swing.plaf.basic.BasicInternalFrameTitlePane.SystemMenuBar;
 
 public class 최장증가부분수열 {
-    static int[] dp;
+    static Integer[] dp;
     static int[] arr;
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,16 +23,9 @@ public class 최장증가부분수열 {
                 arr[i] = Integer.parseInt(st.nextToken());
             }
 
-            dp = new int[n];
+            dp = new Integer[n];
             for(int i=0; i<n; i++){
-               dp[i] = 1;
-
-               for(int j=0; j<i; j++){
-
-                   if(arr[j]<arr[i] && dp[i] < dp[j]+1){
-                       dp[i] = dp[j]+1;
-                   }
-               }
+                LIS(i);
             }
 
             int longest=-1;
@@ -42,5 +35,19 @@ public class 최장증가부분수열 {
 
             System.out.println("#"+(tc+1)+" "+longest);
         }
+    }
+
+    static int LIS(int n){
+        if(dp[n] == null){
+            dp[n] = 1;
+
+            for(int i=n-1; i>=0; i--){
+                if(arr[n] > arr[i]){
+                    dp[n] = Math.max(dp[n], LIS(i)+1);
+                }
+            }
+        }
+
+        return dp[n];
     }
 }
