@@ -2,7 +2,7 @@ package Programmers.JaeHoon.level2;
 
 public class 이진_변환_반복하기 {
     class Solution {
-        static class Result {
+        class Result {
             int zeroCnt;
             String str;
             Result(int zeroCnt, String str) {
