@@ -32,9 +32,11 @@ public class BOJ_1010 {
          }
 
          //2번 성질
-         if(n==r || r==0)return dp[n][r] = 1;
+         if(n==r || r==0){
+             return dp[n][r] = 1;
+         }
 
          //1번 성질
-         return combination(n-1, r-1)+combination(n-1, r);
+         return dp[n][r] = combination(n-1, r-1)+combination(n-1, r);
     }
 }
