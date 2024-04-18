@@ -8,9 +8,10 @@ public class BOJ_1062 {
 
     static int N;
     static int K;
-    static int max = -1;
-    static String[] words;
-    static boolean[] sentence = new boolean[26];
+    static int[] words;
+
+    static int max = 0;
+    static int sentence = 0;
 
     public static void main(String[] args) throws IOException {
         
@@ -20,9 +21,14 @@ public class BOJ_1062 {
         N = Integer.parseInt(NK[0]);
         K = Integer.parseInt(NK[1]);
 
-        words = new String[N];
-        for (int i = 0; i < N; i++)
-            words[i] = br.readLine().replace("anta", "").replace("tica", "");
+        words = new int[N];
+        for (int i = 0; i < N; i++) {
+            String s = br.readLine();
+
+            for (int j = 0; j < s.length(); j++)
+                words[i] |= (1 << (s.charAt(j) - 'a'));
+
+        }
 
         setInit();
         if (K < 5) max = 0;
@@ -35,35 +41,28 @@ public class BOJ_1062 {
     static void wordMaker(int alpha, int depth) {
         if (depth == (K - 5)) {
             int ans = 0;
-            for (String word : words) {
-                boolean isNotWord = false;
-                for (int i = 0; i < word.length(); i++) {
-                    if (!sentence[word.charAt(i) - 'a']) {
-                        isNotWord = true;
-                        break;
-                    }
-                }
-
-                if (!isNotWord) ans++;
+            for (int i = 0; i < words.length; i++) {
+                if ((sentence & words[i]) == words[i])
+                    ans++;
             }
 
             max = Math.max(max, ans);
         }
 
         for (int i = alpha; i < 26; i++) {
-            if (!sentence[i]) {
-                sentence[i] = true;
+            if ((sentence & (1 << i)) == 0) {
+                sentence = sentence | (1 << i);
                 wordMaker(i, depth + 1);
-                sentence[i] = false;
+                sentence = sentence & ~(1 << i);
             }
         }
     }
 
     static void setInit() {
-        sentence['a' - 'a'] = true;
-        sentence['n' - 'a'] = true;
-        sentence['t' - 'a'] = true;
-        sentence['c' - 'a'] = true;
-        sentence['i' - 'a'] = true;
+        sentence = sentence | (1 << ('a' - 'a'));
+        sentence = sentence | (1 << ('n' - 'a'));
+        sentence = sentence | (1 << ('t' - 'a'));
+        sentence = sentence | (1 << ('i' - 'a'));
+        sentence = sentence | (1 << ('c' - 'a'));
     }
 }
