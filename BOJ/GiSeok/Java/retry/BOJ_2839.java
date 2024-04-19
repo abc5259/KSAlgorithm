@@ -9,16 +9,19 @@ public class BOJ_2839 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
-        int[] dp = new int[N + 1];
-        for (int i = 0; i < N+1; i++) dp[i] = 5001;
+        int ans = 0;
+        while (N != 0) {
+            if (N % 5 == 0) {
+                ans += (N / 5);
+                break;
+            }
 
-        dp[3] = 1;
-        if (N >= 5) dp[5] = 1;
-        
-        for (int i = 6; i < N+1; i++)
-            dp[i] = Math.min(dp[i - 3], dp[i - 5]) + 1;
+            N -= 3;
+            ans++;
 
-        dp[N] = dp[N] >= 5001 ? -1 : dp[N];
-        System.out.println(dp[N]);
+            if (N < 0) { ans = -1; break; }
+        }
+
+        System.out.println(ans);
     }
 }
