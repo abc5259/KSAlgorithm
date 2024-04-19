@@ -57,10 +57,10 @@ public class 보급로 {
                 int nextCol = currentCol + dc[i];
 
                 if(nextRow<0 || nextCol<0 || nextRow>=size || nextCol>=size)continue;
-                if(time[nextRow][nextCol] > time[currentRow][currentCol]+map[nextRow][nextCol]) {
-                    time[nextRow][nextCol] = time[currentRow][currentCol] + map[nextRow][nextCol];
-                    queue.add(new int[] {nextRow, nextCol});
-                }
+                if(time[nextRow][nextCol] < time[currentRow][currentCol]+map[nextRow][nextCol])continue;
+                time[nextRow][nextCol] = time[currentRow][currentCol] + map[nextRow][nextCol];
+                queue.add(new int[] {nextRow, nextCol});
+
             }
         }
 
