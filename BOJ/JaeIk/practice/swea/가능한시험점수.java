@@ -3,13 +3,8 @@ package BOJ.JaeIk.practice.swea;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.StringTokenizer;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.io.IOException;
 
 class 가능한시험점수 {
     static int[] arr;
@@ -47,7 +42,7 @@ class 가능한시험점수 {
         if(visited[depth][sum])return;
         visited[depth][sum] = true;
 
-        if(depth==N)return;
+        if(depth == N)return;
 
         dfs(depth+1, sum+arr[depth]);
         dfs(depth+1, sum);
