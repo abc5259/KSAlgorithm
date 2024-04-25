@@ -55,7 +55,7 @@ public class BOJ_10282 {
                 max = Math.max(max, dist[i]);
             }
 
-            sb.append(cnt + " " + max).append('\n');
+            sb.append(cnt + " " + max).append("\n");
 
         }
         System.out.println(sb);
