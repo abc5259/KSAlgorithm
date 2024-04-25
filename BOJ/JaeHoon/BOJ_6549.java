@@ -41,7 +41,7 @@ public class BOJ_6549 {
                 int height = arr[stack.pop()];	// 이전 체인의 높이
 
                 long width = stack.isEmpty() ? i : i - 1 - stack.peek();
-
+                System.out.println("width = " + width);
                 maxArea = Math.max(maxArea, height * width);	// 최대 넓이 값 갱신
             }
 
