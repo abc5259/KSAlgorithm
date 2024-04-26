@@ -27,35 +27,30 @@ public class BOJ_2630 {
         cuttingAPaper(0, 0, N);
         System.out.println(white);
         System.out.println(blue);
-        
     }
 
     static void cuttingAPaper(int startx, int starty, int n) {
-        if (n == 1) {
+        if (colorCheck(startx, starty, n)) {
             if (paper[starty][startx] == 0) white++;
             else blue++;
-            return;
+            return; // 색종이가 하나의 색이면 굳이 더 나눌 필요 x
         }
-        
+
+        cuttingAPaper(startx, starty, n/2);
+        cuttingAPaper(startx + (n/2), starty, n/2);
+        cuttingAPaper(startx, starty + (n/2), n/2);
+        cuttingAPaper(startx + (n/2), starty + (n/2), n/2);
+    }
+
+    static boolean colorCheck(int startx, int starty, int n) {
         int check = paper[starty][startx];
-        boolean isNotPaper = false;
         for (int i = starty; i < starty + n; i++) {
             for (int j = startx; j < startx + n; j++) {
-                if (paper[i][j] != check) {
-                    isNotPaper = true;
-                    break;
-                }
+                if (paper[i][j] != check)
+                    return false;
             }
         }
 
-        if (!isNotPaper) {
-            if (check == 0) white++;
-            else blue++;
-        } else {
-            cuttingAPaper(startx, starty, n/2);
-            cuttingAPaper(startx + (n/2), starty, n/2);
-            cuttingAPaper(startx, starty + (n/2), n/2);
-            cuttingAPaper(startx + (n/2), starty + (n/2), n/2);
-        }
+        return true;
     }
 }
