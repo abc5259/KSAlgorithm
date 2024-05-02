@@ -17,14 +17,14 @@ public class 식료품가게 {
         for(int tc=0; tc<T; tc++){
             int n = Integer.parseInt(br.readLine());
 
-            Long[] arr = new Long[n*2];
+            int[] arr = new int[n*2];
             StringTokenizer st = new StringTokenizer(br.readLine());
             for(int i=0; i<n*2; i++){
-                arr[i] = Long.parseLong(st.nextToken());
+                arr[i] = Integer.parseInt(st.nextToken());
             }
 
             boolean[] visited = new boolean[n*2];
-            List<Long> result = new ArrayList<>();
+            List<Integer> result = new ArrayList<>();
             for(int i=0; i<arr.length-1; i++){
                 for(int j=i+1; j< arr.length; j++){
                     if(visited[i] || visited[j])continue;
