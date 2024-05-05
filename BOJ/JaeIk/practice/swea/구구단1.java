@@ -21,7 +21,6 @@ public class 구구단1 {
                     }
                 }
             }
-
             String r = (result)?"Yes":"No";
 
             System.out.println("#"+(tc+1)+" "+r);
