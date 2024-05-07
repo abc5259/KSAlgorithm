@@ -10,6 +10,7 @@ public class BOJ_2748 {
         int n = Integer.parseInt(br.readLine());
 
         Long[] dp = new Long[91];
+
         dp[0] = 0L;
         dp[1] = 1L;
         dp[2] = 1L;
