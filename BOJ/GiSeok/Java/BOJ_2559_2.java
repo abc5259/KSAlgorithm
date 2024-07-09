@@ -1,6 +1,6 @@
 /**
  * 2559 - 수열
- * 누적합, 실버3, 시도
+ * 누적합, 실버3, 시도2
  * 슬라이딩 윈도우의 경우 시간 복잡도가 25억 가까이 나온다.
  * 누적합으로 풀 경우 N + N = 10만 + 10만 = 20만
  * 엄청 줄어드네
@@ -26,10 +26,10 @@ public class BOJ_2559_2 {
         for (int i = 1; i <= N; i++)
             psum[i] = psum[i - 1] + Integer.parseInt(st.nextToken());
 
-        int max = Integer.MIN_VALUE;
+        int ans = -10000000;
         for (int i = K; i <= N; i++)
-            if (psum[i] - psum[i - K] > max) max = psum[i] - psum[i - K];
+            ans = Math.max(ans, psum[i] - psum[i - K]);
 
-        System.out.println(max);
+        System.out.println(ans);
     }
 }
