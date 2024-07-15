@@ -45,13 +45,11 @@ public class BOJ_1940 {
             items[i] = Integer.parseInt(st.nextToken());
 
         for (int i = 0; i < N; i++) {
-            int sum = items[i];
             for (int j = i + 1; j < N; j++) {
-                sum += items[j];
-                if (sum == M) cnt++;
-                sum -= items[j];
+                if (items[i] + items[j] == M) cnt++;
             }
         }
+        
         System.out.println(cnt);
     }
 }

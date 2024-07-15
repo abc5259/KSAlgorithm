@@ -36,12 +36,10 @@ public class BOJ_3986 {
 
             for (int x = 0; x < words.length(); x++) {
                 char word = words.charAt(x);
-                if (!box.isEmpty()) {
-                    if (box.peek() == word)
-                        box.removeFirst();
-                    else
-                        box.addFirst(word);
-                } else { box.addFirst(word); }
+                if (!box.isEmpty() && box.peek() == word)
+                    box.removeFirst();
+                else 
+                    box.addFirst(word);
             }
 
             if (box.size() == 0) cnt++;
