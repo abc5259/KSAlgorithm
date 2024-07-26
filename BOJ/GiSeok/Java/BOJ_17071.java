@@ -1,7 +1,7 @@
 /**
  * 17071 - 숨바꼭질 5 [실패|01:35:20]
  */
-package problem;
+package BOJ.GiSeok.Java;
 
 import java.io.BufferedReader;
 import java.io.IOException;
