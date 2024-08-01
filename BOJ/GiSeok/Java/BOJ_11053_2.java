@@ -1,3 +1,6 @@
+/**
+ * 11053 - 가장 긴 증가하는 부분수열
+ */
 package BOJ.GiSeok.Java;
 
 import java.io.BufferedReader;
