@@ -18,21 +18,17 @@ public class BOJ_1987_2 {
     static int[] dx = {0, 0, -1, 1};
 
     static int[][] map;
-    static int alphabet;
     static int R, C;
     static int ret = 0;
 
-    static void dfs(int y, int x, int cnt) {
+    static void dfs(int y, int x, int num, int cnt) {
         for (int i = 0; i < 4; i++) {
             int ny = y + dy[i];
             int nx = x + dx[i];
 
             if (ny < 0 || nx < 0 || ny >= R || nx >= C) continue;
-            if ((alphabet & (1 << map[ny][nx])) >= 1) continue;
-
-            alphabet |= (1 << map[ny][nx]);
-            dfs(ny, nx, cnt + 1);
-            alphabet ^= (1 << map[ny][nx]);
+            int next = 1 << map[ny][nx];
+            if ((num & next) == 0) dfs(ny, nx, num | next, cnt + 1);
         }
 
         ret = Math.max(ret, cnt);
@@ -52,8 +48,7 @@ public class BOJ_1987_2 {
                 map[i][j] = m.charAt(j) - 'A';
         }
 
-        alphabet = (1 << map[0][0]);
-        dfs(0, 0, 1);
+        dfs(0, 0, (1 << map[0][0]), 1);
 
         System.out.println(ret);
     }
