@@ -67,7 +67,6 @@ public class BOJ_13244 {
             adj = new ArrayList<>();
             for (int i = 0; i < N; i++) adj.add(new ArrayList<>());
             visited = new boolean[N];
-            parent = new int[N];
 
             M = Integer.parseInt(br.readLine());
             int root = -1;
