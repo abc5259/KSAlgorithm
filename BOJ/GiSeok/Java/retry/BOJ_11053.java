@@ -1,38 +1,38 @@
+/**
+ * 11053 - 가장 긴 증가하는 부분 수열 [성공|00:19:47]
+ * 실버2, DP, 시도1
+ */
 package BOJ.GiSeok.Java.retry;
 
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.StringTokenizer;
 
 public class BOJ_11053 {
+    // 시간제한 1초, 메모리제한 256MB
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
+        int n = Integer.parseInt(br.readLine());
 
-        int[] A = new int[N];
-        int[] dp = new int[N];
-
+        int[] arr = new int[n];
         StringTokenizer st = new StringTokenizer(br.readLine());
-        for (int i = 0; i < N; i++)
-            A[i] = Integer.parseInt(st.nextToken());
+        for (int i = 0; i < n; i++) arr[i] = Integer.parseInt(st.nextToken());
 
-        for (int i = 0; i < N; i++) {
-            if (dp[i] == 0) dp[i] = 1;
-            for (int j = 0; j < i; j++) {
-                if (A[i] > A[j]) {
-                    if (dp[i] < dp[j]+1)
-                        dp[i] = dp[j]+1;
-                }
+        int[] dp = new int[n];
+        dp[0] = 1;
+
+        for (int i = 1; i < n; i++) {
+            int max = 1;
+            for (int j = n-1; j >= 0; j--) {
+                if (arr[j] < arr[i]) max = Math.max(max, dp[j] + 1);
             }
+
+            dp[i] = max;
         }
 
-        int max = 0;
-        for (int i = 0; i < N; i++) {
-            if (max < dp[i])
-                max = dp[i];
-        }
+        int ret = 0;
+        for (int i = 0; i < n; i++) ret = Math.max(ret, dp[i]);
 
-        System.out.println(max);
+        System.out.println(ret);
     }
 }
