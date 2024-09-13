@@ -1,9 +1,9 @@
-package Programmers.GiSeok.lv1;
+package Programmers.GiSeok.lv1.kakao;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Arrays;
 
-public class KAKAO_신고_결과_받기 {
+public class 신고_결과_받기 {
     class Solution {
         public int[] solution(String[] id_list, String[] report, int k) {
             Set<String> reportSet = new HashSet<>();
@@ -34,8 +34,8 @@ public class KAKAO_신고_결과_받기 {
     }
 
     public static void main(String[] args) {
-        KAKAO_신고_결과_받기 parent = new KAKAO_신고_결과_받기();
-        KAKAO_신고_결과_받기.Solution sol = parent.new Solution();
+        신고_결과_받기 parent = new 신고_결과_받기();
+        신고_결과_받기.Solution sol = parent.new Solution();
 
         // test case 1
         String[] t1_id_list = {"muzi", "frodo", "apeach", "neo"};

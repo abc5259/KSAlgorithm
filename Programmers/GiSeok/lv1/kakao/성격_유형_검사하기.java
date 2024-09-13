@@ -1,9 +1,9 @@
-package Programmers.GiSeok.lv1;
+package Programmers.GiSeok.lv1.kakao;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class KAKAO_성격_유형_검사하기 {
+public class 성격_유형_검사하기 {
     class Solution {
         public String solution(String[] survey, int[] choices) {
             String answer = "";

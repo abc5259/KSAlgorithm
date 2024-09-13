@@ -1,6 +1,6 @@
-package Programmers.GiSeok.lv2;
+package Programmers.GiSeok.lv2.kakao;
 
-public class KAKAO_두_큐_합_같게_만들기 {
+public class 두_큐_합_같게_만들기 {
     class Solution {
         public long queueSum(int[] queue) {
             long sum = 0;
@@ -65,8 +65,8 @@ public class KAKAO_두_큐_합_같게_만들기 {
         int[] t2_queue1 = {1, 2, 1, 2};
         int[] t2_queue2 = {1, 10, 1, 2};
         
-        KAKAO_두_큐_합_같게_만들기 cases = new KAKAO_두_큐_합_같게_만들기();
-        KAKAO_두_큐_합_같게_만들기.Solution tcase = cases.new Solution();
+        두_큐_합_같게_만들기 cases = new 두_큐_합_같게_만들기();
+        두_큐_합_같게_만들기.Solution tcase = cases.new Solution();
 
         System.out.println(tcase.solution(t1_queue1, t1_queue2));
         System.out.println(tcase.solution(t2_queue1, t2_queue2));
