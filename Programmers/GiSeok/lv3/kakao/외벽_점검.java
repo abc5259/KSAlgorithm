@@ -7,9 +7,9 @@ package Programmers.GiSeok.lv3.kakao;
 public class 외벽_점검 {
 
     class Solution {
-        static int[] dist, w;
-        static int ans;
-        static int m;
+        int[] dist, w;
+        int ans;
+        int m;
 
         public void swap(int idx1, int idx2) {
             int temp = dist[idx1];

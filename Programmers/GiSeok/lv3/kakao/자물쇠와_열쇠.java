@@ -7,7 +7,7 @@ package Programmers.GiSeok.lv3.kakao;
 public class 자물쇠와_열쇠 {
 
     class Solution {
-        static int n, m;
+        int n, m;
 
         public int[][] rotate(int[][] k) {
             int[][] new_k = new int[m][m];

@@ -9,7 +9,7 @@ public class 기지국_설치_2 {
 
     class Solution {
 
-        static class Pair {
+        class Pair {
             int s, e;
             Pair(int s, int e) {
                 this.s = s;
