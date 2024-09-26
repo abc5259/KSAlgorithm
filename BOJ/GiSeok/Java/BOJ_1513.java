@@ -21,20 +21,13 @@ public class BOJ_1513 {
 
     static int go(int y, int x, int c, int prev) {
 
+        if (c < 0) return 0;
         if (dp[y][x][c][prev] != -1) return dp[y][x][c][prev];
-
-        int tmp = c;
-        int tmpprev = prev;
-        if (map[y][x] != 0) {
-            if (prev > map[y][x]) return 0;
-            if (c == 0) return 0;
-
-            tmp -= 1;
-            tmpprev = map[y][x];
+        if (y == n && x == m) {
+            if (c == 0 && map[y][x] == 0) return 1;
+            if (c == 1 && map[y][x] > prev) return 1;
+            return 0;
         }
-
-        if (y == n && x == m && tmp == 0) return 1;
-        else if (y == n && x == m) return 0;
 
         dp[y][x][c][prev] = 0;
         for (int i = 0; i < 2; i++) {
@@ -43,7 +36,8 @@ public class BOJ_1513 {
 
             if (ny < 1 || nx < 1 || ny > n || nx > m) continue;
 
-            dp[y][x][c][prev] = (dp[y][x][c][prev] % 1000007 + go(ny, nx, tmp, tmpprev) % 1000007) % 1000007;
+            if (map[y][x] == 0) dp[y][x][c][prev] = (dp[y][x][c][prev] + go(ny, nx, c, prev)) % 1000007;
+            else if (prev < map[y][x]) dp[y][x][c][prev] = (dp[y][x][c][prev] + go(ny, nx, c-1, map[y][x])) % 1000007;
         }
 
         return dp[y][x][c][prev];
