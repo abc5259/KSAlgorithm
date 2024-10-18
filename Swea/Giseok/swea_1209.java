@@ -14,39 +14,28 @@ public class swea_1209 {
 
         for (int tc = 1; tc <= 10; tc++) {
             int[][] arr = new int[100][100]; br.readLine();
-
             for (int i = 0; i < 100; i++) {
                 StringTokenizer st = new StringTokenizer(br.readLine());
                 for (int j = 0; j < 100; j++) arr[i][j] = Integer.parseInt(st.nextToken());
             }
 
             int max = 0;
+            int rightDiagonalSum = 0;
+            int leftDiagonalSum = 0;
             // 각 행의 합
             for (int i = 0; i < 100; i++) {
-                int sum = 0;
-                for (int j = 0; j < 100; j++) sum += arr[i][j];
-                max = Math.max(sum, max);
+                rightDiagonalSum += arr[i][i];
+                leftDiagonalSum += arr[i][99-i];
+                int colSum = 0; int rowSum = 0;
+                for (int j = 0; j < 100; j++) {
+                    colSum += arr[i][j];
+                    rowSum += arr[j][i];
+                }
+                max = Math.max(colSum, max);
+                max = Math.max(rowSum, max);
             }
-
-            // 각 열의 합
-            for (int i = 0; i < 100; i++) {
-                int sum = 0;
-                for (int j = 0; j < 100; j++) sum += arr[j][i];
-                max = Math.max(sum, max);
-            }
-
-            // 대각선
-            int sum = 0;
-            for (int i = 0, j = 0; (i < 100 && j < 100); i++, j++) {
-                sum += arr[i][j];
-            }
-            max = Math.max(sum, max);
-
-            sum = 0;
-            for (int i = 0, j = 99; (i < 100 && j >= 0); i++, j--) {
-                sum += arr[i][j];
-            }
-            max = Math.max(sum, max);
+            max = Math.max(rightDiagonalSum, max);
+            max = Math.max(leftDiagonalSum, max);
 
             System.out.println("#" + tc + " " + max);
         }
