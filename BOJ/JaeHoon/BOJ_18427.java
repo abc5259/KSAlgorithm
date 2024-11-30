@@ -47,6 +47,9 @@ public class BOJ_18427 {
             }
         }
 
+        for(int i=0; i<N; i++) {
+            System.out.println(Arrays.toString(dp[i]));
+        }
         System.out.println(dp[N-1][H]);
     }
 }
