@@ -91,7 +91,6 @@ public class BOJ_16430 {
                 Point curr = q.poll();
 
                 int idx = findIdx(curr.x, curr.y);
-//                System.out.println("idx = " + idx);
                 int nnx = curr.x + dx[idx];
                 int nny = curr.y + dy[idx];
                 if(nnx >= R) nnx = R-1;
@@ -111,9 +110,6 @@ public class BOJ_16430 {
                     q.offer(p);
                 }
             }
-
-//            print();
-//            System.out.println();
         }
 
         return -1;
