@@ -1,3 +1,6 @@
+/**
+ * [G3 DP] 앱 - X
+ */
 package BOJ.GiSeok.Java;
 
 import java.io.BufferedReader;
@@ -10,35 +13,29 @@ public class BOJ_7579 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        int N, M;
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
+        int n, m;
+        n = Integer.parseInt(st.nextToken());
+        m = Integer.parseInt(st.nextToken());
 
-        int[] w = new int[N + 1];
-        int[] v = new int[N + 1];
+        int[] memory = new int[n+1];
+        int[] cost = new int[n+1];
 
         st = new StringTokenizer(br.readLine());
-        for (int i = 1; i < N + 1; i++)
-            w[i] = Integer.parseInt(st.nextToken());
+        for (int i = 1; i <= n; i++) memory[i] = Integer.parseInt(st.nextToken());
         st = new StringTokenizer(br.readLine());
-        for (int i = 1; i < N + 1; i++)
-            v[i] = Integer.parseInt(st.nextToken());
+        for (int i = 1; i <= n; i++) cost[i] = Integer.parseInt(st.nextToken());
 
-        int[][] dp = new int[N + 1][10001];
-        int min = Integer.MAX_VALUE;
+        int[][] dp = new int[n+1][100001];
+        int ret = Integer.MAX_VALUE;
+        for (int app = 1; app <= n; app++) {
+            for (int co = 0; co <= 10000; co++) {
+                if (co >= cost[app]) dp[app][co] = Math.max(dp[app-1][co - cost[app]] + memory[app], dp[app-1][co]);
+                else dp[app][co] = dp[app - 1][co];
 
-        for (int i = 1; i < N + 1; i++) {
-            for (int cost = 1; cost < 10001; cost++) {
-                if (v[i] > cost)
-                    dp[i][cost] = dp[i-1][cost];
-                else
-                    dp[i][cost] = Math.max(dp[i-1][cost], dp[i-1][cost-v[i]] + w[i]);
-
-                if (dp[i][cost] >= M)
-                    min = Math.min(min, cost);
+                if (dp[app][co] >= m) ret = Math.min(ret, co);
             }
         }
 
-        System.out.println(min);
+        System.out.println(ret);
     }
 }
