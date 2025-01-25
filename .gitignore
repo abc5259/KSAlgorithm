@@ -6,3 +6,4 @@ out
 .vscode
 /bin/
 /classes
+.DS_Store
