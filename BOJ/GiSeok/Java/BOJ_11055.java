@@ -19,14 +19,12 @@ public class BOJ_11055 {
         for (int i = 0; i < n; i++) nums[i] = Integer.parseInt(st.nextToken());
 
         int[] dp = new int[n];
-        for (int i = 0; i < n; i++) dp[i] = nums[i];
-        int ret = dp[0];
-        for (int i = 1; i < n; i++) {
-            int sum = 0;
+        int ret = 0;
+        for (int i = 0; i < n; i++) {
+            dp[i] = nums[i];
             for (int j = 0; j < i; j++) {
-                if (nums[i] > nums[j]) sum = Math.max(sum, dp[j] + nums[i]);
+                if (nums[i] > nums[j]) dp[i] = Math.max(dp[i], dp[j] + nums[i]);
             }
-            dp[i] = Math.max(sum, dp[i]);
             ret = Math.max(dp[i], ret);
         }
 

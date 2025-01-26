@@ -11,47 +11,48 @@ import java.io.IOException;
 import java.util.StringTokenizer;
 import java.util.ArrayList;
 
-class graphs {
-    public ArrayList<ArrayList<Integer>> graph;
-    public int N;
-    public int[] color;
+public class BOJ_1707 {
 
-    graphs(int N) {
-        graph = new ArrayList<ArrayList<Integer>>();
-        for (int i = 0; i < N + 1; i++)
-            graph.add(new ArrayList<Integer>());
-        color = new int[N + 1];
-    }
-    public void addEdge(int n1, int n2) {
+    static class graphs {
+        public ArrayList<ArrayList<Integer>> graph;
+        public int N;
+        public int[] color;
+
+        graphs(int N) {
+            graph = new ArrayList<ArrayList<Integer>>();
+            for (int i = 0; i < N + 1; i++)
+                graph.add(new ArrayList<Integer>());
+            color = new int[N + 1];
+        }
+        public void addEdge(int n1, int n2) {
             graph.get(n1).add(n2);
             graph.get(n2).add(n1);
-    }
-
-    public void dfs(int v, int pre) {
-        if (color[pre] == 1)
-            color[v] = 2;
-        else if (color[pre] == 2)
-            color[v] = 1;
-
-        for (int i = 0; i < graph.get(v).size(); i++) {
-            int p = graph.get(v).get(i);
-            if (color[p] == 0)
-                dfs(p, v);
         }
 
-    }
+        public void dfs(int v, int pre) {
+            if (color[pre] == 1)
+                color[v] = 2;
+            else if (color[pre] == 2)
+                color[v] = 1;
 
-    public String check() {
-        for (int i = 1; i < graph.size(); i++) {
-            for (int j : graph.get(i))
-                if (color[i] == color[j])
-                    return "NO\n";
+            for (int i = 0; i < graph.get(v).size(); i++) {
+                int p = graph.get(v).get(i);
+                if (color[p] == 0)
+                    dfs(p, v);
+            }
+
         }
-        return "YES\n";
-    }
-}
 
-public class BOJ_1707 {
+        public String check() {
+            for (int i = 1; i < graph.size(); i++) {
+                for (int j : graph.get(i))
+                    if (color[i] == color[j])
+                        return "NO\n";
+            }
+            return "YES\n";
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));

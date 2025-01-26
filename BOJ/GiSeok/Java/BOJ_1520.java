@@ -6,24 +6,25 @@ import java.util.StringTokenizer;
 import java.util.PriorityQueue;
 import java.lang.Comparable;
 
-class Node implements Comparable<Node> {
-    public int num;
-    public int x;
-    public int y;
-
-    Node(int num, int x, int y) {
-        this.num = num;
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public int compareTo(Node o) {
-        return o.num - this.num;
-    }
-}
-
 public class BOJ_1520 {
+
+    static class Node implements Comparable<Node> {
+        public int num;
+        public int x;
+        public int y;
+
+        Node(int num, int x, int y) {
+            this.num = num;
+            this.x = x;
+            this.y = y;
+        }
+
+        @Override
+        public int compareTo(Node o) {
+            return o.num - this.num;
+        }
+    }
+
     static int[][] wasd = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
     static int[][] map;
     static int[][] visited;

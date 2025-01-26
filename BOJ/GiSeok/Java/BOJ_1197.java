@@ -8,6 +8,22 @@ import java.util.StringTokenizer;
 import java.util.ArrayList;
 
 public class BOJ_1197 {
+
+    static class Edge implements Comparable<Edge> {
+        int v;
+        int weight;
+
+        Edge(int v, int w) {
+            this.v = v;
+            weight = w;
+        }
+
+        @Override
+        public int compareTo(Edge o) {
+            return Double.compare(this.weight, o.weight);
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -50,20 +66,5 @@ public class BOJ_1197 {
         }
 
         System.out.println(ans);
-    }
-}
-
-class Edge implements Comparable<Edge> {
-    int v;
-    int weight;
-
-    Edge(int v, int w) {
-        this.v = v;
-        weight = w;
-    }
-
-    @Override
-    public int compareTo(Edge o) {
-        return Double.compare(this.weight, o.weight);
     }
 }
