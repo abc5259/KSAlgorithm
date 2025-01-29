@@ -16,24 +16,20 @@ public class BOJ_4883 {
         int n;
         int k = 1;
         while ((n = Integer.parseInt(br.readLine())) != 0) {
-            long[][] map = new long[n][3];
-            long[][] dp = new long[n][3];
+            int[][] dp = new int[n][3];
 
             for (int y = 0; y < n; y++) {
                 StringTokenizer st = new StringTokenizer(br.readLine());
-                for (int x = 0; x < 3; x++) map[y][x] = Long.parseLong(st.nextToken());
+                for (int x = 0; x < 3; x++) dp[y][x] = Integer.parseInt(st.nextToken());
             }
 
             dp[0][0] = Integer.MAX_VALUE;
-            dp[0][1] = map[0][1];
-            dp[0][2] = map[0][1] + map[0][2];
+            dp[0][2] += dp[0][1];
             for (int y = 1; y < n; y++) {
-                dp[y][0] = Math.min(dp[y-1][0] + map[y][0], dp[y-1][1] + map[y][0]);
-                dp[y][1] = Math.min(dp[y-1][0] + map[y][1], dp[y-1][1] + map[y][1]);
-                dp[y][1] = Math.min(dp[y][1], dp[y-1][2] + map[y][1]);
-                dp[y][1] = Math.min(dp[y][1], dp[y][0] + map[y][1]);
-                dp[y][2] = Math.min(dp[y-1][1] + map[y][2], dp[y-1][2] + map[y][2]);
-                dp[y][2] = Math.min(dp[y][2], dp[y][1] + map[y][2]);
+                dp[y][0] += Math.min(dp[y-1][0], dp[y-1][1]);
+                dp[y][1] += Math.min(Math.min(dp[y-1][2], dp[y][0]),
+                                    Math.min(dp[y-1][0], dp[y-1][1]));
+                dp[y][2] += Math.min(dp[y][1], Math.min(dp[y-1][1], dp[y-1][2]));
             }
 
             System.out.println((k++) + ". " + dp[n-1][1]);
