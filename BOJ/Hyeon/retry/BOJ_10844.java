@@ -1,4 +1,4 @@
-package BOJ.Hyeon.DP;
+package BOJ.Hyeon.retry;
 
 import java.io.BufferedReader;
 import java.io.IOException;
