@@ -29,12 +29,7 @@ public class BOJ_2156 {
                 dp[i] = Math.max(dp[i - 2] + podo[i], Math.max(podo[i] + dp[i - 3] + podo[i - 1], dp[i - 1]));
             }
         }
-        int max = 0;
-        for (int cnt : dp) {
-            if (max < cnt)
-                max = cnt;
-        }
-        System.out.println(max);
+        System.out.println(dp[n]);
     }
 }
 // 한참이나 틀렸다.
