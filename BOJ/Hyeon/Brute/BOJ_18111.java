@@ -1,4 +1,4 @@
-package BOJ.Hyeon.Greedy;
+package BOJ.Hyeon.Brute;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -56,7 +56,7 @@ public class BOJ_18111 {
     }
 }
 // S2 마인크래프트
-// 모든 경우를 따져봐야 하는 그리디
+// 모든 경우를 따져봐야 하는 브루트포스
 // 반복문을 통해 2차원 배열로 형성하고 최소값과 최대값을 구한다 이를 활용하여 높이를 구한다.
 // 최소값보다 더 낮은 높이는 시간이 더 걸리기 때문에 못해도 최소값보다는 높은 높이를 나타낸다.
 // 최소값일 때는 일단 다 빼기 때문에 인벤토리가 모자르지 않는데,
