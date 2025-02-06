@@ -1,4 +1,4 @@
-package BOJ.Hyeon.DP;
+package BOJ.Hyeon.dp;
 
 import java.io.BufferedReader;
 import java.io.IOException;

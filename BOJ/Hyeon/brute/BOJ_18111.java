@@ -1,4 +1,4 @@
-package BOJ.Hyeon.Brute;
+package BOJ.Hyeon.brute;
 
 import java.io.BufferedReader;
 import java.io.IOException;

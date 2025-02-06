@@ -1,4 +1,4 @@
-package BOJ.Hyeon.Feb;
+package BOJ.Hyeon.feb;
 
 import java.io.BufferedReader;
 import java.io.IOException;
