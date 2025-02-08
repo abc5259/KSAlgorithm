@@ -21,11 +21,9 @@ public class BOJ_9935 {
             char c = str.charAt(i);
             stack.push(c);
             if (stack.size() >= len) {
-                boolean check = false;
+                boolean check = true;
                 for (int j = 0; j < len; j++) {
-                    if (stack.get(stack.size() - len + j) == bomb.charAt(j)) {
-                        check = true;
-                    } else {
+                    if (stack.get(stack.size() - len + j) != bomb.charAt(j)) {
                         check = false;
                         break;
                     }
