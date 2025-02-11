@@ -1,4 +1,4 @@
-package Programmers.Hyeon;
+package Programmers.Hyeon.lv1;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
