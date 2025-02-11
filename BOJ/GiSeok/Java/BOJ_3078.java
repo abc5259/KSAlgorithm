@@ -29,7 +29,7 @@ public class BOJ_3078 {
             }
         }
         for (int i = n+1; i <= n+k; i++) {
-            for (int j = 1; j <= 20; j++) len[i][j] = len[n][j];
+            System.arraycopy(len[n], 1, len[i], 1, 20);
         }
 
         long ret = 0;
