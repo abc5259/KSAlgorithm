@@ -1,4 +1,4 @@
-package BOJ.Hyeon.feb;
+package BOJ.Hyeon.retry;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -48,3 +48,6 @@ public class BOJ_2447 {
 // G5 별찍기 10 재귀, 분할정복
 // 걍 개어려움
 // retry
+// 3개로 계쏙해서 분할해서 1개가 남을때까지 한다음에 그 1개는 [1][1]을 안가는 값일 때 '*'을 저장하고
+// [1][1]은 공백으로 그대로 두어야 하는데, N이 27에서 9가 될 때 1, 1은 9 X9 칸 모두 공백이다
+// 처음부터 접근방식이 배열에다가 다 비워놓고 별을 찍는걸로 생각했다.
