@@ -58,3 +58,5 @@ public class BOJ_2606 {
         return cnt;
     }
 }
+// S3 바이러스 BFS
+// 너무 쉽게 풀었다 int 로 반환
