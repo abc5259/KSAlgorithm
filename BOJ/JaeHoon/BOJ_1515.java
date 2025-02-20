@@ -20,15 +20,8 @@ public class BOJ_1515 {
                 }
             }
             String sprev = String.valueOf(prev);
-            int idx = 0;
-            for(int i=0; i<sprev.length(); i++) {
-                if(sprev.charAt(i)==s.charAt(0)) {
-                    idx = i;
-                    break;
-                }
-            }
             int idx2 = 0;
-            for(int i=idx; i<sprev.length(); i++) {
+            for(int i=0; i<sprev.length(); i++) {
                 if(sprev.charAt(i) == s.charAt(idx2)) {
                     idx2++;
                     if(idx2 == s.length()) break;
