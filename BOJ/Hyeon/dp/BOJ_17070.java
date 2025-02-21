@@ -23,8 +23,8 @@ public class BOJ_17070 {
         }
         int[][][] dp = new int[N][N][3];
 
-        for (int i = 1; i <= N; i++) {
-            if (map[0][i] == true) {
+        for (int i = 1; i < N; i++) {
+            if (map[0][i]) {
                 dp[0][i][0] = 1;
             }
         }
