@@ -5,73 +5,65 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_17471 {
-    static int N;
-    static ArrayList<Integer>[] area;
-    static boolean[] select; // 부분집합
-    static boolean[] visit; // 방문 여부
-    static int[] people; // 인구수
+    static int N; // 구역의 개수  1~6까지
+    static int[] people; // 인구 분포
+    static ArrayList<Integer>[] area; // 이거는 index 별로 각 구역을 나타내고 가장 처음 숫자는 각구역의 크기, 그 이후로는 인접한 구역이다
+    static boolean[] select; // 부분집합을 선택했는지에 대한 배열 A와 B 선거구
+    static int min; // 최소값 출력
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         N = Integer.parseInt(br.readLine());
 
+        people = new int[N + 1];
         area = new ArrayList[N + 1];
         select = new boolean[N + 1];
-        visit = new boolean[N + 1];
 
         StringTokenizer st = new StringTokenizer(br.readLine());
-
-        people = new int[N + 1];
         for (int i = 1; i <= N; i++) {
             people[i] = Integer.parseInt(st.nextToken());
+            area[i] = new ArrayList<>();
         }
 
-
-        for (int i = 1; i <= N; i++) {
+        for (int i = 1; i <= N; i++) { // i는 구역
             st = new StringTokenizer(br.readLine());
-            int cnt = Integer.parseInt(st.nextToken());
-            area[i] = new ArrayList<>();
+            int cnt = Integer.parseInt(st.nextToken()); // 이거는 인접 구역의 개수
+
             for (int j = 0; j < cnt; j++) {
                 area[i].add(Integer.parseInt(st.nextToken()));
             }
         }
+        // 인접한 개수만큼 반복문 돌리고 입력
 
         min = Integer.MAX_VALUE;
-        subSet(1);
+        // 결과값 비교 만약 값이 안들어오면 -1출력 최소값
+        // 그다음 부분집합 ? -> 두 선거구에 포함된 == 한 선거구는 포함 다른 선거구는 미포함 == true false로 구분
+        subSet(1); //   1번 선거구 부터
 
-        System.out.println((min == Integer.MAX_VALUE) ? -1 : min);
+        System.out.println(min == Integer.MAX_VALUE ? -1 : min);
     }
 
-    static int min;
-
     static void subSet(int idx) {
-        // 기저 조건
         if (idx == N + 1) {
-            // 부분집합 완성 < select true , false 기록
             check();
             return;
         }
-
         select[idx] = true;
+        // 찬성 쪽에 고른 부분집합 == A
         subSet(idx + 1);
 
         select[idx] = false;
+        // 반대 쪽에 고른 부분집합 == B
         subSet(idx + 1);
     }
 
-    // 나뉘어진 두 개의 선거구 ( 다 연결되었는지?)
-    // 두 선거구의 인구수를 계산 최소값 처리
     static void check() {
-        //visit 배열을 통해서 연결 여부 확인
         ArrayDeque<Integer> queue = new ArrayDeque<>();
-        Arrays.fill(visit, false);
-        // A 선거구
-        //select 의 true
-        // 선거구에 속한 구역 1개를 선택 완탐
+
+        boolean[] visit = new boolean[N + 1];
         for (int i = 1; i <= N; i++) {
             if (select[i]) {
                 visit[i] = true;
@@ -83,19 +75,15 @@ public class BOJ_17471 {
             return;
         }
         while (!queue.isEmpty()) {
-            int v = queue.poll();
-            for (int i = 0; i < area[v].size(); i++) {
-                int adj = area[v].get(i);
-                if (visit[adj] || !select[adj]) {
-                    continue;
+            int num = queue.poll();
+            for (int node : area[num]) {
+                if (!visit[node] && select[node]) {
+                    visit[node] = true;
+                    queue.offer(node);
                 }
-                visit[adj] = true;
-                queue.offer(adj);
             }
         }
-        // B 선거구
-        //select 의 false
-        // 선거구에 속한 구역 1개를 선택 완탐
+
         for (int i = 1; i <= N; i++) {
             if (!select[i]) {
                 visit[i] = true;
@@ -107,23 +95,23 @@ public class BOJ_17471 {
             return;
         }
         while (!queue.isEmpty()) {
-            int v = queue.poll();
-            for (int i = 0; i < area[v].size(); i++) {
-                int adj = area[v].get(i);
-                if (visit[adj] || select[adj]) {
-                    continue;
+            int num = queue.poll();
+            for (int node : area[num]) {
+                if (!visit[node] & !select[node]) {
+                    queue.offer(node);
+                    visit[node] = true;
                 }
-                visit[adj] = true;
-                queue.offer(adj);
             }
         }
 
-        // 두선거구 연결 확인
         for (int i = 1; i <= N; i++) {
-            if (!visit[i])
+            if (!visit[i]) {
                 return;
+            }
         }
-        // A B 선거구의 인구수를 계산, 최소값 갱신
+        // 모든 구역 방문 확인
+
+        // 최소값 갱신
         int sumA = 0;
         int sumB = 0;
 
@@ -137,10 +125,12 @@ public class BOJ_17471 {
         min = Math.min(min, Math.abs(sumA - sumB));
     }
 }
-
-// 가능한 선거구로 나누고 < 부분집합, 두 개의 선거구 선택과 비선택으로 나눈다.
-// 임의의 한 구역부터 출발 모든 구역에 갈 수 있는지 dfs bfs
-// 완탐을 통해 visit 배열 1개 기록
-// 탐색 이후 visit 배열 확인
-
-// 그때의 인구마다 비교해서 작은 값을 구하자
+// G3 BFS 부분집합 게리맨더링
+// 진짜 어려웠다.
+// 일단 순서대로 시뮬레이션 화 해보면
+// 선거구를 나눠야하는데 2개로 나눠야한다.
+// 이는 부분집합을 활용하면 되고
+// 2개로 나눠졌을 때
+// 이어져있는지를 확인해야한다. 이어져있는지 확인을 하려면 bfs를 해서 어레이리스트가 가지고 있는지를 확인한다.
+// 어레이리스트가 가지고 있지않으면 연결이 안된채로 끝난다.
+// 그리고 최소값을 구해서 절대값을 통해 리턴한다.

@@ -8,7 +8,8 @@ import java.util.Arrays;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-// 전체 구역을 2개의 선거구 < = 부분집합 <= select[] 에 선택, 비선택을 true, false 로 기록 <= 두 개의 선거구는 선택된 구역, 비선택된 구역 나눈 개념
+// 전체 구역을 2개의 선거구 < = 부분집합 <= select[] 에 선택, 비선택을 true, false 로 기록
+// <= 두 개의 선거구는 선택된 구역, 비선택된 구역 나눈 개념
 // 그래프 이므로 나뉘어진 선거구 내의 구역이 모두 연결 여부
 //    <= 각 선거구의 임의의 한 구역부터 출발 모든 구역에 갈 수 있는 지 완탐 (bfs, dfs)
 //    <= 완탐을 통해 visit 배열 1개에 갈 수 있는 곳을 모두 기록
