@@ -1,4 +1,4 @@
-package Programmers.Hyeon;
+package Programmers.Hyeon.lv2;
 
 import java.util.ArrayDeque;
 
@@ -83,7 +83,8 @@ public class 지게차와_크레인 {
         // BFS 실행
         while (!queue.isEmpty()) {
             int[] cur = queue.poll();
-            int y = cur[0], x = cur[1];
+            int y = cur[0];
+            int x = cur[1];
 
             // 현재 위치가 타겟 컨테이너가 아니라 빈 공간이면 인접한 칸 탐색
             if (cur[2] != tgt) {
@@ -101,3 +102,8 @@ public class 지게차와_크레인 {
         }
     }
 }
+
+// Lv2 지게차와 크레인  BFS
+// 사방 탐색과 BFS이다. 일단 크레인과 지게차가 있는데 지게차는 시작 과 끝에있는거만 빼기때문에
+// 인덱스가 0이거나 행 - 1 열 -1 인것들만 BFS탐색해서 빼낸다.
+// 크레인은 그냥 완전탐색으로 빼낸다.

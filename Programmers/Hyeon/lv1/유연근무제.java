@@ -1,6 +1,4 @@
-package Programmers.Hyeon;
-
-import java.util.ArrayDeque;
+package Programmers.Hyeon.lv1;
 
 public class 유연근무제 {
     public static void main(String[] args) {
