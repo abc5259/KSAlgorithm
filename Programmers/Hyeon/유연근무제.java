@@ -13,31 +13,17 @@ public class 유연근무제 {
     static class Solution {
         public int solution(int[] schedules, int[][] timelogs, int startday) {
             int answer = 0;
-            int len = schedules.length;
-            int tmp;
-            ArrayDeque<int[]> queue = new ArrayDeque<>();
-            for (int i = 0; i < len; i++) {
-                tmp = startday;
-                for (int j = 0; j < 7; j++) {
-                    queue.offer(new int[]{timelogs[i][j], tmp});
-                    tmp++;
-                }
-            }
+            int employee = schedules.length;
 
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < employee; i++) {
+                int hour = (schedules[i] / 100) * 60 + (schedules[i] % 100) + 10;
+
                 int cnt = 0;
                 for (int j = 0; j < 7; j++) {
-                    if (!queue.isEmpty()) {
-                        int[] arr = queue.poll();
-                        int day = (startday + j - 1) % 7;
-                        if (day == 5 || day == 6) {
-                            continue;
-                        }
-                        int hour = (schedules[i] / 100) * 60 + (schedules[i] % 100) + 10;
-                        int th = (arr[0] / 100) * 60 + (arr[0] % 100);
-                        if (hour >= th) {
-                            cnt++;
-                        }
+                    int day = (startday + j - 1) % 7;
+                    int th = (timelogs[i][j] / 100) * 60 + (timelogs[i][j] % 100);
+                    if (day != 5 && day != 6 && hour >= th) {
+                        cnt++;
                     }
                 }
                 if (cnt == 5) {
@@ -48,3 +34,6 @@ public class 유연근무제 {
         }
     }
 }
+
+// Lv1 유연근무제 20205 프로그래머스 코드챌린지
+// 일단 그냥 시간계산하는거랑 조건 분기에만 신경쓰면된다

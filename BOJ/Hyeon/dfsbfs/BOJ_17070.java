@@ -40,6 +40,7 @@ public class BOJ_17070 {
             if ((dir == 0 && i == 1) || (dir == 1 && i == 0)) {
                 continue;
             }
+
             int ny = y + dy[i];
             int nx = x + dx[i];
 
