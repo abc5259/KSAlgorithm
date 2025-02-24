@@ -3,12 +3,7 @@ package BOJ.JaeHoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class BOJ_1253 {
@@ -23,24 +18,29 @@ public class BOJ_1253 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        Map<Integer, List<int[]>> map = new HashMap<>();
-        for(int i=0; i<N-1; i++) {
-            for(int j=i+1; j<N; j++) {
-                int key = arr[i] + arr[j];
-                List<int[]> list = map.getOrDefault(key, new ArrayList<>());
-                list.add(new int[]{i,j});
-                map.put(key, list);
-            }
-        }
-
         int cnt = 0;
+        Arrays.sort(arr);
         for(int i=0; i<N; i++) {
-            List<int[]> list = map.get(arr[i]);
-            if(list == null) continue;
-            for (int[] ints : list) {
-                if(ints[0] != i && ints[1] != i) {
+            int left = 0;
+            int right = N-1;
+            while (true) {
+                if(left == i) {
+                    left++;
+                }
+                if(right == i) {
+                    right--;
+                }
+                if(left >= right) break;
+                int sum = arr[left] + arr[right];
+                if(sum == arr[i]) {
                     cnt++;
                     break;
+                }
+                if(sum < arr[i]) {
+                    left++;
+                }
+                else if(sum > arr[i]) {
+                    right--;
                 }
             }
         }
