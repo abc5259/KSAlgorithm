@@ -9,13 +9,11 @@ import java.util.StringTokenizer;
 public class BOJ_3190 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        ArrayDeque<Point> deque = new ArrayDeque<>();
 
         int N = Integer.parseInt(br.readLine());
         int K = Integer.parseInt(br.readLine());
 
         int[][] map = new int[N + 1][N + 1];
-
 
         StringTokenizer st;
         for (int i = 0; i < K; i++) {
