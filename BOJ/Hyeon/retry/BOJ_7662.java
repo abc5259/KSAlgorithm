@@ -23,40 +23,39 @@ public class BOJ_7662 {
 
             while (k-- > 0) {
                 st = new StringTokenizer(br.readLine());
-                if (st.nextToken().equals("I")) {
-                    int n = Integer.parseInt(st.nextToken());
+                String str = st.nextToken();
+                int n = Integer.parseInt(st.nextToken());
+
+                if (str.equals("I")) {
                     minHeap.offer(n);
                     maxHeap.offer(n);
                     map.put(n, map.getOrDefault(n, 0) + 1);
                 } else {
-                    int n = Integer.parseInt(st.nextToken());
                     if (map.isEmpty()) {
                         continue;
                     }
                     if (n == 1) {
-                        deleteValid(maxHeap);
+                        deleteValue(maxHeap);
                     } else {
-                        deleteValid(minHeap);
+                        deleteValue(minHeap);
                     }
                 }
             }
             if (map.isEmpty()) {
                 sb.append("EMPTY").append("\n");
             } else {
-                int max = deleteValid(maxHeap);
-                sb.append(max).append(" ");
+                int res = deleteValue(maxHeap);
+                sb.append(res).append(" ");
                 if (!map.isEmpty()) {
-                    int min = deleteValid(minHeap);
-                    sb.append(min).append("\n");
-                } else {
-                    sb.append(max).append("\n");
+                    res = deleteValue(minHeap);
                 }
+                sb.append(res).append("\n");
             }
         }
         System.out.println(sb);
     }
 
-    private static int deleteValid(PriorityQueue<Integer> heap) {
+    private static int deleteValue(PriorityQueue<Integer> heap) {
         while (!heap.isEmpty()) {
             int num = heap.peek();
             if (map.containsKey(num)) {
@@ -74,6 +73,11 @@ public class BOJ_7662 {
     }
 }
 
-// G4 이중 우선순위 큐 우선순위 큐
-// 2개의 힙으로 구성했는데 동시에 지워져야돼서 map을 사용?
-// retry
+// G4 이중 우선순위 큐 우선순위큐
+// 두개의 최소힙 최대힙 우선순위 큐가 있을 때.
+// 최소값을 빼는 D와 최대값을 빼는 D를 하지만, 각각의 힙에는 영향을 주지않는다.
+// 단순히 최대힙에서 빼버리면 최소힙은 변경되지않고, 반대도 마찬가지여서
+// 동시에 값을 관리할 수 있는 map을 만든다.
+// map의 키값은 숫자이고 숫자가 여러개 생길경우 +1씩해준다.
+// 뺄때는 -1씩해주고 1이면 맵에서 제거해버린다.
+// 반환값을 int로 받아서 max값과 min 값을 사용하면된다.
