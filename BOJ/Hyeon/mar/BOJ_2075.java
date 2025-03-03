@@ -9,68 +9,38 @@ import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class BOJ_2075 {
-    static HashMap<Integer, Integer> map;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
         StringTokenizer st;
-        int T = Integer.parseInt(br.readLine());
 
-        while (T-- > 0) {
-            PriorityQueue<Integer> minHeap = new PriorityQueue<>();
-            PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
-            map = new HashMap<>();
+        int N = Integer.parseInt(br.readLine());
 
-            int k = Integer.parseInt(br.readLine());
-            while (k-- > 0) {
-                st = new StringTokenizer(br.readLine());
-                String str = st.nextToken();
-                int n = Integer.parseInt(st.nextToken());
+        PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+        PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
 
-                if (str.equals("I")) {
-                    minHeap.offer(n);
-                    maxHeap.offer(n);
-                    map.put(n, map.getOrDefault(n, 0) + 1);
+        for (int i = 0; i < N; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                int num = Integer.parseInt(st.nextToken());
+                if (maxHeap.isEmpty() || maxHeap.peek() > num) {
+                    maxHeap.offer(num);
                 } else {
-                    if (map.isEmpty()) {
-                        continue;
-                    }
-                    if (n == 1) {
-                        deleteValue(maxHeap);
-                    } else {
-                        deleteValue(minHeap);
-                    }
+                    minHeap.offer(num);
                 }
-            }
-            if (map.isEmpty()) {
-                sb.append("EMPTY").append("\n");
-            } else {
-                int res = deleteValue(maxHeap);
-                sb.append(res).append(" ");
-                if (!map.isEmpty()) {
-                    res = deleteValue(minHeap);
+
+                if (minHeap.size() > N) {
+                    maxHeap.offer(minHeap.poll());
+                } else if (minHeap.size() < N) {
+                    minHeap.offer(maxHeap.poll());
                 }
-                sb.append(res).append("\n");
             }
         }
-        System.out.println(sb);
-    }
-
-    private static int deleteValue(PriorityQueue<Integer> heap) {
-        while (!heap.isEmpty()) {
-            int num = heap.peek();
-            if (map.containsKey(num)) {
-                if (map.get(num) == 1) {
-                    map.remove(num);
-                } else {
-                    map.put(num, map.get(num) - 1);
-                }
-                return heap.poll();
-            } else {
-                heap.poll();
-            }
-        }
-        return 0;
+        System.out.println(minHeap.peek());
     }
 }
+
+// S3 N번째 큰수 우선순위 큐
+// 일단 우선순위 큐를 통해서 최대힙 최소힙을 구성한다
+// N번째 큰수이기에 최소힙을 N개로 제한을 하고 나머지는 최대힙에 넣고 최소힙의 개수가 부족할 경우와
+// 최소힙의 개수가 클 경우에 대해서 비교한다.
