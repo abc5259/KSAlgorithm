@@ -16,8 +16,9 @@ public class BOJ_11058 {
         for(int i=4; i<101; i++) {
             dp[i] = dp[i-1] + 1;
             int cnt = 2;
-            for(int j=i-3; j>=1;j--) {
-                dp[i] = Math.max(dp[i], dp[j] * cnt++);
+            for(int j=3; j<=6;j++) {
+                if(i-j < 0) break;
+                dp[i] = Math.max(dp[i], dp[i-j] * cnt++);
             }
         }
         System.out.println(dp[N]);
