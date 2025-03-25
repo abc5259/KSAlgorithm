@@ -31,13 +31,7 @@ public class BOJ_19623 {
 
         @Override
         public int compareTo(meeting o) {
-            if (this.man == o.man) {
-                if (this.end == o.end) {
-                    return this.start - o.start;
-                }
-                return this.end - o.end;
-            }
-            return this.man - o.man;
+            return this.end - o.end;
         }
     }
 }
