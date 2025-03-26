@@ -14,7 +14,6 @@ public class BOJ_19623 {
         StringTokenizer st;
 
         meeting[] meetings = new meeting[N];
-
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             int start = Integer.parseInt(st.nextToken());
@@ -28,9 +27,9 @@ public class BOJ_19623 {
         dp[0] = meetings[0].man;
 
         for (int i = 1; i < N; i++) {
-            int maxIdx = lowerBound(meetings, i);
-
+            int maxIdx = binarySearch(meetings, i);
             int curMan = meetings[i].man;
+
             if (maxIdx != -1) {
                 curMan += dp[maxIdx];
             }
@@ -39,7 +38,7 @@ public class BOJ_19623 {
         System.out.println(dp[N - 1]);
     }
 
-    private static int lowerBound(meeting[] meetings, int idx) {
+    private static int binarySearch(meeting[] meetings, int idx) {
         int lo = -1;
         int hi = idx;
 
@@ -67,10 +66,17 @@ public class BOJ_19623 {
 
         @Override
         public int compareTo(meeting o) {
-            if (this.end == o.end) {
-                return this.start - o.start;
-            }
+//            if (this.end == o.end) {
+//                return this.start - o.start;
+//            }
             return this.end - o.end;
         }
     }
 }
+
+// G3 회의실 배정 4 이분탐색 + DP
+// 진짜 어렵게 체화했다 DP의 개념을 복습할 수 있게 되었고 시간복잡도 계산을 고려했다
+// 1. 이전 회의시간을 비교할 때 DP의 메모이제이션을 통해 누적한 man 이 인덱스에 따라 커지는데
+// 주어진 회의 시작시간보다 작거나 같은 회의 종료시간의 DP만을 반환해야 한다는 것을  생각하고
+// meeting 으로 클래스를 만들어서 배열로 관리 compare로 정렬
+// binary 숙지 필요
