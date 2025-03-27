@@ -9,31 +9,45 @@ public class BOJ_18870 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
+
         int N = Integer.parseInt(br.readLine());
-
         int[] og = new int[N];
+        HashSet<Integer> set = new HashSet<>();
 
-        ArrayList<Integer> list = new ArrayList<>();
         StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            int X = Integer.parseInt(st.nextToken());
-            og[i] = X;
-            list.add(X);
+            og[i] = Integer.parseInt(st.nextToken());
+            set.add(og[i]);
         }
 
-        ArrayList<Integer> sortedList = new ArrayList<>(new HashSet<>(list));
-        Collections.sort(sortedList);
-
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < sortedList.size(); i++) {
-            map.put(sortedList.get(i), i);
+        int[] sorted = new int[set.size()];
+        int idx = 0;
+        for (int value : set) {
+            sorted[idx++] = value;
         }
+        Arrays.sort(sorted);
+
         for (int i = 0; i < N; i++) {
-            sb.append(map.get(og[i])).append(" ");
+            sb.append(LowerBound(sorted, og[i])).append(" ");
         }
         System.out.println(sb);
+    }
+
+    private static int LowerBound(int[] arr, int x) {
+        int lo = -1;
+        int hi = arr.length - 1;
+
+        while (lo + 1 < hi) {
+            int mid = (lo + hi) / 2;
+            if (arr[mid] >= x) {
+                hi = mid;
+            } else {
+                lo = mid;
+            }
+        }
+        return hi;
     }
 }
 
 // S2 좌표 압축 정렬
-// 일단 풀었는데 점검 필요
+// 내가 푼 풀이보다 이게 더 나은거 같음..
