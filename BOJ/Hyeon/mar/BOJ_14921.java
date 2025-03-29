@@ -16,7 +16,7 @@ public class BOJ_14921 {
             liquids[i] = Integer.parseInt(st.nextToken());
         }
 
-        int min = 200_000_001;
+        int min = Integer.MAX_VALUE;
 
         for (int i = 0; i < N - 1; i++) {
             int sum = lowerBound(liquids, i);
@@ -28,7 +28,7 @@ public class BOJ_14921 {
     }
 
     private static int lowerBound(int[] arr, int idx) {
-        int lo = idx;
+        int lo = idx + 1;
         int hi = arr.length - 1;
 
         while (lo + 1 < hi) {
@@ -44,10 +44,10 @@ public class BOJ_14921 {
         int sum1 = arr[idx] + arr[lo];
         int sum2 = arr[idx] + arr[hi];
 
-        if (lo == idx) {
-            return sum2;
-        }
         return (Math.abs(sum1) < Math.abs(sum2)) ? sum1 : sum2;
     }
-
 }
+
+// G5 용액 합성하기 이분탐색
+// 이분탐색해서 lowerBound 의 타겟과 같거나 작은 값과 그보다 1개 작은 값을 이용해서 lo 와 hi를 통해서 연산한다
+// 인덱스 별로 값을 리턴하고 그걸 절대값 비교해서 반환한다.
