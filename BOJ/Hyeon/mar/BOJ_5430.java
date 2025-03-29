@@ -15,7 +15,7 @@ public class BOJ_5430 {
         while (T-- > 0) {
             char[] p = br.readLine().toCharArray();
             int n = Integer.parseInt(br.readLine());
-            
+
             ArrayDeque<Integer> deque = new ArrayDeque<>();
 
             StringTokenizer st = new StringTokenizer(br.readLine(), "[],");
@@ -59,4 +59,7 @@ public class BOJ_5430 {
 }
 
 // G5 AC DEQUE
-// 메모리 초과
+// 메모리 초과였는데 해결
+// 일단 중요한게 [,] 을 StringTokenizer 로 해결할 수 있엇다. 쓸 데 없는 입력을 배제할 수 있는 라이브러리
+// 그리고 마지막만 , 출력안하게 끔 조건분기하는것도 2개의 불리언 플래그를 사용하였다.
+
