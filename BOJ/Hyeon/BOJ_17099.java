@@ -22,34 +22,59 @@ public class BOJ_17099 {
         }
         Arrays.sort(meetings);
 
+        int[] ends = new int[N];
+        for (int i = 0; i < N; i++) {
+            ends[i] = meetings[i].end;
+        }
+
         int[] dp = new int[N];
         dp[0] = meetings[0].money;
 
+//        for (int i = 1; i < N; i++) {
+//            int idx = lowerBound(meetings, i);
+//            int money = meetings[i].money;
+//            if (idx != -1) {
+//                money += dp[idx];
+//            }
+//            dp[i] = Math.max(dp[i - 1], money);
+//        }
+        dp[0] = meetings[0].money;
         for (int i = 1; i < N; i++) {
-            int idx = lowerBound(meetings, i);
+            int idx = lowerBound(ends, meetings[i].start); // 개선된 버전 사용
             int money = meetings[i].money;
-            if (idx != -1) {
-                money += dp[idx];
-            }
+            if (idx != -1) money += dp[idx];
             dp[i] = Math.max(dp[i - 1], money);
         }
         System.out.println(dp[N - 1]);
     }
 
-    private static int lowerBound(Meeting[] arr, int idx) {
-        int lo = -1;
-        int hi = idx;
-
-        while (lo + 1 < hi) {
+    //    private static int lowerBound(Meeting[] arr, int idx) {
+//        int lo = -1;
+//        int hi = idx;
+//
+//        while (lo + 1 < hi) {
+//            int mid = (lo + hi) / 2;
+//            int x = arr[idx].start;
+//            if (arr[mid].end >= x) {
+//                hi = mid;
+//            } else {
+//                lo = mid;
+//            }
+//        }
+//        return lo;
+//    }
+    private static int lowerBound(int[] ends, int x) {
+        int lo = 0, hi = ends.length - 1, res = -1;
+        while (lo <= hi) {
             int mid = (lo + hi) / 2;
-            int x = arr[idx].start;
-            if (arr[mid].end >= x) {
-                hi = mid;
+            if (ends[mid] < x) {
+                res = mid;
+                lo = mid + 1;
             } else {
-                lo = mid;
+                hi = mid - 1;
             }
         }
-        return lo;
+        return res;
     }
 
     static class Meeting implements Comparable<Meeting> {
