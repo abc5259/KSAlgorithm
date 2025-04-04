@@ -44,8 +44,8 @@ public class BOJ_1202 {
     }
 
     static class Jewel {
-        private int M;
-        private int V;
+        int M;
+        int V;
 
         public Jewel(int m, int v) {
             M = m;
