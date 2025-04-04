@@ -12,7 +12,7 @@ public class BOJ_1202 {
         int N = Integer.parseInt(st.nextToken());
         int K = Integer.parseInt(st.nextToken());
 
-        PriorityQueue<Jewel> jewels = new PriorityQueue<>(Comparator.comparingInt(o -> o.M));
+        PriorityQueue<Jewel> jewels = new PriorityQueue<>((o1, o2) -> o1.M - o2.M);
 
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
@@ -55,5 +55,8 @@ public class BOJ_1202 {
 }
 
 // G2 보석 도둑 정렬, 우선순위 큐
-// 접근이나 이런걸 잘 정리하고 덤벼야되는 문제 같다 너무 성급하게 덤볐다
-// 일단 로직 자체는 이해했으니 내일 복습하는게 나을 거 같다.
+// 일단 보석의 개수와, 가방의 개수가 30만개이다. 이는 N^2의 시간복잡도로 정렬하면 시간초과가 발생하기 떄문에
+// NlogN의 시간복잡도를 가진 것으로 정렬하는 것이 좋다. 이때 내가 담을 수 있는 가장 최고의 가치를 담기 떄문에
+// 그리디에서 내가 원하는 가장 값어치 높은 거로 정렬도 해야된다.
+// 그렇다면 보석을 담을 때 가장 무게가 적은 거부터 담고, 가방도 작은거부터 담는다. 그래서 가장 낮은 무게의 가방을
+// 꺼냈을 때 나보다 작은 무게를 가진 보석의 우선순위 큐에서 뽑아와서 가치를 내림차순 하는 우선순위로 가져와서 누적합한다.
