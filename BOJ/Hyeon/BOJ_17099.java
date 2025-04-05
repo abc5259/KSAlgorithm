@@ -30,51 +30,31 @@ public class BOJ_17099 {
         int[] dp = new int[N];
         dp[0] = meetings[0].money;
 
-//        for (int i = 1; i < N; i++) {
-//            int idx = lowerBound(meetings, i);
-//            int money = meetings[i].money;
-//            if (idx != -1) {
-//                money += dp[idx];
-//            }
-//            dp[i] = Math.max(dp[i - 1], money);
-//        }
-        dp[0] = meetings[0].money;
         for (int i = 1; i < N; i++) {
-            int idx = lowerBound(ends, meetings[i].start); // 개선된 버전 사용
+            int idx = lowerBound(meetings, i);
             int money = meetings[i].money;
-            if (idx != -1) money += dp[idx];
+            if (idx != -1) {
+                money += dp[idx];
+            }
             dp[i] = Math.max(dp[i - 1], money);
         }
         System.out.println(dp[N - 1]);
     }
 
-    //    private static int lowerBound(Meeting[] arr, int idx) {
-//        int lo = -1;
-//        int hi = idx;
-//
-//        while (lo + 1 < hi) {
-//            int mid = (lo + hi) / 2;
-//            int x = arr[idx].start;
-//            if (arr[mid].end >= x) {
-//                hi = mid;
-//            } else {
-//                lo = mid;
-//            }
-//        }
-//        return lo;
-//    }
-    private static int lowerBound(int[] ends, int x) {
-        int lo = 0, hi = ends.length - 1, res = -1;
-        while (lo <= hi) {
+    private static int lowerBound(Meeting[] arr, int idx) {
+        int lo = -1;
+        int hi = idx;
+
+        while (lo + 1 < hi) {
             int mid = (lo + hi) / 2;
-            if (ends[mid] < x) {
-                res = mid;
-                lo = mid + 1;
+            int x = arr[idx].start;
+            if (arr[mid].end >= x) {
+                hi = mid;
             } else {
-                hi = mid - 1;
+                lo = mid;
             }
         }
-        return res;
+        return lo;
     }
 
     static class Meeting implements Comparable<Meeting> {
@@ -96,3 +76,6 @@ public class BOJ_17099 {
 }
 
 // G3 Contest DP + 이분탐색
+// 시간 초과발생 자바로는 불가능
+// C++ 로 변환하니 되네...
+// 이분탐색으로 -1을 구분하고 lo를 반환하는거로
