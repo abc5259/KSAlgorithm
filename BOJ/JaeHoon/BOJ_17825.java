@@ -13,58 +13,60 @@ public class BOJ_17825 {
     static int[] posArr = new int[4];
     static List<List<Integer>> graph = new ArrayList<>();
     static int max = 0;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
         arr = new int[10];
         initLoad();
-        for(int i=0; i<10; i++) {
+        for (int i = 0; i < 10; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
         dfs(0, 0);
         System.out.println(max);
     }
+
     static void dfs(int depth, int sum) {
-        if(depth == 10) {
+        if (depth == 10) {
             max = Math.max(max, sum);
             return;
         }
 
-        for(int i=0; i<4; i++) {
+        for (int i = 0; i < 4; i++) {
             int cnt = arr[depth];
             int temp = posArr[i];
-            if(temp == -1) {
+            if (temp == -1) {
                 continue;
             }
             move(i, cnt);
 
             boolean check = true;
-            if(posArr[i] != -1) {
-                for(int j=0; j<4; j++) {
-                    if(i == j) continue;
-                    if(posArr[i] == posArr[j]) {
+            if (posArr[i] != -1) {
+                for (int j = 0; j < 4; j++) {
+                    if (i == j) continue;
+                    if (posArr[i] == posArr[j]) {
                         check = false;
                         break;
                     }
                 }
             }
-            if(!check) {
+            if (!check) {
                 posArr[i] = temp;
                 continue;
             }
-            dfs(depth+1, sum + map.getOrDefault(posArr[i], 0));
+            dfs(depth + 1, sum + map.getOrDefault(posArr[i], 0));
             posArr[i] = temp;
         }
     }
 
     private static void move(int i, int cnt) {
-        if(graph.get(posArr[i]).size() == 2) { // 무조건 파란줄로
+        if (graph.get(posArr[i]).size() == 2) { // 무조건 파란줄로
             cnt--;
             posArr[i] = graph.get(posArr[i]).get(1);
         }
-        while(cnt-- > 0) {
-            if(graph.get(posArr[i]).isEmpty()) { // 끝
+        while (cnt-- > 0) {
+            if (graph.get(posArr[i]).isEmpty()) { // 끝
                 posArr[i] = -1;
                 break;
             }
@@ -73,11 +75,11 @@ public class BOJ_17825 {
     }
 
     static void initLoad() {
-        for(int i=0; i<=32; i++) {
+        for (int i = 0; i <= 32; i++) {
             graph.add(new ArrayList<>());
         }
-        for(int i=1; i<=19; i++) {
-            graph.get(i).add(i+1);
+        for (int i = 1; i <= 19; i++) {
+            graph.get(i).add(i + 1);
         }
         graph.get(0).add(1);
         graph.get(5).add(21);
@@ -98,12 +100,13 @@ public class BOJ_17825 {
         graph.get(30).add(31);
         graph.get(31).add(20);
     }
+
     static Map<Integer, Integer> map = Map.ofEntries(
             Map.entry(0, 1),
             Map.entry(1, 2),
             Map.entry(2, 4),
             Map.entry(3, 6),
-            Map.entry(4,8),
+            Map.entry(4, 8),
             Map.entry(5, 10),
             Map.entry(6, 12),
             Map.entry(7, 14),

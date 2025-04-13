@@ -22,10 +22,10 @@ public class BOJ_2531 {
         int[] arr = new int[N];
         int sum = 0;
         Map<Integer, Integer> map = new HashMap<>();
-        for(int i=0; i<N; i++) {
+        for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(br.readLine());
-            if(i < K) {
-                if(!map.containsKey(arr[i])) {
+            if (i < K) {
+                if (!map.containsKey(arr[i])) {
                     sum++;
                 }
                 map.put(arr[i], map.getOrDefault(arr[i], 0) + 1);
@@ -39,13 +39,13 @@ public class BOJ_2531 {
         while (l < N) {
 
             map.put(arr[l], map.get(arr[l]) - 1);
-            if(map.get(arr[l]) == 0) sum--;
+            if (map.get(arr[l]) == 0) sum--;
             l++;
             r = (r + 1) % N;
             map.put(arr[r], map.getOrDefault(arr[r], 0) + 1);
-            if(map.get(arr[r]) == 1) sum++;
+            if (map.get(arr[r]) == 1) sum++;
 
-            if(map.get(C) == 0) max = Math.max(max, sum+1);
+            if (map.get(C) == 0) max = Math.max(max, sum + 1);
             else max = Math.max(max, sum);
 
 

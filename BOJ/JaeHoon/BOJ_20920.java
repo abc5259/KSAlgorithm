@@ -19,19 +19,19 @@ public class BOJ_20920 {
         int M = Integer.parseInt(st.nextToken());
         HashMap<String, Integer> map = new HashMap<>();
         List<String> arr = new ArrayList<>();
-        for(int i=0; i<N; i++) {
+        for (int i = 0; i < N; i++) {
             String s = br.readLine();
-            if(s.length() >= M) {
-                if(!map.containsKey(s)) {
+            if (s.length() >= M) {
+                if (!map.containsKey(s)) {
                     arr.add(s);
                 }
                 map.put(s, map.getOrDefault(s, 0) + 1);
             }
         }
 
-        arr.sort((a,b) -> {
-            if(map.get(a) == map.get(b)) {
-                if(a.length() == b.length()) {
+        arr.sort((a, b) -> {
+            if (map.get(a) == map.get(b)) {
+                if (a.length() == b.length()) {
                     return a.compareTo(b);
                 }
                 return b.length() - a.length();

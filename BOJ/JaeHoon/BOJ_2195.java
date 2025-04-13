@@ -14,7 +14,7 @@ public class BOJ_2195 {
         String S = br.readLine();
         String P = br.readLine();
         Map<Character, List<Integer>> map = new HashMap<>();
-        for(int i=0; i<S.length(); i++) {
+        for (int i = 0; i < S.length(); i++) {
             char key = S.charAt(i);
             List<Integer> list = map.getOrDefault(key, new ArrayList<>());
             list.add(i);
@@ -27,15 +27,15 @@ public class BOJ_2195 {
             char key = P.charAt(index);
             List<Integer> list = map.get(key);
             int max = 0;
-            for(int i=0; i<list.size(); i++) {
+            for (int i = 0; i < list.size(); i++) {
                 int size = 0;
-                int iIndx  = index;
-                for(int j=list.get(i); j<S.length(); j++) {
-                    if(iIndx >= P.length()) break;
-                    if(S.charAt(j) == P.charAt(iIndx)) {
+                int iIndx = index;
+                for (int j = list.get(i); j < S.length(); j++) {
+                    if (iIndx >= P.length()) break;
+                    if (S.charAt(j) == P.charAt(iIndx)) {
                         iIndx++;
                         size++;
-                    }else {
+                    } else {
                         break;
                     }
                 }

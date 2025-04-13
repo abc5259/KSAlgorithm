@@ -23,7 +23,7 @@ public class BOJ_7662 {
             Map<Integer, Integer> map = new HashMap<>();
             PriorityQueue<Integer> maxPq = new PriorityQueue<>(Collections.reverseOrder());
             PriorityQueue<Integer> minPq = new PriorityQueue<>();
-            for(int i=0; i<K; i++) {
+            for (int i = 0; i < K; i++) {
                 st = new StringTokenizer(br.readLine());
                 char command = st.nextToken().charAt(0);
                 int n = Integer.parseInt(st.nextToken());
@@ -32,22 +32,21 @@ public class BOJ_7662 {
                     maxPq.offer(n);
                     minPq.offer(n);
                     map.put(n, map.getOrDefault(n, 0) + 1);
-                }
-                else if (command == 'D') {
-                    if(n == 1) { // 최댓값 삭제
+                } else if (command == 'D') {
+                    if (n == 1) { // 최댓값 삭제
                         while (!maxPq.isEmpty() && map.get(maxPq.peek()) <= 0) {
                             maxPq.poll();
                         }
-                        if(maxPq.isEmpty()) {
+                        if (maxPq.isEmpty()) {
                             continue;
                         }
                         int removeValue = maxPq.poll();
                         map.put(removeValue, map.get(removeValue) - 1);
-                    }else {
+                    } else {
                         while (!minPq.isEmpty() && map.get(minPq.peek()) <= 0) {
                             minPq.poll();
                         }
-                        if(minPq.isEmpty()) {
+                        if (minPq.isEmpty()) {
                             continue;
                         }
                         int removeValue = minPq.poll();
@@ -59,7 +58,7 @@ public class BOJ_7662 {
             while (!maxPq.isEmpty() && map.get(maxPq.peek()) <= 0) {
                 maxPq.poll();
             }
-            if(maxPq.isEmpty()) {
+            if (maxPq.isEmpty()) {
                 sb.append("EMPTY\n");
                 continue;
             }
@@ -67,7 +66,7 @@ public class BOJ_7662 {
             while (!minPq.isEmpty() && map.get(minPq.peek()) <= 0) {
                 minPq.poll();
             }
-            if(minPq.isEmpty()) {
+            if (minPq.isEmpty()) {
                 continue;
             }
             int removeMinValue = minPq.poll();

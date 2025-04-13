@@ -18,8 +18,9 @@ public class BOJ_16430 {
     static Queue<Point> q = new LinkedList<>();
     static String go;
     static int[] start;
-    static int[] dx = {1,1,1,0,0,0,-1,-1,-1};
-    static int[] dy = {-1,0,1,-1,0,1,-1,0,1};
+    static int[] dx = {1, 1, 1, 0, 0, 0, -1, -1, -1};
+    static int[] dy = {-1, 0, 1, -1, 0, 1, -1, 0, 1};
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
@@ -28,24 +29,23 @@ public class BOJ_16430 {
         map = new char[R][C];
 
         start = new int[2];
-        for(int i=0; i<R; i++) {
+        for (int i = 0; i < R; i++) {
             String s = br.readLine();
-            for(int j=0; j<C; j++) {
+            for (int j = 0; j < C; j++) {
                 char c = s.charAt(j);
                 map[i][j] = s.charAt(j);
-                if(c == 'I') {
+                if (c == 'I') {
                     start[0] = i;
                     start[1] = j;
-                }
-                else if(c == 'R') {
-                    q.offer(new Point(i,j));
+                } else if (c == 'R') {
+                    q.offer(new Point(i, j));
                 }
             }
         }
         go = br.readLine();
 
         int result = solve();
-        if(result != -1) {
+        if (result != -1) {
             System.out.println("kraj " + result);
             return;
         }
@@ -55,8 +55,8 @@ public class BOJ_16430 {
 
     private static void print() {
         StringBuilder sb = new StringBuilder();
-        for(int i=0; i<R; i++) {
-            for(int j=0; j<C; j++) {
+        for (int i = 0; i < R; i++) {
+            for (int j = 0; j < C; j++) {
                 sb.append(map[i][j]);
             }
             sb.append("\n");
@@ -67,16 +67,16 @@ public class BOJ_16430 {
 
     static int solve() {
         int cnt = 0;
-        for(int i=0; i<go.length(); i++) {
+        for (int i = 0; i < go.length(); i++) {
             cnt++;
             int dIdx = go.charAt(i) - '0' - 1;
             int nx = start[0] + dx[dIdx];
             int ny = start[1] + dy[dIdx];
 
-            if(nx >= R) nx = R-1;
-            if(ny >= C) ny = C-1;
+            if (nx >= R) nx = R - 1;
+            if (ny >= C) ny = C - 1;
 
-            if(map[nx][ny] == 'R') { //미친 아두이노 만나면 게임 종료
+            if (map[nx][ny] == 'R') { //미친 아두이노 만나면 게임 종료
                 return cnt;
             }
 
@@ -87,24 +87,24 @@ public class BOJ_16430 {
 
             int size = q.size();
             Map<Point, Integer> pointMap = new HashMap<>();
-            for(int k=0; k<size; k++) {
+            for (int k = 0; k < size; k++) {
                 Point curr = q.poll();
 
                 int idx = findIdx(curr.x, curr.y);
                 int nnx = curr.x + dx[idx];
                 int nny = curr.y + dy[idx];
-                if(nnx >= R) nnx = R-1;
-                if(nny >= C) nny = C-1;
+                if (nnx >= R) nnx = R - 1;
+                if (nny >= C) nny = C - 1;
 
-                if(nnx == start[0] && nny == start[1]) return cnt;
+                if (nnx == start[0] && nny == start[1]) return cnt;
 
                 map[curr.x][curr.y] = '.';
                 Point next = new Point(nnx, nny);
                 pointMap.put(next, pointMap.getOrDefault(next, 0) + 1);
             }
 
-            for(Entry<Point, Integer> entries : pointMap.entrySet()) {
-                if(entries.getValue() == 1) {
+            for (Entry<Point, Integer> entries : pointMap.entrySet()) {
+                if (entries.getValue() == 1) {
                     Point p = entries.getKey();
                     map[p.x][p.y] = 'R';
                     q.offer(p);
@@ -116,7 +116,7 @@ public class BOJ_16430 {
     }
 
     static class Point {
-        int x,y;
+        int x, y;
 
         public Point(int x, int y) {
             this.x = x;
@@ -148,15 +148,15 @@ public class BOJ_16430 {
         int minDir = Integer.MAX_VALUE;
         int minIdx = -1;
 
-        for(int d=0; d<9; d++) {
+        for (int d = 0; d < 9; d++) {
             int nx = x + dx[d];
             int ny = y + dy[d];
 
-            if(nx >= R) nx = R-1;
-            if(ny >= C) ny = C-1;
+            if (nx >= R) nx = R - 1;
+            if (ny >= C) ny = C - 1;
 
             int dir = Math.abs(start[0] - nx) + Math.abs(start[1] - ny);
-            if(dir < minDir) {
+            if (dir < minDir) {
                 minDir = dir;
                 minIdx = d;
             }
