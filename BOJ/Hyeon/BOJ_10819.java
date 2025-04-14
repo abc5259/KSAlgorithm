@@ -69,3 +69,5 @@ public class BOJ_10819 {
         input[b] = tmp;
     }
 }
+// S2 차이를 최대로 순열
+// 순열 단원을 풀고 있어서 next permutation을 사용했으나 앞으로는 Dfs의 백트래킹도 사용해야 한다.
