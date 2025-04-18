@@ -19,13 +19,12 @@ public class BOJ_1182 {
         for (int i = 0; i < N; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
-        Arrays.sort(arr);
 
         int cnt = 0;
         for (int i = 1; i < (1 << N); i++) {
             int sum = 0;
             for (int j = 0; j < N; j++) {
-                if ((i & 1 << j) != 0) {
+                if ((i & (1 << j)) != 0) {
                     sum += arr[j];
                 }
             }
