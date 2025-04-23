@@ -22,9 +22,9 @@ public class BOJ_16937 {
             int R = Integer.parseInt(st.nextToken());
             int C = Integer.parseInt(st.nextToken());
             if ((R <= h && C <= w) || (R <= w && C <= h)) {
+                stickers[cnt][0] = R;
+                stickers[cnt][1] = C;
                 cnt++;
-                stickers[i][0] = R;
-                stickers[i][1] = C;
             }
         }
 
@@ -35,8 +35,8 @@ public class BOJ_16937 {
 
         int res = 0;
 
-        for (int i = 0; i < N; i++) {
-            for (int j = i + 1; j < N; j++) {
+        for (int i = 0; i < cnt; i++) {
+            for (int j = i + 1; j < cnt; j++) {
                 if (stickers[i][0] <= h && stickers[i][1] <= w) {
                     if (stickers[j][0] <= h && stickers[j][1] <= w) {
                         // 가로로 이어 붙이기
@@ -90,3 +90,6 @@ public class BOJ_16937 {
         return (stickers[i][0] * stickers[i][1]) + (stickers[j][0] * stickers[j][1]);
     }
 }
+
+// S3 두 스티커 브루트포스
+// 이건 다시 고민해봐도 될듯
