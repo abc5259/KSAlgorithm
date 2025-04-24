@@ -1,4 +1,4 @@
-package BOJ.Hyeon;
+package BOJ.Hyeon.retry;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class BOJ_16943 {
                     res = tmp;
                 }
             } while (next_perm());
-            System.out.println(res);
+            System.out.print(res);
         }
     }
 
