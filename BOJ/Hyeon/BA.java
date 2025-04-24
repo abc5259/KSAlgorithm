@@ -6,68 +6,56 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class BA {
-    static int N;
-    static char[][] candy;
+    final static int N = 19;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        candy = new char[N][N];
+        int[][] board = new int[N][N];
+
+        StringTokenizer st;
         for (int i = 0; i < N; i++) {
-            candy[i] = br.readLine().toCharArray();
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < N; j++) {
+                board[i][j] = Integer.parseInt(st.nextToken());
+            }
         }
-        int max = 0;
+
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                if (j < N - 1) {
-                    if (candy[i][j] != candy[i][j + 1]) {
-                        swap(i, j, i, j + 1);
-                        max = Math.max(max, count());
-                        swap(i, j, i, j + 1);
-                    }
+                int dol = board[i][j];
+                if (board[i][j] == 0) {
+                    continue;
                 }
-                if (i < N - 1) {
-                    if (candy[i][j] != candy[i + 1][j]) {
-                        swap(i, j, i + 1, j);
-                        max = Math.max(max, count());
-                        swap(i, j, i + 1, j);
+
+                for (int d = 0; d < 4; d++) {
+                    int ny = i - dy[d];
+                    int nx = j - dx[d];
+                    if (ny >= 0 && ny < N && nx >= 0 && nx < N && board[ny][nx] == dol) {
+                        continue;
+                    }
+
+                    int cnt = 1;
+
+                    ny = dy[d] + i;
+                    nx = dx[d] + j;
+
+                    while (ny >= 0 && ny < N && nx >= 0 && nx < N && board[ny][nx] == dol) {
+                        cnt++;
+                        ny += dy[d];
+                        nx += dx[d];
+                    }
+
+                    if (cnt == 5) {
+                        System.out.println(dol);
+                        System.out.println((i + 1) + " " + (j + 1));
+                        return;
                     }
                 }
             }
         }
-        System.out.print(max);
+        System.out.println(0);
     }
 
-    static int count() {
-        int max = 0;
-        for (int i = 0; i < N; i++) {
-            int rowCnt = 1;
-            int colCnt = 1;
-
-            for (int j = 0; j < N - 1; j++) {
-                if (candy[i][j] == candy[i][j + 1]) {
-                    colCnt++;
-                } else {
-                    max = Math.max(max, colCnt);
-                    colCnt = 1;
-                }
-
-                if (candy[j][i] == candy[j + 1][i]) {
-                    rowCnt++;
-                } else {
-                    max = Math.max(max, rowCnt);
-                    rowCnt = 1;
-                }
-            }
-            max = Math.max(max, colCnt);
-            max = Math.max(max, rowCnt);
-        }
-        return max;
-    }
-
-    static void swap(int row1, int col1, int row2, int col2) {
-        char tmp = candy[row1][col1];
-        candy[row1][col1] = candy[row2][col2];
-        candy[row2][col2] = tmp;
-    }
+    static int[] dy = {1, 0, 1, -1};
+    static int[] dx = {0, 1, 1, 1};
 }
