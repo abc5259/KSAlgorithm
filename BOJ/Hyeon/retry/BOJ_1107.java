@@ -1,4 +1,4 @@
-package BOJ.Hyeon;
+package BOJ.Hyeon.retry;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -17,43 +17,54 @@ public class BOJ_1107 {
         int M = Integer.parseInt(br.readLine());
 
         boolean[] problem = new boolean[10];
-
         if (M > 0) {
             StringTokenizer st = new StringTokenizer(br.readLine());
             for (int i = 0; i < M; i++) {
                 problem[Integer.parseInt(st.nextToken())] = true;
             }
         }
-
         int diff = Math.abs(N - 100);
         int answer = diff;
 
-        for (int c = 0; c <= N + diff; c++) {
-            if (!canPress(c, problem)) continue;
-            int len = digitCount(c);
-            int presses = len + Math.abs(c - N);
-            answer = Math.min(answer, presses);
+        for (int i = 0; i <= N + diff; i++) {
+            if (!canPress(i, problem)) {
+                continue;
+            }
+            int len = digitCount(i);
+            int presses = len + Math.abs(i - N);
+            answer = Math.min(presses, answer);
         }
-
-        System.out.print(answer);
+        System.out.println(answer);
     }
 
-    private static boolean canPress(int c, boolean[] broken) {
-        if (c == 0) return !broken[0];
+    static boolean canPress(int c, boolean[] problem) {
+        if (c == 0) {
+            return !problem[0];
+        }
         while (c > 0) {
-            if (broken[c % 10]) return false;
+            if (problem[c % 10]) {
+                return false;
+            }
             c /= 10;
         }
         return true;
     }
 
-    private static int digitCount(int c) {
-        if (c == 0) return 1;
+
+    static int digitCount(int num) {
+
+        if (num == 0) {
+            return 1;
+        }
+
         int cnt = 0;
-        while (c > 0) {
+        while (num > 0) {
             cnt++;
-            c /= 10;
+            num /= 10;
         }
         return cnt;
     }
 }
+
+// G4 리모컨 브루트포스
+// 경우의수를 나눠서 비교 다시 도전해보자
