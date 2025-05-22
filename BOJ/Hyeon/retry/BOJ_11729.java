@@ -11,7 +11,7 @@ public class BOJ_11729 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
         sb = new StringBuilder();
-        sb.append((int) Math.pow(2, N) - 1).append("\n");
+        sb.append((1 << N) - 1).append("\n");
         hanoi(N, 1, 2, 3);
         System.out.println(sb);
     }

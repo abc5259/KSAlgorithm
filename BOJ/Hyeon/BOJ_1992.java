@@ -1,4 +1,4 @@
-package BOJ.Hyeon.one;
+package BOJ.Hyeon;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -66,7 +66,8 @@ public class BOJ_1992 {
 
 // S1 쿼드트리 분할정복
 // 일단 어제 푼 색종이와 접근은 비슷하다 2로 나눠서 각 좌표마다 4개의 분할을 통해서 계속해서 분할하고
-// size가 1이되면 정복해서 합친다.
+// 기저 사례인 size가 1이되면 그만 분할하고 합친다.
+
 // 일단 로직자체가 선택된 영역이 모두 같은 숫자인지를 판단하는 isSame 메소드를 통해 분기한다
 // 이때 compress 라는 재귀 호출 메소드는 row와 col의 좌표를 가지고 size를 줄이면서 반복한다
 // isSame을 통해서 틀릴경우 ( 괄호를 열고 size를 2로 나눠서 분할한다
