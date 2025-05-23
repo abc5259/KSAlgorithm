@@ -1,4 +1,4 @@
-package BOJ.Hyeon.one;
+package BOJ.Hyeon;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,9 +7,7 @@ import java.util.StringTokenizer;
 
 public class BOJ_1780 {
     static int[][] papers;
-    static int minus = 0;
-    static int zero = 0;
-    static int one = 0;
+    static int minus, zero, plus;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -27,43 +25,44 @@ public class BOJ_1780 {
 
         System.out.println(minus);
         System.out.println(zero);
-        System.out.println(one);
+        System.out.println(plus);
     }
 
-    private static void cutting(int row, int col, int N) {
-        if (isSame(row, col, N)) {
-            if (papers[row][col] == -1) {
+    static void cutting(int row, int col, int size) {
+        if (isSame(row, col, size)) {
+            int num = papers[row][col];
+            if (num == -1) {
                 minus++;
-            } else if (papers[row][col] == 0) {
+            } else if (num == 0) {
                 zero++;
             } else {
-                one++;
+                plus++;
             }
             return;
         }
-        int size = N / 3;
 
-        cutting(row, col, size);
-        cutting(row, col + size, size);
-        cutting(row, col + 2 * size, size);
-
-        cutting(row + size, col, size);
-        cutting(row + size, col + size, size);
-        cutting(row + size, col + 2 * size, size);
-
-        cutting(row + 2 * size, col, size);
-        cutting(row + 2 * size, col + size, size);
-        cutting(row + 2 * size, col + 2 * size, size);
-
-
+        int newSize = size / 3;
+        // 첫번째 행
+        cutting(row, col, newSize);
+        cutting(row, col + newSize, newSize);
+        cutting(row, col + newSize * 2, newSize);
+        // 두번째 행
+        cutting(row + newSize, col, newSize);
+        cutting(row + newSize, col + newSize, newSize);
+        cutting(row + newSize, col + newSize * 2, newSize);
+        // 세번째 행
+        cutting(row + newSize * 2, col, newSize);
+        cutting(row + newSize * 2, col + newSize, newSize);
+        cutting(row + newSize * 2, col + newSize * 2, newSize);
     }
 
-    private static boolean isSame(int row, int col, int size) {
-        int num = papers[row][col];
+
+    static boolean isSame(int row, int col, int size) {
+        int tmp = papers[row][col];
 
         for (int i = row; i < row + size; i++) {
             for (int j = col; j < col + size; j++) {
-                if (num != papers[i][j]) {
+                if (tmp != papers[i][j]) {
                     return false;
                 }
             }
@@ -76,4 +75,4 @@ public class BOJ_1780 {
 // 색종이와 문제가 일치하다 로직도 같다
 // 분할해서 9개라서 3으로 나누고 해당 인덱스마다 재귀해서 들어간다
 // 색이 같은지에 대한 기저조건을 설정하고 숫자가 일치할 경우 맨앞숫자에 대한 변수의 값을 증가시키고
-// return으로 탈출한다.
+// 각 행마다 3분할로 나눈 영역을 재귀호출해서 isSame을 통과하고 숫자를 증가시킨다음 return 으로 탈출한다
