@@ -1,4 +1,4 @@
-package BOJ.Hyeon.one;
+package BOJ.Hyeon.retry;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,21 +12,21 @@ public class BOJ_13171 {
         long A = Long.parseLong(br.readLine());
         long X = Long.parseLong(br.readLine());
 
-        long[] up = new long[64];
-        up[0] = A % MOD;
+        long[] bit = new long[64];
+        bit[0] = A % MOD;
 
         for (int i = 1; i < 64; i++) {
-            up[i] = (up[i - 1] % MOD) * (up[i - 1] % MOD) % MOD;
+            bit[i] = (bit[i - 1] % MOD) * (bit[i - 1] % MOD) % MOD;
         }
 
-        long result = 1;
+        long res = 1;
 
         for (int i = 63; i >= 0; i--) {
             if ((X & (1L << i)) != 0) {
-                result = (result * up[i]) % MOD;
+                res = (res * bit[i]) % MOD;
             }
         }
-        System.out.print(result);
+        System.out.print(res);
     }
 }
 
