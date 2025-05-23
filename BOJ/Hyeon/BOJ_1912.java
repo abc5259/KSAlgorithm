@@ -10,21 +10,24 @@ public class BOJ_1912 {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int n = Integer.parseInt(br.readLine());
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int[] arr = new int[n];
         int[] dp = new int[n];
+        int[] arr = new int[n];
 
+        StringTokenizer st = new StringTokenizer(br.readLine());
         for (int i = 0; i < n; i++) {
             arr[i] = Integer.parseInt(st.nextToken());
         }
         int max = dp[0] = arr[0];
+
         for (int i = 1; i < n; i++) {
             dp[i] = Math.max(dp[i - 1] + arr[i], arr[i]);
             max = Math.max(max, dp[i]);
         }
-        System.out.println(max);
+        System.out.print(max);
     }
 }
 
-// 메모이네이션을 통해 앞의 값을 저장하기 위헤 두 배열로 만들어서 입력배열과 최종 최대값을 저장하는
-// dp를 두어서 최대값 연산을 통해 계산한다.
+// S2 연속합 DP
+// 걍 쉽게 풀었따 DP 메모이제이션 기초문제 왜냐면 누적해서 이전합+ 현재값 vs 현재값인데
+// 앞의 값이 마이너스이거나 더 작을경우 이전값을 잊고 현재값으로 dp를 채워나가고 이전 값을 O(1) 로 불러와서
+// 연산하기에 시간복잡도 측에서 유리
