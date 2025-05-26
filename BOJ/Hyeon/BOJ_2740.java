@@ -33,19 +33,15 @@ public class BOJ_2740 {
                 B[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-
-        int[][] mul = new int[N][K];
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < M; j++) {
-                for (int p = 0; p < K; p++) {
-                    mul[i][p] += A[i][j] * B[j][p];
-                }
-            }
-        }
         StringBuilder sb = new StringBuilder();
-        for (int[] row : mul) {
-            for (int num : row) {
-                sb.append(num).append(" ");
+
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < K; j++) {
+                int sum = 0;
+                for (int p = 0; p < M; p++) {
+                    sum += A[i][p] * B[p][j];
+                }
+                sb.append(sum).append(" ");
             }
             sb.append("\n");
         }
