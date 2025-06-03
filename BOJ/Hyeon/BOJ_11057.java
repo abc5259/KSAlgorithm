@@ -1,8 +1,9 @@
-package BOJ.Hyeon.one;
+package BOJ.Hyeon;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Arrays;
 
 public class BOJ_11057 {
     static final int MOD = 10_007;
@@ -10,21 +11,30 @@ public class BOJ_11057 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
+//
+//        int[] numbers = new int[10];
+//        numbers[0] = 1;
+//
+//        int[] dp = new int[N + 1];
+//
+//        for (int i = 1; i <= N; i++) {
+//            int sum = numbers[0];
+//            for (int j = 1; j < 10; j++) {
+//                numbers[j] = (numbers[j - 1] % MOD + numbers[j] % MOD) % MOD;
+//                sum = (sum + numbers[j]) % MOD;
+//            }
+//        }
+//        System.out.println(dp[N]);
 
-        int[] numbers = new int[10];
-        numbers[0] = 1;
+        int[] dp = new int[10];
+        Arrays.fill(dp, 1);
 
-        int[] dp = new int[N + 1];
-
-        for (int i = 1; i <= N; i++) {
-            int sum = numbers[0];
+        for (int i = 0; i < N; i++) {
             for (int j = 1; j < 10; j++) {
-                numbers[j] = (numbers[j - 1] % MOD + numbers[j] % MOD) % MOD;
-                sum = (sum + numbers[j]) % MOD;
+                dp[j] = (dp[j] + dp[j - 1]) % MOD;
             }
-            dp[i] = sum;
         }
-        System.out.println(dp[N]);
+        System.out.println(dp[9]);
     }
 }
 
@@ -37,3 +47,8 @@ public class BOJ_11057 {
 // 이에 대한 누적합을 구한다.
 
 // 근데 이러면 dp가 필요없어?
+
+
+// 리팫토링
+// dp 를 원래 쓴 이유가 사실 없다 왜냐면 numbers 배열이 누적합으로 메모이제이션? 배열 접근이 되고있는데
+// dp는 그냥 값 전달하는 변수 일뿐이니까 그리고 numbers 배열의 끝 값이 전체 총합과도 같았다.
