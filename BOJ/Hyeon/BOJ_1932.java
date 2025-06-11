@@ -8,33 +8,37 @@ import java.util.StringTokenizer;
 public class BOJ_1932 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
+        int N = Integer.parseInt(br.readLine());
+
         StringTokenizer st;
+        int[][] dp = new int[N][N];
 
-        int[][] dp = new int[n][n];
-        for (int row = 0; row < n; row++) {
+        int max = 0;
+        for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            for (int col = 0; col <= row; col++) {
-                dp[row][col] = Integer.parseInt(st.nextToken());
-            }
-        }
-
-        int max = dp[0][0];
-        for (int row = 1; row < n; row++) {
-            for (int col = 0; col <= row; col++) {
-                if (col == 0) {
-                    dp[row][col] += dp[row - 1][col];
-                } else if (col == row) {
-                    dp[row][col] += dp[row - 1][row - 1];
+            for (int j = 0; j <= i; j++) {
+                int tmp = Integer.parseInt(st.nextToken());
+                if (i == 0) {
+                    dp[i][j] = tmp;
                 } else {
-                    dp[row][col] += Math.max(dp[row - 1][col - 1], dp[row - 1][col]);
+                    if (j == 0) {
+                        dp[i][j] = tmp + dp[i - 1][j];
+                    } else if (j == i) {
+                        dp[i][j] = tmp + dp[i - 1][j - 1];
+                    } else {
+                        dp[i][j] = Math.max(dp[i - 1][j - 1], dp[i - 1][j]) + tmp;
+                    }
                 }
-                max = Math.max(max, dp[row][col]);
+                max = Math.max(max, dp[i][j]);
             }
         }
         System.out.println(max);
+
     }
 }
+
+// S1 정수 삼각형 DP
+// 다시 풀었음 쉽네
 // dp 배열을 만들어서 파스칼 삼각형 처럼 연산한다. 양 끝은 항상 가짓수가 1개고
 // 나머지들은 가짓수가 다양하기 떄문에 dp 배열을 생성하고 이를 누적합 개념으로 계산한다.
 // 양 옆의 경우를 조건 분기하여 계산하고, 가운데 부분을 최대값을 통해 선택된 dp에 배열하는
