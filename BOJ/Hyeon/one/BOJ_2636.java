@@ -8,76 +8,74 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_2636 {
-    static char[][] map;
+    static int[][] square;
     static boolean[][] visit;
-    static int R, C, sheep, wolf;
+    static int time, cheese;
+    static int row, col;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
 
-        R = Integer.parseInt(st.nextToken());
-        C = Integer.parseInt(st.nextToken());
+        row = Integer.parseInt(st.nextToken());
+        col = Integer.parseInt(st.nextToken());
 
-        map = new char[R][C];
-        visit = new boolean[R][C];
+        square = new int[row][col];
 
-        for (int i = 0; i < R; i++) {
-            String tmp = br.readLine();
-            for (int j = 0; j < C; j++) {
-                map[i][j] = tmp.charAt(j);
-                if (map[i][j] == 'v') {
-                    wolf++;
-                } else if (map[i][j] == 'o') {
-                    sheep++;
+
+        for (int i = 0; i < row; i++) {
+            st = new StringTokenizer(br.readLine());
+            for (int j = 0; j < col; j++) {
+                square[i][j] = Integer.parseInt(st.nextToken());
+                if (square[i][j] == 1) {
+                    cheese++;
                 }
             }
         }
-
-        for (int i = 0; i < R; i++) {
-            for (int j = 0; j < C; j++) {
-                if (map[i][j] != '#' && !visit[i][j]) {
-                    bfs(i, j);
-                }
+        while (true) {
+            visit = new boolean[row][col];
+            int tmp = bfs();
+            time++;
+            if (cheese == tmp) {
+                break;
+            } else {
+                cheese -= tmp;
             }
         }
-        System.out.println(sheep + " " + wolf);
+        System.out.println(time);
+        System.out.println(cheese);
     }
 
     static int[] dy = {0, 0, -1, 1};
     static int[] dx = {1, -1, 0, 0};
 
-    static void bfs(int y, int x) {
+    static int bfs() {
         Queue<int[]> queue = new ArrayDeque<>();
-        queue.offer(new int[]{y, x});
-        visit[y][x] = true;
+        queue.offer(new int[]{0, 0});
+        visit[0][0] = true;
 
-        int areaWolf = 0, areaSheep = 0;
-
+        int cnt = 0;
         while (!queue.isEmpty()) {
             int[] poll = queue.poll();
-            if (map[poll[0]][poll[1]] == 'o') {
-                areaSheep++;
-            } else if (map[poll[0]][poll[1]] == 'v') {
-                areaWolf++;
-            }
-
             for (int i = 0; i < 4; i++) {
                 int ny = poll[0] + dy[i];
                 int nx = poll[1] + dx[i];
 
-                if (nx >= 0 && ny >= 0 && nx < C && ny < R && !visit[ny][nx] && map[ny][nx] != '#') {
+                if (ny < 0 || nx < 0 || ny >= row || nx >= col || visit[ny][nx]) {
+                    continue;
+                }
+                visit[ny][nx] = true;
+                if (square[ny][nx] == 0) {
                     queue.offer(new int[]{ny, nx});
-                    visit[ny][nx] = true;
+                } else {
+                    cnt++;
+                    square[ny][nx] = 0;
                 }
             }
         }
-        if (areaSheep > areaWolf) {
-            wolf -= areaWolf;
-        } else {
-            sheep -= areaSheep;
-        }
+        return cnt;
     }
 }
 
-// S1 양 BFS
+// G4 치즈 BFS
+// 일단 풀었다.
