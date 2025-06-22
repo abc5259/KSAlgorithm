@@ -8,26 +8,27 @@ import java.util.StringTokenizer;
 public class BOJ_1149 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        int[] red = new int[N];
-        int[] green = new int[N];
-        int[] blue = new int[N];
+        int n = Integer.parseInt(br.readLine());
+
+        int[][] dp = new int[n][3];
+
         StringTokenizer st;
-
-        for (int i = 0; i < N; i++) {
+        for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            red[i] = Integer.parseInt(st.nextToken());
-            green[i] = Integer.parseInt(st.nextToken());
-            blue[i] = Integer.parseInt(st.nextToken());
+            for (int j = 0; j < 3; j++) {
+                dp[i][j] = Integer.parseInt(st.nextToken());
+            }
         }
 
-        for (int i = 1; i < N; i++) {
-            red[i] += Math.min(green[i - 1], blue[i - 1]);
-            green[i] += Math.min(red[i - 1], blue[i - 1]);
-            blue[i] += Math.min(red[i - 1], green[i - 1]);
+        for (int i = 1; i < n; i++) {
+            dp[i][0] += Math.min(dp[i - 1][1], dp[i - 1][2]);
+            dp[i][1] += Math.min(dp[i - 1][0], dp[i - 1][2]);
+            dp[i][2] += Math.min(dp[i - 1][0], dp[i - 1][1]);
         }
-        System.out.println(Math.min(red[N - 1], Math.min(blue[N - 1], green[N - 1])));
+        System.out.println(Math.min(dp[n - 1][0], Math.min(dp[n - 1][1], dp[n - 1][2])));
     }
 }
-// 0번은 기초로 깔려있다고 가정하고 1번 인덱스부터 연산하여 본인을 제외한 이전 값들의 최소값을
-// 저정해 나가서 이를 각 색깔의 dp에 저장, 그리고 최소값을 구해내는 메모이네이션 방식채용.
+
+// S1 RGB 거리 DP
+// 복습
+// 일단 점화식을 통해서 바텀업으로 풀었다. dp 배열만들어서 누적합으로 했다 2차원으로
