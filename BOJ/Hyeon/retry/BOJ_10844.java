@@ -5,35 +5,38 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class BOJ_10844 {
+    final static int MOD = 1_000_000_000;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-
         int[][] dp = new int[N + 1][10];
+
         for (int i = 1; i < 10; i++) {
             dp[1][i] = 1;
         }
-//         일단 설명하자면 2차원 배열로 구성하여서, 자리수와 그에 해당하는 숫자를 메모이제이션을한다.
-//         2자리일 경우 1자라에다가 추가하는 점화식이기 때문이다.
-//         1자리는 1~9까지 모든 수가 가능하고 0은 불가능해서 가능한 1자리의 0~9 dp에 경우의수 1을 대입한다.
+
         for (int i = 2; i < N + 1; i++) {
             for (int j = 0; j < 10; j++) {
                 if (j == 0) {
-                    dp[i][j] = dp[i - 1][1];
+                    dp[i][j] = dp[i - 1][j + 1];
                 } else if (j == 9) {
-                    dp[i][j] = dp[i - 1][8];
+                    dp[i][j] = dp[i - 1][j - 1];
                 } else {
-                    dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][j + 1]) % 1_000_000_000;
+                    dp[i][j] = (dp[i - 1][j - 1] + dp[i - 1][j + 1]) % MOD;
                 }
             }
         }
-        long res = 0;
+
+        int sum = 0;
         for (int i = 0; i < 10; i++) {
-            res += dp[N][i];
+            sum = (sum + dp[N][i]) % MOD;
         }
-        System.out.println(res % 1_000_000_000);
+        System.out.println(sum);
     }
 }
-// 2자리 부터는 0이나 9가 올경우 1자리에는 항상 1과 8만 가능하다 그렇기 때문에 경우의수를 이어받는다.
-// 왜냐하면 해당 자리의 0이나 9가 왔을 경우 이전 값의 1이나 8을 그대로 전달하기 때문이다.
-// 나머지는 2자리의 2일 경우 1자리의 1이나 1자리의 3의 경우를 가져올 수 있어서 저렇게 연산한다.
+// S1 쉬운 계단 수 DP
+// 일단 자릿수 개념을 이해해야되고 앞자리에 오는 수가 0이 될 수 도 있다. 그치만 0이 오게되면
+// 이전의 자리수 1이 가진 가짓수만 가져올 수 있다.
+// 9 또한 8로 시작하는 이전의 자릿수의 갯수만 가지고 올 수 있고
+// 나머지는 이전 자릿수의 -1과 +1 2개의 값을 합산한 결과를 가질 수 있다.
