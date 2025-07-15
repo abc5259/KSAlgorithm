@@ -3,63 +3,58 @@ package BOJ.JaeHoon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class BOJ_17484 {
+    static int[][] arr;
+    static int N, M;
+    static int[] dx = {0, 1, 1, 1};
+    static int[] dy = {0, 0, 1, -1};
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        int N = Integer.parseInt(st.nextToken());
-        int[] arr = new int[N];
-        st = new StringTokenizer(br.readLine());
-        for(int i=0; i<N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
-        }
-        Arrays.sort(arr);
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+        arr = new int[N][M];
 
-        int min = Integer.MAX_VALUE;
-        int[] answer = new int[2];
         for(int i=0; i<N; i++) {
-            int low = -1;
-            int high = N;
-            while (low + 1 < high) {
-                int mid = (low + high) / 2;
-
-                if(arr[mid] + arr[i] > 0) {
-                    high = mid;
-                }
-                else if(arr[mid] + arr[i] < 0) {
-                    low = mid;
-                }
-            }
-            if(high == N) {
-                if(min > Math.abs(arr[i] + arr[low])) {
-                    min = Math.abs(arr[i] + arr[low]);
-                    answer[0] = arr[i];
-                    answer[1] = arr[low];
-                }
-            }else {
-                int dif1 = Math.abs(arr[i] + arr[high]);
-                if(low != -1) {
-                    int dif2 = Math.abs(arr[i] + arr[low]);
-                    if(min > dif2) {
-                        min = dif2;
-                        answer[0] = arr[i];
-                        answer[1] = arr[low];
-                    }
-                }
-                if(dif1 < min) {
-                    min = dif1;
-                    answer[0] = arr[i];
-                    answer[1] = arr[high];
-                }
+            st = new StringTokenizer(br.readLine());
+            for(int j=0; j<M; j++) {
+                arr[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-
-        Arrays.sort(answer);
-        System.out.println(answer[0] + " " + answer[1]);
+        System.out.println(bfs());
     }
+
+    public static int bfs() {
+        Queue<int[]> q = new LinkedList<>();
+        for(int i=0; i<M; i++) {
+            q.offer(new int[] {0, i, arr[0][i], 0});
+        }
+        int min = Integer.MAX_VALUE;
+        while(!q.isEmpty()) {
+            int[] curr = q.poll();
+
+            for(int d=1; d<=3; d++) {
+                if(curr[3] == d) continue;
+                int nx = curr[0] + dx[d];
+                int ny = curr[1] + dy[d];
+                if(nx < 0 || ny < 0 || ny >= M) continue;
+                if(nx == N) {
+                    min = Math.min(min, curr[2]);
+                    continue;
+                }
+                q.offer(new int[]{nx, ny, curr[2] + arr[nx][ny], d});
+            }
+        }
+
+        return min;
+    }
+
+    // 0 -> 무방향
+    // 1 -> 아래
+    // 2 -> 오 대각선
+    // 3 -> 왼 대각선
 }
-//5
-//5 -7 -8 7 4
