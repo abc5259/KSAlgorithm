@@ -17,20 +17,13 @@ public class BOJ_9507 {
         dp[2] = 2;
         dp[3] = 4;
 
+        for (int i = 4; i <= 67; i++) {
+            dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3] + dp[i - 4];
+        }
+
         while (t-- > 0) {
             int n = Integer.parseInt(br.readLine());
-            if (n <= 1) {
-                sb.append("1").append("\n");
-            } else if (n == 2) {
-                sb.append("2").append("\n");
-            } else if (n == 3) {
-                sb.append("4").append("\n");
-            } else {
-                for (int i = 4; i <= n; i++) {
-                    dp[i] = dp[i - 1] + dp[i - 2] + dp[i - 3] + dp[i - 4];
-                }
-                sb.append(dp[n]).append("\n");
-            }
+            sb.append(dp[n]).append("\n");
         }
         System.out.print(sb);
     }
