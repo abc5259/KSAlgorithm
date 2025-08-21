@@ -3,48 +3,46 @@ package BOJ.Hyeon.retry;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.StringTokenizer;
 
 public class BOJ_2565 {
+    static final int MAX = 501;
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
 
-        int[][] wire = new int[n][2];
+        int N = Integer.parseInt(br.readLine());
+
+        int[] lines = new int[MAX];
 
         StringTokenizer st;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
-            wire[i][0] = Integer.parseInt(st.nextToken());
-            wire[i][1] = Integer.parseInt(st.nextToken());
+            int a = Integer.parseInt(st.nextToken());
+            int b = Integer.parseInt(st.nextToken());
+            lines[a] = b;
         }
 
-        Arrays.sort(wire, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[0] - o2[0];
-            }
-        });
-
-        int[] dp = new int[n];
+        int[] dp = new int[MAX];
         int max = 0;
-        for (int i = 0; i < n; i++) {
-            dp[i] = 1;
 
-            for (int j = 0; j < i; j++) {
-                if (wire[i][1] > wire[j][1]) {
-                    dp[i] = Math.max(dp[i], dp[j] + 1);
+        for (int i = 1; i < MAX; i++) {
+            if (lines[i] != 0) {
+                dp[i] = 1;
+                for (int j = 1; j < i; j++) {
+                    if (lines[j] < lines[i] && dp[j] >= dp[i]) {
+                        dp[i] = dp[j] + 1;
+                    }
                 }
-            }
-            if (max < dp[i]) {
-                max = dp[i];
+                max = Math.max(max, dp[i]);
             }
         }
-        System.out.print(n - max);
+        System.out.print(N - max);
     }
 }
-
-// G5 전깃줄 Dp
-// 일단 LIS 풀이인데
+// G5 전깃줄 DP
+// LIS 이다 가장 긴 부분 수열인데
+// 전깃줄을 1부터 시작해서 500이 최대니까 500까지 순서대로 해서 1번 전깃줄 2번 전깃줄 순서대로 가다가
+// 이전 전깃줄과 안겹치게 더 길게 있으면 이전 전깃줄이 가진 개수 + 1을하는 LIS를 쓰면된다.
+// 지워야되는 전깃줄이라서 만들 수 있는 전깃줄을 전체에서 빼면된다.
+// 일단 lines 라는 1개의 전깃줄 배열을 만들어서 값으로 비교하면 된다.
