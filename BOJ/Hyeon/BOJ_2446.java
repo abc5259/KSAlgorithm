@@ -16,17 +16,16 @@ public class BOJ_2446 {
             for (int j = 0; j < i; j++) {
                 sb.append(" ");
             }
-            for (int k = i; k < 2 * N - 1 - i; k++) {
+            for (int s = 0; s <= 2 * (N - i - 1); s++) {
                 sb.append("*");
             }
             sb.append("\n");
         }
-
-        for (int i = 1; i < N; i++) {
-            for (int j = N - i - 1; j > 0; j--) {
+        for (int i = 0; i < N - 1; i++) {
+            for (int j = i; j < N - 2; j++) {
                 sb.append(" ");
             }
-            for (int k = 1; k <= i * 2 + 1; k++) {
+            for (int s = 0; s < i * 2 + 3; s++) {
                 sb.append("*");
             }
             sb.append("\n");
@@ -35,4 +34,6 @@ public class BOJ_2446 {
     }
 }
 // B3 별찍기 - 9 구현
+// 10분
 // 걍 풀었음.
+// 구현이라서 규칙 찾아서 그냥 풀었는데 뭐가 좋은 풀이인지 모르겠음
