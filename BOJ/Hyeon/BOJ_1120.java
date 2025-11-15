@@ -13,25 +13,26 @@ public class BOJ_1120 {
         String A = st.nextToken();
         String B = st.nextToken();
 
-        int min = Integer.MAX_VALUE;
+        int lenA = A.length();
+        int lenB = B.length();
 
-        for (int i = 0; i <= B.length() - A.length(); i++) {
-            int tmp = A.length();
+        int maxSame = 0;
 
-            for (int j = 0; j < A.length(); j++) {
-                if (A.charAt(j) == B.charAt(j + i)) {
-                    tmp--;
+        for (int i = 0; i <= lenB - lenA; i++) {
+            int curSame = 0;
+            for (int j = 0; j < lenA; j++) {
+                if (A.charAt(j) == B.charAt(i + j)) {
+                    curSame++;
                 }
             }
-            min = Math.min(min, tmp);
+            maxSame = Math.max(maxSame, curSame);
         }
-        System.out.println(min);
+        System.out.println(lenA - maxSame);
     }
 }
 // S4 문자열 슬라이딩 윈도우
-// 23분
-// 일단 최소값을 구해야되는 거고
-// 슬라이딩 윈도우 처럼 풀었다.
-// A와 B 문자열의 비교를 할 때 비교 범위를 브루트포스에서 전체 A에서 얼마나 B와 일치하는지가 중요했던 문제라서
-// 그냥 비교해서 tmp 의 개수 즉 A에서 같은거만큼 뺀거의 최소값을 구해서 한 것이다.
-// 슬라이딩 제어 루프 1. B 에서 비교 시작 -> 2 문자 비교 A의 인덱스 -> 3 최소값 갱
+// 18분
+// 일단 2개의 조건이 있는데 차이가 최소가 되어야 하고 2개의 문자열이 길이가 같아야 한다
+// 입력부터 같게 줄 경우 if 로 나눴고 같은 갯수를 증가해서 A의길이에서 뺴주면 이제
+// 같은거 제외하고 모자른 자리는 B의 자리로대체한다고 쳤을 때 다른거만 구할 수 있었고
+// B가 무조건 길이가 크거나 같기에 B에서 A의 길이만 큼 탐색한다 그래서 같은 경우의 개수가 가장 클때의 값을 통해서 lenA에서 빼줬다.
