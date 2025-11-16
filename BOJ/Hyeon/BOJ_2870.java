@@ -12,36 +12,39 @@ public class BOJ_2870 {
         int N = Integer.parseInt(br.readLine());
 
         PriorityQueue<BigInteger> pq = new PriorityQueue<>();
-        for (int i = 0; i < N; i++) {
-            String input = br.readLine();
 
-            StringBuilder sb = new StringBuilder();
+        while (N-- > 0) {
+            String str = br.readLine();
+            StringBuilder tmp = new StringBuilder();
 
-            for (int j = 0; j < input.length(); j++) {
-                char c = input.charAt(j);
-
-                if (check(c)) {
-                    sb.append(c);
+            for (int j = 0; j < str.length(); j++) {
+                if (isNum(str.charAt(j))) {
+                    tmp.append(str.charAt(j));
                 } else {
-                    if (sb.length() > 0) {
-                        pq.offer(new BigInteger(sb.toString()));
-                        sb = new StringBuilder();
+                    if (tmp.length() > 0) {
+                        pq.offer(new BigInteger(tmp.toString()));
+                        tmp = new StringBuilder();
                     }
                 }
             }
-            if (sb.length() > 0) {
-                pq.offer(new BigInteger(sb.toString()));
+            if (tmp.length() > 0) {
+                pq.offer(new BigInteger(tmp.toString()));
             }
         }
+        StringBuilder sb = new StringBuilder();
         while (!pq.isEmpty()) {
-            System.out.println(pq.poll());
+            sb.append(pq.poll()).append("\n");
         }
+        System.out.println(sb);
     }
 
-    private static boolean check(char c) {
-        return ('0' <= c) && (c <= '9');
+    static boolean isNum(char c) {
+        return '0' <= c && c <= '9';
     }
 }
-// S4 수학숙제 우선순위 큐
-// 15분
-// 그냥 각 스트링빌더의 길이를 통해서 비교해서 문자열을 만든다.
+// S4 수학숙제 우선순위 큐, BigInteger
+// 19분
+// trouble shooting
+// 100 자리 수라는 조건을 인지 하지 못한채로 Integer 처럼 쓰다가
+// 넘버 포멧에러 직면함 그래서 BigInteger 로 바꾸고 더해서 String tmp = ""; 에다가 더해서 객체를 재 생성하면서
+// 했었는데 StringBuilder 로 문자열간에 합연산으로 이어지는거는 저걸로 대체하는게 좋은거 같아서 수정했음
