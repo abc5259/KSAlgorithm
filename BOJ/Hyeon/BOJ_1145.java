@@ -17,22 +17,24 @@ public class BOJ_1145 {
             arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        int res = 1;
+        int num = 1;
 
         while (true) {
             int cnt = 0;
             for (int i = 0; i < 5; i++) {
-                if (res % arr[i] == 0) {
+                if (num % arr[i] == 0) {
                     cnt++;
                 }
             }
             if (cnt >= 3) {
-                System.out.println(res);
+                System.out.println(num);
                 break;
             }
-            res++;
+            num++;
         }
     }
 }
 // B1 적어도 대부분의 배수 완전탐색
-// 걍 풀었다.
+// 6분
+// 일단 그냥 한 수에 3개이상의 되는 배수를 구하고
+// 5개 밖에 없길래 완탐으로 돌렸다 시간복잡도는 2초이길래 넉넉하다고 판단,, 근데 더 좋은 코드가 없을까 고민
