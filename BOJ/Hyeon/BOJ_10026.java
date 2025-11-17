@@ -15,7 +15,6 @@ public class BOJ_10026 {
         N = Integer.parseInt(br.readLine());
 
         grid = new char[N][N];
-        visit = new boolean[N][N];
 
         for (int i = 0; i < N; i++) {
             String str = br.readLine();
@@ -25,6 +24,8 @@ public class BOJ_10026 {
         }
 
         int normal = 0;
+
+        visit = new boolean[N][N];
 
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
@@ -36,6 +37,7 @@ public class BOJ_10026 {
         }
 
         int special = 0;
+
         visit = new boolean[N][N];
 
         for (int i = 0; i < N; i++) {
@@ -97,13 +99,9 @@ public class BOJ_10026 {
                 if (ny < 0 || nx < 0 || ny >= N || nx >= N || visit[ny][nx]) {
                     continue;
                 }
-                if (grid[cy][cx] == 'R' && grid[ny][nx] == 'B') {
-                    continue;
-                }
-                if (grid[cy][cx] == 'G' && grid[ny][nx] == 'B') {
-                    continue;
-                }
                 if (grid[cy][cx] == 'B' && grid[ny][nx] != 'B') {
+                    continue;
+                } else if (grid[cy][cx] != 'B' && grid[ny][nx] == 'B') {
                     continue;
                 }
                 queue.offer(new int[]{ny, nx});
@@ -113,9 +111,9 @@ public class BOJ_10026 {
     }
 }
 // G5 적록색약 BFS
-// 18분
-// 2개의 탈출 조건
-// 노말은 그냥 현재 값과 새로운 4방향 벡터의 값의 차이
-// 색약은 현재 색이 녹이나 적일 떄 움직였을 떄 파랑이거나
-// 현재가 파랑일 때 움직였을 때 파랑이 아닐 경우를 탈출 조건으로 가지는 너비 우선 탐색으로 하고
-// offer 하고 visit 해서 2개의 visit 로 관리했다.
+// 13분
+// 일단 1초 라는 시간과 내가 너비를 우선 탐색해서 끝까지 나랑 같은 색이 나와서 거기를 방문한다 치면
+// 일단 최초 방문만 허용이라는 점이 BFS 와 같았고 이러한 BFS를 통해 영역의 개수를 구하는게 문제였다.
+// 그냥 2개의 BFS 를 만들어서 돌리면 그만이었다. 근데 여기서 고민이 되는 점은
+// 좀 더 개선할 수 없었을까? 혹은 grid 를 그냥 B냐 아니냐로 바꿔버렸어야 했나 싶기도 하고
+// 거의 중복되는 코드가 너무 많아서 고민이다
