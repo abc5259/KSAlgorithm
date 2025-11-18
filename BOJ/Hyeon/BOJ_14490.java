@@ -8,24 +8,25 @@ import java.util.StringTokenizer;
 public class BOJ_14490 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-
         StringTokenizer st = new StringTokenizer(br.readLine(), ":");
 
         int n = Integer.parseInt(st.nextToken());
         int m = Integer.parseInt(st.nextToken());
 
-        int gcd = calculateGCD(n, m);
-        System.out.print(n / gcd + ":" + m / gcd);
+        int gcd = getGCD(n, m);
+
+        System.out.println(n / gcd + ":" + m / gcd);
     }
 
-    static int calculateGCD(int a, int b) {
+    static int getGCD(int a, int b) {
         while (b != 0) {
-            int tmp = a % b;
+            int r = a % b;
             a = b;
-            b = tmp;
+            b = r;
         }
         return a;
     }
 }
-// S5 백대열 유클리드 호제법
-// 걍 풀었다.
+// S5 백대열 유클리드 호제법, 최대 공약수 구하기
+// 5분
+// 그냥 최대 공약수 구하는 유클리드 호제법을 통해서 구했다.
