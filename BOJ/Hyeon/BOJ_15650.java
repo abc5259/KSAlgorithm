@@ -7,8 +7,8 @@ import java.util.StringTokenizer;
 
 public class BOJ_15650 {
     static int N, M;
-    static boolean[] visit;
-    static int[] arr;
+    static int[] res;
+    static StringBuilder sb;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,37 +17,33 @@ public class BOJ_15650 {
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        visit = new boolean[N];
-        arr = new int[M];
+        res = new int[M];
+        sb = new StringBuilder();
 
-        comb(0, 0);
+        dfs(0, 1);
         System.out.println(sb);
     }
 
-    static StringBuilder sb = new StringBuilder();
-
-    static void comb(int idx, int depth) {
-        if (M == depth) {
-            for (int i : arr)
-                sb.append(i).append(" ");
+    static void dfs(int idx, int start) {
+        if (idx == M) {
+            for (int var : res) {
+                sb.append(var).append(" ");
+            }
             sb.append("\n");
             return;
         }
-        for (int i = idx; i < N; i++) {
-            if (!visit[i]) {
-                visit[i] = true;
-                arr[depth] = i + 1;
-                comb(i + 1, depth + 1);
-                visit[i] = false;
-            }
+
+        for (int i = start; i <= N; i++) {
+            res[idx] = i;
+            dfs(idx + 1, i + 1);
         }
     }
 }
-
-// S3 N과 M(2) 백트래킹 조합
-// 걍 백트래킹 관련해서
-// 방문 여부 visit 배열과 조합 메소드 사용
-// 일단 값을 출력해야되는데 1 ~ N 까지의 숫자인데 이는 visit 배열의 인덱스로 처리가능하다.
-// 만약 0번 인덱스가 t이면 1이 출력되어야하고 N이 4면 3번 인덱스까지 있고 3번인덱스 선택시 4를 출력하면된다.
-// depth로 선택을 할 수 있고 idx로 인덱스를 관리하면된다.
-// idx가 N보다 크지않게 조건을 걸어서 comb 재귀를 하면된다.
+// S3 N과 M(2) 백트래킹 DFS
+// 10분
+// 일단 중복을 허용 하지 않고 M개 를 고르는거고 앞에 고른 수보다 커야 된다 이는
+// 조합이라고 볼 수 있다
+// 그리고 1, 2와 2,1 은 같은 거고 순서를 무시하기 떄문에 오름차순 정렬이라함은
+// 앞수보다 더 큰 수가 계속해서 나와야된다.
+// 그래서 start 로 현재의 수를기억 하고 이를 시작하는 반복문으로 재귀를 돌린다음
+// 백트래킹으로 돌아왔을 때 다음 반복문의 증감으로 얻은 값을 덮어씌운다.
