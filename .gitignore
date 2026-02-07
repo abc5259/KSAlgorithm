@@ -7,3 +7,4 @@ out
 /bin/
 /classes
 .DS_Store
+boj_results.csv
