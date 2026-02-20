@@ -33,17 +33,17 @@
     <tr>
       <td align="center">
         <a href="https://solta.kr/profile/abc5259">
-          <img src="https://prod.solta.kr/api/badges/abc5259" alt="Solta Profile"/>
+          <img src="https://prod.solta.kr/api/badges/abc5259" width="400" alt="Solta Profile"/>
         </a>
       </td>
       <td align="center">
         <a href="https://solta.kr/profile/kkiseug">
-          <img src="https://prod.solta.kr/api/badges/kkiseug" alt="Solta Profile"/>
+          <img src="https://prod.solta.kr/api/badges/kkiseug" width="400" alt="Solta Profile"/>
         </a>
       </td>
       <td align="center">
         <a href="https://solta.kr/profile/mookkae">
-          <img src="https://prod.solta.kr/api/badges/mookkae" alt="Solta Profile"/>
+          <img src="https://prod.solta.kr/api/badges/mookkae" width="400" alt="Solta Profile"/>
         </a>
       </td>
     </tr>
