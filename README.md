@@ -32,6 +32,23 @@
     </tr>
     <tr>
       <td align="center">
+        <a href="https://solta.kr/profile/abc5259">
+          <img src="https://prod.solta.kr/api/badges/abc5259" alt="Solta Profile"/>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://solta.kr/profile/kkiseug">
+          <img src="https://prod.solta.kr/api/badges/kkiseug" alt="Solta Profile"/>
+        </a>
+      </td>
+      <td align="center">
+        <a href="https://solta.kr/profile/mookkae">
+          <img src="https://prod.solta.kr/api/badges/mookkae" alt="Solta Profile"/>
+        </a>
+      </td>
+    </tr>
+    <tr>
+      <td align="center">
         <a href="https://solved.ac/dlwogns3413">
           <img src="http://mazassumnida.wtf/api/v2/generate_badge?boj=dlwogns3413" alt="Solved.ac Profile"/>
         </a>
