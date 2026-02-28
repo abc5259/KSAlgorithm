@@ -3,7 +3,9 @@ package BOJ.Hyeon;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.PriorityQueue;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class BOJ_11728 {
@@ -15,42 +17,31 @@ public class BOJ_11728 {
         int N = Integer.parseInt(st.nextToken());
         int M = Integer.parseInt(st.nextToken());
 
-        int[] A = new int[N];
-        int[] B = new int[M];
+        List<Integer> arr = new ArrayList<>();
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < N; i++) {
-            A[i] = Integer.parseInt(st.nextToken());
+            arr.add(Integer.parseInt(st.nextToken()));
         }
 
         st = new StringTokenizer(br.readLine());
         for (int i = 0; i < M; i++) {
-            B[i] = Integer.parseInt(st.nextToken());
+            arr.add(Integer.parseInt(st.nextToken()));
         }
 
-        int i1 = 0, i2 = 0;
+        Collections.sort(arr);
+
         StringBuilder sb = new StringBuilder();
-        while (i1 < N && i2 < M) {
-            if (A[i1] < B[i2]) {
-                sb.append(A[i1++]);
-            } else {
-                sb.append(B[i2++]);
-            }
-            sb.append(" ");
+
+        for (int a : arr) {
+            sb.append(a).append(" ");
         }
-        while (i1 < N) {
-            sb.append(A[i1++]).append(" ");
-        }
-        while (i2 < M) {
-            sb.append(B[i2++]).append(" ");
-        }
+
         System.out.println(sb);
     }
 }
 // S5 배열 합치기 정렬
-// 3분
-// 원소의 개수는 N+ M == K 일때
-// Arrays.sort는 KlogK이고 PQ도 삽입이 logK 추출이 logK여서 KlogK로 같다.
-// 하지만 이미 정렬된 A 와 B 이기에
-// PQ 는 K log K 이지만
-// O(K) 로도 풀 수 있다고 생각 투 포인터로 while 조건걸어서 풀었다.
+// 5분
+// 2개의 배열이 주어져있고 각각의 길이는 100만이다
+// 200만의 길이를 합쳐서 정렬하면 200만 log 200 만이라 1초이내 가능
+// Integer 를 가지는 List 를 Collections.sort 해서 n log n 에 가능하게 함.
