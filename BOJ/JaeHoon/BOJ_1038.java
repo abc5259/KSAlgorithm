@@ -41,11 +41,6 @@ public class BOJ_1038 {
     int idx = 10;
     int mod = 10;
     while (idx < 1023) {
-      // if(cur > 10000000000L) {
-      //   System.out.println(-1);
-      //   return;
-      // }
-      System.out.println("cur = " + cur + " cnt = " + cnt);
       int first = (int)(cur / mod);
       for(int i=0; i<first; i++) {
         for(int v: memo.get(i).get(cnt - 1)) {
