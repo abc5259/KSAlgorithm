@@ -6,9 +6,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
@@ -26,7 +24,7 @@ public class BOJ_1753 {
 
     static int v, e;
     static int[] dp;
-    static Map<Integer, List<Edge>> graph;
+    static List<List<Edge>> graph;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -35,7 +33,8 @@ public class BOJ_1753 {
         v = Integer.parseInt(st.nextToken());
         e = Integer.parseInt(st.nextToken());
 
-        graph = new HashMap<>();
+        graph = new ArrayList<>();
+        for (int i = 0; i < v; i++) graph.add(new ArrayList<>());
 
         int k = Integer.parseInt(br.readLine()) - 1;
 
@@ -46,14 +45,7 @@ public class BOJ_1753 {
             int d = Integer.parseInt(st.nextToken())-1;
             int w = Integer.parseInt(st.nextToken());
 
-            List<Edge> list;
-            if (graph.containsKey(u)) {
-                list = graph.get(u);
-            } else {
-                list = new ArrayList<>();
-            }
-            list.add(new Edge(d, w));
-            graph.put(u, list);
+            graph.get(u).add(new Edge(d, w));
         }
 
         dp = new int[v];
@@ -74,8 +66,6 @@ public class BOJ_1753 {
 
         while (!q.isEmpty()) {
             Edge min = q.poll();
-
-            if (!graph.containsKey(min.des)) continue;
 
             if (min.val > dp[min.des]) continue;
             for (int i = 0; i < graph.get(min.des).size(); i++) {
