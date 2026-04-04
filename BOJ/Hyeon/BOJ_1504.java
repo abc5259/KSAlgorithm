@@ -44,21 +44,13 @@ public class BOJ_1504 {
         int[] fromV1 = dijkstra(v1);
         int[] fromV2 = dijkstra(v2);
 
-        int res1 = 0;
-        res1 += from1[v1];
-        res1 += fromV1[v2];
-        res1 += fromV2[N];
+        int path1 = from1[v1] + fromV1[v2] + fromV2[N];
+        int path2 = from1[v2] + fromV2[v1] + fromV1[N];
 
-        int res2 = 0;
-
-        res2 += from1[v2];
-        res2 += fromV2[v1];
-        res2 += fromV1[N];
-
-        if (res1 >= INF && res2 >= INF) {
+        if (path1 >= INF && path2 >= INF) {
             System.out.println(-1);
         } else {
-            System.out.println(Math.min(res1, res2));
+            System.out.println(Math.min(path1, path2));
         }
     }
 
@@ -103,5 +95,9 @@ public class BOJ_1504 {
     }
 }
 // G4 특정한 최단 경로 다익스트라
-// 35분
-// 무조건 방문해야되는 점과 가중치의 최대값 INF 의 범위 문제.
+// 50분
+// 다익스트라의 색다른 풀이 방법
+// 갈수 있는 경로에 대해서 1-> v1 -> v2 -> N 과 1-> v2 -> v1 -> N 이렇게 2가지인데 각각의 경로에 대해서 다익스트라를 구해서
+// 값으로 접근하면 가능했다.
+// 나는 다익스트라 하면서 넣을까 고민이었는데 다익을 여러번 시행해서
+// 출발지를 다르게 하고 하면 만약 v1 이 출발지인 다익의 값의 경우 v2 의 cost 비용은 fromV1 배열의 경우 v1 -> v2 의 비용을 얻는다.
