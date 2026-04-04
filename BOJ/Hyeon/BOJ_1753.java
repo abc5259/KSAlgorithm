@@ -35,7 +35,6 @@ public class BOJ_1753 {
         }
 
         dist = new int[V + 1];
-        Arrays.fill(dist, Integer.MAX_VALUE);
 
         dijkstra();
 
@@ -53,21 +52,22 @@ public class BOJ_1753 {
     }
 
     static void dijkstra() {
-        PriorityQueue<Node> queue = new PriorityQueue<>();
-        queue.offer(new Node(K, 0));
+        PriorityQueue<Node> pq = new PriorityQueue<>();
+        Arrays.fill(dist, Integer.MAX_VALUE);
+        pq.offer(new Node(K, 0));
         dist[K] = 0;
 
-        while (!queue.isEmpty()) {
-            Node cur = queue.poll();
+        while (!pq.isEmpty()) {
+            Node cur = pq.poll();
 
-            if (cur.w > dist[cur.v]) {
+            if (dist[cur.v] < cur.w) {
                 continue;
             }
 
             for (Node next : adj[cur.v]) {
-                if (dist[next.v] > next.w + cur.w) {
+                if (dist[next.v] > cur.w + next.w) {
                     dist[next.v] = cur.w + next.w;
-                    queue.offer(new Node(next.v, dist[next.v]));
+                    pq.offer(new Node(next.v, dist[next.v]));
                 }
             }
         }
@@ -89,8 +89,11 @@ public class BOJ_1753 {
     }
 }
 // G4 최단경로 다익스트라
-// 48분
-// 가중치가 다른 최단경로 문제
-// trouble shooting
-// 그리고 node에 넣을 때 새 가중치로 갱신해서 해야됨
-// Integer.MAX_VALUE 와 도 비교하는 탈출문과 현재의 가중치가 더 작을 경우도 탈출 조건으로 사용
+// 22분
+// 쉽게 풀었다.
+// K에 대해서 출발하는 최단경로고 그래서 V 는 2만 E 는 30만이라서 인접 리스트로 구현했다
+// Node class 로 정점과 가중치를 기록하고 가중치 별로 정렬
+// 그다음 K에 대해서 최단 경로 구함 dist[현재 정점] 보다 현재 가중치가 크면 바로 건너뛰고
+// 작거나 같을 경우 진행해서 갈 수 있는 곳들에 대해 next 를 구하고
+// next 의 거리에 대한 값과 이때까지 온 길이 즉 dist[cur.v] 와 next.w 로 대소 비교해서
+// 이대로 갱신해서 작성.
